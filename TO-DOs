@@ -5,5 +5,6 @@ c. Code for scoring LAr as well and analyze dose distribution
 d. Upload parameter file to Git and also run parameter file on UNH server(s).
 e. Need to run two separate files to show what rotation does.
 f. Have written notes for presentation to Prof Karl.
+g. Name file as ND3_TOPAS_NPG_MM_DD_YY.txt
 NB: Note that the dose is actually -dE/dz. 
 ____________________________________________________________________________
