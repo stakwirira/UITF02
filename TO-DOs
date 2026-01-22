@@ -1,0 +1,8 @@
+TO DO BY 01/28/2026:
+a. Construct more accurate Deuterium isotope for nuclear scattering.
+b. Use more accurate densitity for cryogenic LAr & ND3.
+c. Code for scoring LAr as well and analyze dose distribution
+d. Upload parameter file to Git and also run parameter file on UNH server(s).
+e. Need to run two separate files to show what rotation does.
+f. Have written notes for presentation to Prof Karl.
+NB: Note that the dose is actually -dE/dz. 
