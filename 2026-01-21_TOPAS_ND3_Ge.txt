@@ -1,6 +1,6 @@
 # ==============================================================================
 # TOPAS PARAMETER FILE: ND3 Target Irradiation Simulation
-# AUTHOR: Samuel (Khumbula) Takwirira
+# AUTHOR: Samuel Takwirira
 # DEPARTMENT: Nuclear Physics Department
 # SCHOOL: University  of New Hampshire 
 # ==============================================================================

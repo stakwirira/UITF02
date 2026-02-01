@@ -1,3 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SCRIPT_NAME: MATLAB20251213_ND3_dEdz.m
+% -------------------------------------------------------------------------
+% AUTHOR: SAMUEL TAKWIRIRA
+% DEPARTMENT: UNH NUCLEAR PHYSICS GROUP
+% DATE CREATED: 2025-11-25
+% LAST MODIFIED: 2025-12-13
+% VERSION: 1.0
+% -------------------------------------------------------------------------
+% DESCRIPTION: 
+% 
+% -------------------------------------------------------------------------
+% INPUTS: CSV
+%   '- Contains linear dose data and indices 
+%                            with an 8-line header'.
+% OUTPUTS: 
+%   Figure 1 - 2D Dose Distribution Heatmap (imagesc plot).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clc; clear; close all;
 
 %% 1. Parameters

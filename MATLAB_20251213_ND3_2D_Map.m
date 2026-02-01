@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SCRIPT_NAME: ND3_2D_Map_Tests.m
+% SCRIPT_NAME: MATLAB_20251213_ND3_2D_Map.m
 % -------------------------------------------------------------------------
-% AUTHOR: SAMUEL KHUMBULA
+% AUTHOR: SAMUEL TAKWIRIRA
 % DEPARTMENT: UNH NUCLEAR PHYSICS GROUP
 % DATE CREATED: 2025-11-25
 % LAST MODIFIED: 2025-12-13
