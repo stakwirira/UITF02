@@ -11,7 +11,7 @@
 i:Ts/NumberOfThreads                 = 8       # Could be 4 for smaller chips
 i:Ts/ShowHistoryCountAtInterval      = 200000
 i:Ts/Seed                            = 0       # More realitsic
-b:Ts/UseQt                           = "False" # Keep False for batch/cluster runs
+b:Ts/UseQt                           = "True" # Keep False for batch/cluster runs
 
 # ------------------------------------------------------------------------------
 # 2. PHYSICS MODULES
@@ -149,8 +149,8 @@ i:Sc/DoseUniformity/ZBins                    = 50
 # 7. VISUALIZATION
 # ------------------------------------------------------------------------------
 # Only works if Ts/UseQt = "True". Uncomment to visualize.
-#s:Gr/ViewA/Type                              = "OpenGL"
-#i:Gr/ViewA/WindowSizeX                       = 900
-#i:Gr/ViewA/WindowSizeY                       = 900
-#b:Gr/ViewA/IncludeAxes                       = "True"
-#s:Gr/ViewA/AxesComponent                     = "World"
+# s:Gr/ViewA/Type                              = "OpenGL"
+# i:Gr/ViewA/WindowSizeX                       = 900
+# i:Gr/ViewA/WindowSizeY                       = 900
+# b:Gr/ViewA/IncludeAxes                       = "True"
+# s:Gr/ViewA/AxesComponent                     = "World"

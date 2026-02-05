@@ -1,0 +1,65 @@
+# ==============================================================================
+# 0. GLOBAL & SESSION
+# ==============================================================================
+s:Ts/IfOutputFileAlreadyExists = "Overwrite"
+b:Ts/UseQt                     = "False"
+i:Ts/NumberOfThreads           = 8
+
+# ==============================================================================
+# 1. GEOMETRY
+# ==============================================================================
+s:Ge/World/Type     = "TsBox"
+s:Ge/World/Material = "Vacuum"
+d:Ge/World/HLX      = 20 cm
+d:Ge/World/HLY      = 20 cm
+d:Ge/World/HLZ      = 120 cm
+
+s:Ge/TestDetector/Type     = "TsBox"
+s:Ge/TestDetector/Parent   = "World"
+s:Ge/TestDetector/Material = "Vacuum" 
+d:Ge/TestDetector/HLX      = 10 cm
+d:Ge/TestDetector/HLY      = 10 cm
+d:Ge/TestDetector/HLZ      = 0.05 mm
+d:Ge/TestDetector/TransZ   = 0 cm
+
+# ==============================================================================
+# 2. ELECTRON BEAM
+# ==============================================================================
+s:So/ElectronSource/Type         = "Beam"
+s:So/ElectronSource/Component    = "World"
+s:So/ElectronSource/BeamParticle = "e-"
+d:So/ElectronSource/BeamEnergy   = 20 MeV
+u:So/ElectronSource/BeamEnergySpread = 0.03
+i:So/ElectronSource/NumberOfHistoriesInRun = 100000
+
+d:So/ElectronSource/BeamPositionZ = -50 cm
+
+# Spatial Gaussian
+s:So/ElectronSource/BeamPositionDistribution = "Gaussian"
+s:So/ElectronSource/BeamPositionCutoffShape    = "Ellipse" # <--- FIXED: ADDED THIS BACK
+d:So/ElectronSource/BeamPositionSpreadX      = 0.8 cm
+d:So/ElectronSource/BeamPositionSpreadY      = 0.8 cm
+d:So/ElectronSource/BeamPositionCutoffX      = 2.0 cm
+d:So/ElectronSource/BeamPositionCutoffY      = 2.0 cm
+
+# Angular Gaussian
+s:So/ElectronSource/BeamAngularDistribution = "Gaussian"
+d:So/ElectronSource/BeamAngularSpreadX      = 2.0 mrad
+d:So/ElectronSource/BeamAngularSpreadY      = 2.0 mrad
+d:So/ElectronSource/BeamAngularCutoffX      = 10.0 mrad
+d:So/ElectronSource/BeamAngularCutoffY      = 10.0 mrad
+
+# ==============================================================================
+# 3. SCORING (Documented Surface Syntax)
+# ==============================================================================
+s:Sc/BeamCheck/Quantity    = "PhaseSpace"
+s:Sc/BeamCheck/Component   = "TestDetector"
+s:Sc/BeamCheck/Surface     = "TestDetector/ZMinusSurface" 
+s:Sc/BeamCheck/OutputType  = "ASCII"
+s:Sc/BeamCheck/OutputFile  = "BeamValidation"
+b:Sc/BeamCheck/OutputColumnHeader = "True"
+
+# ==============================================================================
+# 4. PHYSICS
+# ==============================================================================
+sv:Ph/Default/Modules = 1 "g4em-standard_opt4"
