@@ -1,0 +1,174 @@
+# ==============================================================================
+# TOPAS PARAMETER FILE: ND3 Target Irradiation Simulation
+# AUTHOR:               Samuel Barachel Takwirira
+# DEPARTMENT:           Nuclear Physics Department
+# SCHOOL:               University  of New Hampshire 
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. BASIC SETTINGS
+# ------------------------------------------------------------------------------
+i:Ts/NumberOfThreads                 = 8       # Could be 4 for smaller chips
+i:Ts/ShowHistoryCountAtInterval      = 200000
+i:Ts/Seed                            = 0       # More realitsic
+b:Ts/UseQt                           = "True" # Keep False for batch/cluster runs
+
+# ------------------------------------------------------------------------------
+# 2. PHYSICS MODULES
+# ------------------------------------------------------------------------------
+# "opt4" is excellent/best for low-energy electron precision
+sv:Ph/Default/Modules                = 1 "g4em-standard_opt4"
+
+# ------------------------------------------------------------------------------
+# 3. GEOMETRY DEFINITIONS (4D ENABLED)
+# ------------------------------------------------------------------------------
+
+# --- World Volume ---
+s:Ge/World/Material  = "G4_AIR" 
+d:Ge/World/HLX       = 50.0 cm
+d:Ge/World/HLY       = 50.0 cm
+d:Ge/World/HLZ       = 100.0 cm
+
+# --- The Cryostat (Aluminum Dewar) ---
+s:Ge/Dewar/Type          = "TsCylinder"
+s:Ge/Dewar/Parent        = "World"
+s:Ge/Dewar/Material      = "Aluminum"
+d:Ge/Dewar/RMax          = 9.2 cm
+d:Ge/Dewar/HL            = 45.0 cm
+d:Ge/Dewar/TransZ        = 0.0 cm
+s:Ge/Dewar/Color         = "orange"
+s:Ge/Dewar/DrawingStyle  = "Cloud"
+b:Ge/Dewar/Visible       = "False"
+
+# --- Liquid Argon Bath (LAr) ---
+s:Ge/LArBath/Type          = "TsCylinder"
+s:Ge/LArBath/Parent        = "Dewar"
+s:Ge/LArBath/Material      = "LiquidArgon"
+d:Ge/LArBath/RMax          = 9.0 cm
+d:Ge/LArBath/HL            = 44.0 cm
+s:Ge/LArBath/Color         = "skyblue"
+s:Ge/LArBath/DrawingStyle  = "FullWireFrame"
+
+# ==========================================
+# 4D TIME CONTROL: PERPENDICULAR ROTATION
+# ==========================================
+d:Tf/Timeline/Start         = 0.0 s
+d:Tf/Timeline/End           = 1.0 s
+i:Tf/Timeline/NumberOfSteps = 100 
+
+# Define Linear Rotation around X-axis
+s:Tf/RotateX/Function       = "Linear"
+d:Tf/RotateX/Rate           = 360.0 deg/s
+d:Tf/RotateX/StartValue     = 0.0 deg
+
+# --- The Target Basket (Frozen ND3) ---
+s:Ge/TargetBasket/Type      = "TsBox"
+s:Ge/TargetBasket/Parent    = "LArBath"
+s:Ge/TargetBasket/Material  = "SolidND3"
+
+# Dimensions (10cm total thickness along Z)
+d:Ge/TargetBasket/HLX       = 2.5 cm
+d:Ge/TargetBasket/HLY       = 2.5 cm
+d:Ge/TargetBasket/HLZ       = 5.0 cm  
+d:Ge/TargetBasket/TransZ    = 5.0 cm  
+
+# Rotation Logic: Rotating around X makes it perpendicular to Beam Z
+d:Ge/TargetBasket/RotX      = Tf/RotateX/Value deg
+d:Ge/TargetBasket/RotY      = 0.0 deg
+d:Ge/TargetBasket/RotZ      = 0.0 deg
+
+s:Ge/TargetBasket/DrawingStyle = "FullWireFrame"
+s:Ge/TargetBasket/Color        = "magenta"
+# ------------------------------------------------------------------------------
+# 4. MATERIAL DEFINITIONS
+# ------------------------------------------------------------------------------
+
+# --- Frozen Deuterated Ammonia (ND3) ---
+# ==========================================
+# Material Definition: Solid Deuterated Ammonia (ND3)
+# ==========================================
+
+# 1. Define Deuterium Element (NIST Standard)
+# Using Symbol "H" to satisfy TOPAS/Geant4 symbol requirements 
+# while setting AtomicMass to the Deuterium value.
+s:El/Deuterium/Symbol     = "H" 
+i:El/Deuterium/Z          = 1
+d:El/Deuterium/AtomicMass = 2.01410178 g/mole
+
+# 2. Define the Final Material
+# Mass Calculation:
+# Nitrogen (14.0067) + 3*Deuterium (2.01410178 * 3) = 20.04900534
+# Nitrogen Fraction: 14.0067 / 20.0490 = 0.698623
+# Deuterium Fraction: 6.042305 / 20.0490 = 0.301377
+
+sv:Ma/SolidND3/Components = 2 "Nitrogen" "Deuterium"
+uv:Ma/SolidND3/Fractions  = 2 0.698623 0.301377
+d:Ma/SolidND3/Density     = 1.007 g/cm3
+s:Ma/SolidND3/DefaultColor = "skyblue"
+
+# --- Liquid Argon (LAr) ---
+sv:Ma/LiquidArgon/Components         = 1 "Argon"
+uv:Ma/LiquidArgon/Fractions          = 1 1.0
+d:Ma/LiquidArgon/Density             = 1.39 g/cm3
+
+# ------------------------------------------------------------------------------
+# 5. BEAM SOURCE (ELECTRON BEAM)
+# ------------------------------------------------------------------------------
+s:So/ElectronSource/Type                     = "Beam"
+s:So/ElectronSource/Component                = "World"
+s:So/ElectronSource/BeamParticle             = "e-"
+d:So/ElectronSource/BeamEnergy               = 20.0 MeV
+u:So/ElectronSource/BeamEnergySpread         = 0.03
+i:So/ElectronSource/NumberOfHistoriesInRun   = 1000000000
+
+# --- Beam Position & Shape ---
+# Position: -60cm Z. Dewar starts at -45cm. 15cm Gap.
+d:So/ElectronSource/BeamPositionX            = 0.0 cm
+d:So/ElectronSource/BeamPositionY            = 0.0 cm
+d:So/ElectronSource/BeamPositionZ            = -60.0 cm
+d:So/ElectronSource/RotX                     = 0. deg
+
+s:So/ElectronSource/BeamPositionDistribution = "Gaussian"
+s:So/ElectronSource/BeamPositionCutoffShape  = "Ellipse"
+d:So/ElectronSource/BeamPositionCutoffX      = 2.0 cm
+d:So/ElectronSource/BeamPositionCutoffY      = 2.0 cm
+d:So/ElectronSource/BeamPositionSpreadX      = 0.8 cm
+d:So/ElectronSource/BeamPositionSpreadY      = 0.8 cm
+s:So/ElectronSource/BeamAngularDistribution  = "None"
+
+# ------------------------------------------------------------------------------
+# 6. SCORERS (DATA OUTPUT)
+# ------------------------------------------------------------------------------
+
+# --- SCORER 1: Longitudinal Depth Dose ---
+# Bins: 100 Z bins over 10 cm length = 1mm resolution.
+
+s:Sc/DepthDose/Quantity                      = "DoseToMedium"
+s:Sc/DepthDose/Component                     = "TargetBasket"
+s:Sc/DepthDose/OutputFile                    = "ND3_dEdz_Profile"
+s:Sc/DepthDose/OutputType                    = "csv"
+s:Sc/DepthDose/IfOutputFileAlreadyExists     = "Overwrite"
+i:Sc/DepthDose/XBins                         = 1
+i:Sc/DepthDose/YBins                         = 1
+i:Sc/DepthDose/ZBins                         = 100
+
+# --- SCORER 2: 2D Dose Uniformity Map ---
+# Resolution: 5cm width / 50 bins = 1mm resolution in X and Z.
+s:Sc/DoseUniformity/Quantity                 = "DoseToMedium"
+s:Sc/DoseUniformity/Component                = "TargetBasket"
+s:Sc/DoseUniformity/OutputFile               = "ND3_2D_Map"
+s:Sc/DoseUniformity/OutputType               = "csv"
+s:Sc/DoseUniformity/IfOutputFileAlreadyExists= "Overwrite"
+i:Sc/DoseUniformity/XBins                    = 50
+i:Sc/DoseUniformity/YBins                    = 1
+i:Sc/DoseUniformity/ZBins                    = 50
+
+# ------------------------------------------------------------------------------
+# 7. VISUALIZATION
+# ------------------------------------------------------------------------------
+# Only works if Ts/UseQt = "True". Uncomment to visualize.
+# s:Gr/ViewA/Type                              = "OpenGL"
+# i:Gr/ViewA/WindowSizeX                       = 900
+# i:Gr/ViewA/WindowSizeY                       = 900
+# b:Gr/ViewA/IncludeAxes                       = "True"
+# s:Gr/ViewA/AxesComponent                     = "World"
