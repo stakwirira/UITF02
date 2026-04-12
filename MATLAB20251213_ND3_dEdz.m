@@ -1,11 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SCRIPT_NAME: MATLAB20251213_ND3_dEdz.m
 % -------------------------------------------------------------------------
-% AUTHOR: SAMUEL TAKWIRIRA
-% DEPARTMENT: UNH NUCLEAR PHYSICS GROUP
-% DATE CREATED: 2025-11-25
-% LAST MODIFIED: 2025-12-13
-% VERSION: 1.0
+% AUTHOR:           SAMUEL TAKWIRIRA
+% DEPARTMENT:       UNH NUCLEAR PHYSICS GROUP
+% DATE CREATED:     2025-11-25
+% LAST MODIFIED:    2025-12-13
+% VERSION:          1.0
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % 
@@ -20,7 +20,7 @@
 clc; clear; close all;
 
 %% 1. Parameters
-filename = '20260127ND3dEdz.csv'; 
+filename = 'NH3_dEdz_Profile.csv'; 
 z_bin_width = 0.1; % cm (From the header: "# Z in 100 bins of 0.1 cm")
 
 %% 2. Import Data

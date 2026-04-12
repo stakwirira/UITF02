@@ -1,6 +1,7 @@
 # ==============================================================================
 # TOPAS PARAMETER FILE: ND3 Target Irradiation Simulation
 # AUTHOR:               Samuel Barachel Takwirira
+# ADVISOR:              Karl Slifer, PhD
 # DEPARTMENT:           Nuclear Physics Department
 # SCHOOL:               University  of New Hampshire 
 # ==============================================================================
@@ -9,7 +10,7 @@
 # 1. BASIC SETTINGS
 # ------------------------------------------------------------------------------
 i:Ts/NumberOfThreads                 = 8       # Could be 4 for smaller chips
-i:Ts/ShowHistoryCountAtInterval      = 200000
+i:Ts/ShowHistoryCountAtInterval      = 20000
 i:Ts/Seed                            = 0       # More realitsic
 b:Ts/UseQt                           = "True" # Keep False for batch/cluster runs
 
@@ -49,36 +50,43 @@ d:Ge/LArBath/HL            = 44.0 cm
 s:Ge/LArBath/Color         = "skyblue"
 s:Ge/LArBath/DrawingStyle  = "FullWireFrame"
 
-# ==========================================
-# 4D TIME CONTROL: PERPENDICULAR ROTATION
-# ==========================================
-d:Tf/Timeline/Start         = 0.0 s
-d:Tf/Timeline/End           = 1.0 s
-i:Tf/Timeline/NumberOfSteps = 100 
+# ====================================================================
+# 4D TIME CONTROL: PROGRESS FACTOR
+# ====================================================================
+d:Tf/TimelineStart              = 0.0 s
+d:Tf/TimelineEnd                = 1.0 s
+i:Tf/NumberOfSequentialTimes    = 100 
 
-# Define Linear Rotation around X-axis
-s:Tf/RotateX/Function       = "Linear"
-d:Tf/RotateX/Rate           = 360.0 deg/s
-d:Tf/RotateX/StartValue     = 0.0 deg
+# Define a unitless engine
+s:Tf/RotateProgress/Function    = "Linear"
+u:Tf/RotateProgress/StartValue  = 0.0
+# The Rate tells TOPAS how much to increase the value per second.
+# 1.0 (unitless) divided by 1.0 second = 1.0 /s
+u:Tf/RotateProgress/Rate        = 1.0
 
-# --- The Target Basket (Frozen ND3) ---
-s:Ge/TargetBasket/Type      = "TsBox"
-s:Ge/TargetBasket/Parent    = "LArBath"
-s:Ge/TargetBasket/Material  = "SolidND3"
+# ====================================================================
+# TARGET GEOMETRY: FROZEN ND3 BASKET
+# ====================================================================
+s:Ge/TargetBasket/Type          = "TsBox"
+s:Ge/TargetBasket/Parent        = "LArBath"
+s:Ge/TargetBasket/Material      = "SolidND3"
 
-# Dimensions (10cm total thickness along Z)
-d:Ge/TargetBasket/HLX       = 2.5 cm
-d:Ge/TargetBasket/HLY       = 2.5 cm
-d:Ge/TargetBasket/HLZ       = 5.0 cm  
-d:Ge/TargetBasket/TransZ    = 5.0 cm  
+# Dimensions (10cm total thickness)
+d:Ge/TargetBasket/HLX           = 2.5 cm
+d:Ge/TargetBasket/HLY           = 2.5 cm
+d:Ge/TargetBasket/HLZ           = 5.0 cm  
+d:Ge/TargetBasket/TransZ        = 5.0 cm  
 
-# Rotation Logic: Rotating around X makes it perpendicular to Beam Z
-d:Ge/TargetBasket/RotX      = Tf/RotateX/Value deg
-d:Ge/TargetBasket/RotY      = 0.0 deg
-d:Ge/TargetBasket/RotZ      = 0.0 deg
+# Rotation Logic: [Number] [Unit] * [Parameter]
+# This follows the rule: "number unit * name_of_unitless_parameter"
+d:Ge/TargetBasket/RotX          = 360.0 deg * Tf/RotateProgress/Value
+d:Ge/TargetBasket/RotY          = 0.0 deg
+d:Ge/TargetBasket/RotZ          = 0.0 deg
 
-s:Ge/TargetBasket/DrawingStyle = "FullWireFrame"
-s:Ge/TargetBasket/Color        = "magenta"
+# Visualization
+s:Ge/TargetBasket/DrawingStyle  = "FullWireFrame"
+s:Ge/TargetBasket/Color         = "magenta"
+
 # ------------------------------------------------------------------------------
 # 4. MATERIAL DEFINITIONS
 # ------------------------------------------------------------------------------
@@ -119,7 +127,7 @@ s:So/ElectronSource/Component                = "World"
 s:So/ElectronSource/BeamParticle             = "e-"
 d:So/ElectronSource/BeamEnergy               = 20.0 MeV
 u:So/ElectronSource/BeamEnergySpread         = 0.03
-i:So/ElectronSource/NumberOfHistoriesInRun   = 1000000000
+i:So/ElectronSource/NumberOfHistoriesInRun   = 10000000
 
 # --- Beam Position & Shape ---
 # Position: -60cm Z. Dewar starts at -45cm. 15cm Gap.
