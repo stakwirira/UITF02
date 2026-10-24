@@ -1,9 +1,16 @@
-% VerifyBeam.m - Standalone Validation Script
+% ANALYZE_BEAM_CHECK  Validate the production beam against its specification.
+%   Reads the phase-space file written by beam_check.txt and compares the
+%   mean energy, energy spread, and spot size with the intended values
+%   (PASS within 5%).
+%
+%   Input:  BeamResults.phsp from running TOPAS on beam_check.txt.
+%   Author: Samuel B. Takwirira, UNH Nuclear Physics Group
+
 clear; clc;
 
 % 1. Load the PhaseSpace file
-% Note: TOPAS may name it 'BeamCheck.phsp' or 'BeamCheck1.phsp' 
-filename = 'BeamCheck.phsp';
+% beam_check.txt writes BeamResults.phsp (ASCII) next to BeamResults.header
+filename = 'BeamResults.phsp';
 data = readtable(filename, 'FileType', 'text');
 
 % Column Mapping
@@ -43,5 +50,5 @@ title('Energy Spread Spectrum');
 xlabel('Energy (MeV)');
 
 function msg = check(val, target)
-    if abs(val - target)/target < 0.05, msg = '✅ PASS'; else, msg = '❌ FAIL'; end
+    if abs(val - target)/target < 0.05, msg = 'PASS'; else, msg = 'FAIL'; end
 end
