@@ -1,15 +1,23 @@
+% PLOT_BILATERAL_MAP_LATERAL  Bilateral 2D dose map and lateral profile.
+%   Mirrors a single-entry TOPAS 2D dose map (X-Z) along Z, sums the
+%   forward and reverse maps, and plots the lateral dose profile at the
+%   target midplane with its 90% width.
+%
+%   Input:  TOPAS 2D dose-map CSV with 50 X bins (set FILENAME below).
+%   Author: Samuel B. Takwirira, UNH Nuclear Physics Group
+
 clc; clear; close all;
 
 %% 1. Setup & Import
-filename = 'NH3_2D_Map.csv'; 
-binWidth = 0.1; 
+filename = 'NH3_2D_Map.csv';
+binWidth = 0.1;
 
 opts = detectImportOptions(filename, 'FileType', 'text');
-opts.CommentStyle = '#'; 
+opts.CommentStyle = '#';
 raw_table = readtable(filename, opts);
 dose_linear = table2array(raw_table(:, end));
 
-nBinsX = 50; 
+nBinsX = 50;
 nBinsZ = length(dose_linear) / nBinsX;
 dose_forward = reshape(dose_linear, [nBinsZ, nBinsX]);
 
@@ -24,7 +32,7 @@ z_axis = linspace(0, nBinsZ * binWidth, nBinsZ);
 %% 3. Lateral Slice Logic (90 degrees to beam)
 % We take the slice at the midpoint of the cylinder's length (Z-center)
 mid_z_idx = round(nBinsZ / 2);
-prof_lat_total = dose_total(mid_z_idx, :); 
+prof_lat_total = dose_total(mid_z_idx, :);
 prof_lat_fwd   = dose_forward(mid_z_idx, :);
 prof_lat_rev   = dose_reverse(mid_z_idx, :);
 

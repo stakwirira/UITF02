@@ -1,13 +1,21 @@
+% PLOT_BILATERAL_MAP_AXIAL  Bilateral 2D dose map and central-axis profile.
+%   Mirrors a single-entry TOPAS 2D dose map (X-Z) along Z, sums the
+%   forward and reverse maps, and compares single-entry and bilateral
+%   dose along the central axis.
+%
+%   Input:  TOPAS 2D dose-map CSV with 50 X bins (set FILENAME below).
+%   Author: Samuel B. Takwirira, UNH Nuclear Physics Group
+
 clc; clear; close all;
 
 %% 1. Setup
-filename = '20260127ND3Map2D.csv'; 
+filename = '20260127ND3Map2D.csv';
 binWidth = 0.1; % cm
 
 %% 2. Import and Reshape
 opts = detectImportOptions(filename, 'FileType', 'text');
 opts.VariableNamingRule = 'preserve';
-opts.CommentStyle = '#'; 
+opts.CommentStyle = '#';
 raw_table = readtable(filename, opts);
 dose_linear = table2array(raw_table(:, end));
 
@@ -35,7 +43,7 @@ figure('Color', 'w', 'Name', '2D Bilateral Superposition', 'Units', 'normalized'
 % --- Plot Superimposed Map ---
 subplot(1, 2, 1);
 imagesc(x_axis, z_axis, dose_total);
-set(gca, 'YDir', 'normal'); 
+set(gca, 'YDir', 'normal');
 colormap('jet');
 axis equal tight; grid on;
 title('Total Superimposed Dose', 'Color', [0, 0, 1]);

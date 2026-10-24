@@ -1,15 +1,23 @@
+% PLOT_BILATERAL_DEPTH_DOSE  Bilateral depth-dose superposition.
+%   Mirrors a single-entry TOPAS depth-dose profile to model irradiation
+%   from the opposite face, sums the two, and reports the width and
+%   min/max uniformity of the region within 90% of the maximum dose.
+%
+%   Input:  TOPAS depth-dose CSV (set FILENAME below), 8-line header.
+%   Author: Samuel B. Takwirira, UNH Nuclear Physics Group
+
 clc; clear; close all;
 
 %% 1. Parameters
-filename = 'NH3_DepthDose.csv'; 
+filename = 'NH3_DepthDose.csv';
 z_bin_width = 0.1;  % cm
 L = 10.0;           % Total cylinder length (cm)
-center_offset = L/2; 
+center_offset = L/2;
 
 %% 2. Import & Filter Data
 raw_data = readmatrix(filename, 'NumHeaderLines', 8);
 z_index = raw_data(:, 3);
-dose_raw = raw_data(:, 4); 
+dose_raw = raw_data(:, 4);
 depth_raw = (z_index * z_bin_width) + (z_bin_width / 2);
 
 valid_idx = depth_raw <= L;
@@ -17,8 +25,8 @@ d_orig = depth_raw(valid_idx);
 dose_fwd = dose_raw(valid_idx);
 
 % Center coordinates [-5, 5]
-depth_centered = d_orig - center_offset; 
-dose_rev = flipud(dose_fwd); 
+depth_centered = d_orig - center_offset;
+dose_rev = flipud(dose_fwd);
 dose_total = dose_fwd + dose_rev;
 
 [max_total, ~] = max(dose_total);
@@ -31,8 +39,8 @@ if ~isempty(idx_90)
     z_start = depth_centered(min(idx_90));
     z_end   = depth_centered(max(idx_90));
     z_width = z_end - z_start;
-    
-    % --- NEW: Uniformity strictly WITHIN the 90% zone ---
+
+    % Uniformity within the 90% zone
     dose_in_zone = dose_total(idx_90);
     min_in_zone = min(dose_in_zone);
     max_in_zone = max(dose_in_zone);
@@ -42,7 +50,7 @@ else
 end
 
 %% 4. Styling & Colors
-uiColor = [0, 0, 1]; colorFwd = [0.4, 0.6, 1]; 
+uiColor = [0, 0, 1]; colorFwd = [0.4, 0.6, 1];
 colorRev = [1, 0.4, 0.4]; colorTotal = [0, 0.7, 0]; colorZone = [0.5, 0, 0.5];
 
 %% 5. FIGURE
@@ -60,10 +68,10 @@ if z_width > 0
     y_lims = [0 max_total * 1.3];
     patch([z_start z_end z_end z_start], [y_lims(1) y_lims(1) y_lims(2) y_lims(2)], ...
           [0.95 0.9 0.95], 'EdgeColor', 'none', 'FaceAlpha', 0.3, 'HandleVisibility', 'off');
-    
+
     h4 = plot([z_start, z_end], [threshold_90, threshold_90], 'p-', 'Color', colorZone, ...
         'LineWidth', 2, 'MarkerFaceColor', colorZone, 'MarkerSize', 8);
-    
+
     legend({'Forward Beam', 'Reverse Beam', 'Total Dose', '90% Uniformity Zone'}, 'Location', 'northeast');
 end
 
@@ -80,5 +88,5 @@ stats_str = { ...
     sprintf('Uniformity (Min/Max) in Zone: %.3f', uniformity_zone)};
 
 annotation('textbox', [0.15, 0.15, 0.35, 0.18], 'String', stats_str, ...
-    'FitBoxToText', 'on', 'BackgroundColor', 'white', 'EdgeColor', uiColor, ...   
+    'FitBoxToText', 'on', 'BackgroundColor', 'white', 'EdgeColor', uiColor, ...
     'Color', uiColor, 'FontWeight', 'bold');
