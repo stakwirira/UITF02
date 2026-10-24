@@ -2,19 +2,18 @@
 __pycache__/
 *.py[cod]
 
-# Local reference documents and generated report exports.
-From Prof Karl .pdf
-UNH-UITF BeamNetUS Proposal.docx
-crabb.pdf
-UITF02_Report.pdf
-Project_Report.pdf
-Project_Report.tex
+# Local reference documents and generated report exports (UITF study).
+uitf-dnp-irradiation/From Prof Karl .pdf
+uitf-dnp-irradiation/UNH-UITF BeamNetUS Proposal.docx
+uitf-dnp-irradiation/crabb.pdf
+uitf-dnp-irradiation/UITF02_Report.pdf
+uitf-dnp-irradiation/Project_Report.tex
 
-# Local presentation build notes and generated source code.
-outputs/**/claim-spine.txt
-outputs/**/profile-plan.txt
-outputs/**/source-notes.txt
-outputs/**/slides/
+# Local presentation build notes and generated source code (UITF study).
+uitf-dnp-irradiation/outputs/**/claim-spine.txt
+uitf-dnp-irradiation/outputs/**/profile-plan.txt
+uitf-dnp-irradiation/outputs/**/source-notes.txt
+uitf-dnp-irradiation/outputs/**/slides/
 
 # Empty local clones of the same GitHub repository.
 UITF02/

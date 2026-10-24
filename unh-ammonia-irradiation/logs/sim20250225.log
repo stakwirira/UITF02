@@ -1,0 +1,3045 @@
+nohup: ignoring input
+
+Welcome to TOPAS, Tool for Particle Simulation (Version 3.9)
+Loading parameters starting from: 20260226NH3.txt
+
+Geant4 Data directory has been specified by the
+TOPAS_G4_DATA_DIR environment variable as /net/home/samk/topas/G4Data
+
+**************************************************************
+ Geant4 version Name: geant4-10-07-patch-03 [MT]   (19-November-2021)
+  << in Multi-threaded mode >> 
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+TOPAS is in MT mode, setting number of threads to: 8
+
+TOPAS set the tolerances based on the World size to:
+      Surface tolerance = 0.005 nm, and radial tolerance = 0.005 nm.
+Checking overlaps for volume Dewar (G4Tubs) ... OK! 
+Checking overlaps for volume LArBath (G4Tubs) ... OK! 
+Registered use of changeable parameter: Tf/TargetRotation/Value  by component: TargetBasket
+Checking overlaps for volume TargetBasket (G4Sphere) ... OK! 
+Creating parallel world: LArBath_1x1x100
+Checking overlaps for volume LArBath_1x1x100 (G4Tubs) ... OK! 
+
+Checking for Unused Components.
+These are Components that were never built even though they were at least
+partially defined in some parameters. This is not necessarily an error.
+It may be an intentional choice to have these Component definitions handy for later use.
+To turn off this check, set Ge/CheckForUnusedComponents to False
+  No unused components were found.
+
+Visualization verbosity changed to quiet (0)
+
+TimeFeature updated: tf/targetrotation/value = 0 rad at: 0 (ms)
+
+### ===  Deexcitation model UAtomDeexcitation is activated for 1 region:
+          DefaultRegionForTheWorld  1  0  0
+### ===  Ignore cuts flag:   0
+
+phot:  for gamma SubType=12 BuildTable=0
+      LambdaPrime table from 200 keV to 500 MeV in 71 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+ LivermorePhElectric : Emin=    0 eV  Emax=  500 MeV  SauterGavrila Fluo
+
+compt:  for gamma SubType=13 BuildTable=1
+      Lambda table from 100 eV  to 1 MeV, 21 bins/decade, spline: 1
+      LambdaPrime table from 1 MeV to 500 MeV in 56 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   LowEPComptonModel : Emin=    0 eV  Emax=   20 MeV Fluo
+        KleinNishina : Emin=   20 MeV Emax=  500 MeV Fluo
+
+conv:  for gamma SubType=14 BuildTable=1
+      Lambda table from 1.022 MeV to 500 MeV, 33 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+      BetheHeitler5D : Emin=    0 eV  Emax=  500 MeV  ModifiedTsai
+
+Rayl:  for gamma SubType=11 BuildTable=1
+      Lambda table from 100 eV  to 100 keV, 21 bins/decade, spline: 0
+      LambdaPrime table from 100 keV to 500 MeV in 77 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   LivermoreRayleigh : Emin=    0 eV  Emax=  500 MeV  CullenGenerator
+
+msc:  for e-  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  GoudsmitSaunderson : Emin=    0 eV  Emax=  100 MeV Nbins=120 100 eV  - 100 MeV
+              StepLim=SafetyPlus Rfact=0.08 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+        WentzelVIUni : Emin=  100 MeV Emax=  500 MeV Nbins=20 100 MeV - 500 MeV
+              StepLim=SafetyPlus Rfact=0.08 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+eIoni:  for e-  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.2, 0.01 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+       LowEnergyIoni : Emin=    0 eV  Emax=  100 keV  deltaVI
+        MollerBhabha : Emin=  100 keV Emax=  500 MeV  deltaVI
+
+eBrem:  for e-  SubType=3
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      LPM flag: 1 for E > 0.5 GeV,  VertexHighEnergyTh(GeV)= 100000
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB : Emin=    0 eV  Emax=  500 MeV  AngularGen2BS
+
+ePairProd:  for e-  SubType=4
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      Sampling table 4x1001; from 0.1 GeV to 0.0005 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           ePairProd : Emin=    0 eV  Emax=  500 MeV  ModifiedMephi
+
+CoulombScat:  for e-, integral:1  SubType=1 BuildTable=1
+      Lambda table from 100 MeV to 500 MeV, 21 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=  100 MeV Emax=  500 MeV
+
+msc:  for e+  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  GoudsmitSaunderson : Emin=    0 eV  Emax=  100 MeV Nbins=120 100 eV  - 100 MeV
+              StepLim=SafetyPlus Rfact=0.08 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+        WentzelVIUni : Emin=  100 MeV Emax=  500 MeV Nbins=20 100 MeV - 500 MeV
+              StepLim=SafetyPlus Rfact=0.08 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+eIoni:  for e+  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.2, 0.01 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             PenIoni : Emin=    0 eV  Emax=  100 keV
+        MollerBhabha : Emin=  100 keV Emax=  500 MeV  deltaVI
+
+eBrem:  for e+  SubType=3
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      LPM flag: 1 for E > 0.5 GeV,  VertexHighEnergyTh(GeV)= 100000
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB : Emin=    0 eV  Emax=  500 MeV  AngularGen2BS
+
+ePairProd:  for e+  SubType=4
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      Sampling table 4x1001; from 0.1 GeV to 0.0005 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           ePairProd : Emin=    0 eV  Emax=  500 MeV  ModifiedMephi
+
+annihil:  for e+, integral:1  SubType=5 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            eplus2gg : Emin=    0 eV  Emax=  500 MeV
+
+CoulombScat:  for e+, integral:1  SubType=1 BuildTable=1
+      Lambda table from 100 MeV to 500 MeV, 21 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=  100 MeV Emax=  500 MeV
+
+msc:  for proton  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  500 MeV Nbins=140 100 eV  - 500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+hIoni:  for proton  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=    2 MeV  deltaVI
+          BetheBloch : Emin=    2 MeV Emax=  500 MeV  deltaVI
+
+CoulombScat:  for proton, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 500 MeV, 21 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  500 MeV
+
+nuclearStopping:  for proton SubType=8 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   ICRU49NucStopping : Emin=    0 eV  Emax=    1 MeV
+
+msc:  for GenericIon  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc : Emin=    0 eV  Emax=  500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+ionIoni:  for GenericIon  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.02
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+         ParamICRU73 : Emin=    0 eV  Emax=  500 MeV  deltaVI
+
+nuclearStopping:  for GenericIon SubType=8 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   ICRU49NucStopping : Emin=    0 eV  Emax=    1 MeV
+
+msc:  for alpha  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc : Emin=    0 eV  Emax=  500 MeV Nbins=140 100 eV  - 500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+ionIoni:  for alpha  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.02
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            BraggIon : Emin=    0 eV  Emax=7.9452 MeV  deltaVI
+          BetheBloch : Emin=7.9452 MeV Emax=  500 MeV  deltaVI
+
+nuclearStopping:  for alpha SubType=8 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   ICRU49NucStopping : Emin=    0 eV  Emax=    1 MeV
+
+msc:  for anti_proton  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  500 MeV Nbins=140 100 eV  - 500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+hIoni:  for anti_proton  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=    2 MeV  deltaVI
+          BetheBloch : Emin=    2 MeV Emax=  500 MeV  deltaVI
+
+CoulombScat:  for anti_proton, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 500 MeV, 21 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  500 MeV
+
+msc:  for kaon+  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  500 MeV Nbins=140 100 eV  - 500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+hIoni:  for kaon+  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=1.05231 MeV  deltaVI
+          BetheBloch : Emin=1.05231 MeV Emax=  500 MeV  deltaVI
+
+CoulombScat:  for kaon+, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 500 MeV, 21 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  500 MeV
+
+msc:  for kaon-  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  500 MeV Nbins=140 100 eV  - 500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+hIoni:  for kaon-  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=1.05231 MeV  deltaVI
+          BetheBloch : Emin=1.05231 MeV Emax=  500 MeV  deltaVI
+
+CoulombScat:  for kaon-, integral:1  SubType=1 BuildTable=1
+      Used Lambda table of kaon+
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  500 MeV
+
+msc:  for mu+  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  500 MeV Nbins=140 100 eV  - 500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+muIoni:  for mu+  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=  200 keV  deltaVI
+          BetheBloch : Emin=  200 keV Emax=  500 MeV  deltaVI
+
+CoulombScat:  for mu+, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 500 MeV, 21 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  500 MeV
+
+msc:  for mu-  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  500 MeV Nbins=140 100 eV  - 500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+muIoni:  for mu-  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=  200 keV  deltaVI
+          BetheBloch : Emin=  200 keV Emax=  500 MeV  deltaVI
+
+CoulombScat:  for mu-, integral:1  SubType=1 BuildTable=1
+      Used Lambda table of mu+
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  500 MeV
+
+msc:  for pi+  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  500 MeV Nbins=140 100 eV  - 500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+hIoni:  for pi+  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=297.505 keV  deltaVI
+          BetheBloch : Emin=297.505 keV Emax=  500 MeV  deltaVI
+
+CoulombScat:  for pi+, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 500 MeV, 21 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  500 MeV
+
+msc:  for pi-  SubType= 10
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  500 MeV Nbins=140 100 eV  - 500 MeV
+              StepLim=Minimal Rfact=0.2 Gfact=2.5 Sfact=0.6 DispFlag:1 Skin=3 Llimit=1
+
+hIoni:  for pi-  SubType=2
+      dE/dx and range tables from 100 eV  to 500 MeV in 140 bins
+      Lambda tables from threshold to 500 MeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.05 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=297.505 keV  deltaVI
+          BetheBloch : Emin=297.505 keV Emax=  500 MeV  deltaVI
+
+CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
+      Used Lambda table of pi+
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  500 MeV
+
+=======================================================================
+--> G4MTRunManager::CreateAndStartWorkers() --> Initializing workers...
+=======================================================================
+
+G4WT7 > Begin processing for Run: 0, History: 0
+G4WT7 > Begin processing for Run: 0, History: 20000
+G4WT4 > Begin processing for Run: 0, History: 40000
+G4WT3 > Begin processing for Run: 0, History: 60000
+G4WT4 > Begin processing for Run: 0, History: 80000
+G4WT4 > Begin processing for Run: 0, History: 100000
+G4WT4 > Begin processing for Run: 0, History: 120000
+G4WT3 > Begin processing for Run: 0, History: 140000
+G4WT3 > Begin processing for Run: 0, History: 160000
+G4WT7 > Begin processing for Run: 0, History: 180000
+G4WT7 > Begin processing for Run: 0, History: 200000
+G4WT7 > Begin processing for Run: 0, History: 220000
+G4WT4 > Begin processing for Run: 0, History: 240000
+G4WT4 > Begin processing for Run: 0, History: 260000
+G4WT4 > Begin processing for Run: 0, History: 280000
+G4WT4 > Begin processing for Run: 0, History: 300000
+G4WT1 > Begin processing for Run: 0, History: 320000
+G4WT1 > Begin processing for Run: 0, History: 340000
+G4WT1 > Begin processing for Run: 0, History: 360000
+G4WT1 > Begin processing for Run: 0, History: 380000
+G4WT1 > Begin processing for Run: 0, History: 400000
+G4WT1 > Begin processing for Run: 0, History: 420000
+G4WT1 > Begin processing for Run: 0, History: 440000
+G4WT1 > Begin processing for Run: 0, History: 460000
+G4WT1 > Begin processing for Run: 0, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.0628319 rad at: 10 (ms)
+G4WT1 > Begin processing for Run: 1, History: 0
+G4WT0 > Begin processing for Run: 1, History: 20000
+G4WT2 > Begin processing for Run: 1, History: 40000
+G4WT2 > Begin processing for Run: 1, History: 60000
+G4WT2 > Begin processing for Run: 1, History: 80000
+G4WT2 > Begin processing for Run: 1, History: 100000
+G4WT2 > Begin processing for Run: 1, History: 120000
+G4WT3 > Begin processing for Run: 1, History: 140000
+G4WT2 > Begin processing for Run: 1, History: 160000
+G4WT2 > Begin processing for Run: 1, History: 180000
+G4WT3 > Begin processing for Run: 1, History: 200000
+G4WT3 > Begin processing for Run: 1, History: 220000
+G4WT3 > Begin processing for Run: 1, History: 240000
+G4WT1 > Begin processing for Run: 1, History: 260000
+G4WT2 > Begin processing for Run: 1, History: 280000
+G4WT2 > Begin processing for Run: 1, History: 300000
+G4WT2 > Begin processing for Run: 1, History: 320000
+G4WT2 > Begin processing for Run: 1, History: 340000
+G4WT1 > Begin processing for Run: 1, History: 360000
+G4WT1 > Begin processing for Run: 1, History: 380000
+G4WT1 > Begin processing for Run: 1, History: 400000
+G4WT1 > Begin processing for Run: 1, History: 420000
+G4WT1 > Begin processing for Run: 1, History: 440000
+G4WT3 > Begin processing for Run: 1, History: 460000
+G4WT3 > Begin processing for Run: 1, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.125664 rad at: 20 (ms)
+G4WT0 > Begin processing for Run: 2, History: 0
+G4WT6 > Begin processing for Run: 2, History: 20000
+G4WT3 > Begin processing for Run: 2, History: 40000
+G4WT3 > Begin processing for Run: 2, History: 60000
+G4WT4 > Begin processing for Run: 2, History: 80000
+G4WT3 > Begin processing for Run: 2, History: 100000
+G4WT3 > Begin processing for Run: 2, History: 120000
+G4WT0 > Begin processing for Run: 2, History: 140000
+G4WT1 > Begin processing for Run: 2, History: 160000
+G4WT0 > Begin processing for Run: 2, History: 180000
+G4WT0 > Begin processing for Run: 2, History: 200000
+G4WT7 > Begin processing for Run: 2, History: 220000
+G4WT7 > Begin processing for Run: 2, History: 240000
+G4WT4 > Begin processing for Run: 2, History: 260000
+G4WT4 > Begin processing for Run: 2, History: 280000
+G4WT4 > Begin processing for Run: 2, History: 300000
+G4WT0 > Begin processing for Run: 2, History: 320000
+G4WT2 > Begin processing for Run: 2, History: 340000
+G4WT2 > Begin processing for Run: 2, History: 360000
+G4WT2 > Begin processing for Run: 2, History: 380000
+G4WT2 > Begin processing for Run: 2, History: 400000
+G4WT2 > Begin processing for Run: 2, History: 420000
+G4WT5 > Begin processing for Run: 2, History: 440000
+G4WT5 > Begin processing for Run: 2, History: 460000
+G4WT5 > Begin processing for Run: 2, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.188496 rad at: 30 (ms)
+G4WT6 > Begin processing for Run: 3, History: 0
+G4WT4 > Begin processing for Run: 3, History: 20000
+G4WT4 > Begin processing for Run: 3, History: 40000
+G4WT3 > Begin processing for Run: 3, History: 60000
+G4WT3 > Begin processing for Run: 3, History: 80000
+G4WT3 > Begin processing for Run: 3, History: 100000
+G4WT3 > Begin processing for Run: 3, History: 120000
+G4WT3 > Begin processing for Run: 3, History: 140000
+G4WT3 > Begin processing for Run: 3, History: 160000
+G4WT4 > Begin processing for Run: 3, History: 180000
+G4WT4 > Begin processing for Run: 3, History: 200000
+G4WT4 > Begin processing for Run: 3, History: 220000
+G4WT4 > Begin processing for Run: 3, History: 240000
+G4WT4 > Begin processing for Run: 3, History: 260000
+G4WT4 > Begin processing for Run: 3, History: 280000
+G4WT4 > Begin processing for Run: 3, History: 300000
+G4WT5 > Begin processing for Run: 3, History: 320000
+G4WT5 > Begin processing for Run: 3, History: 340000
+G4WT7 > Begin processing for Run: 3, History: 360000
+G4WT7 > Begin processing for Run: 3, History: 380000
+G4WT7 > Begin processing for Run: 3, History: 400000
+G4WT3 > Begin processing for Run: 3, History: 420000
+G4WT3 > Begin processing for Run: 3, History: 440000
+G4WT3 > Begin processing for Run: 3, History: 460000
+G4WT6 > Begin processing for Run: 3, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.251327 rad at: 40 (ms)
+G4WT3 > Begin processing for Run: 4, History: 0
+G4WT5 > Begin processing for Run: 4, History: 20000
+G4WT5 > Begin processing for Run: 4, History: 40000
+G4WT6 > Begin processing for Run: 4, History: 60000
+G4WT6 > Begin processing for Run: 4, History: 80000
+G4WT6 > Begin processing for Run: 4, History: 100000
+G4WT5 > Begin processing for Run: 4, History: 120000
+G4WT5 > Begin processing for Run: 4, History: 140000
+G4WT5 > Begin processing for Run: 4, History: 160000
+G4WT5 > Begin processing for Run: 4, History: 180000
+G4WT5 > Begin processing for Run: 4, History: 200000
+G4WT1 > Begin processing for Run: 4, History: 220000
+G4WT6 > Begin processing for Run: 4, History: 240000
+G4WT6 > Begin processing for Run: 4, History: 260000
+G4WT6 > Begin processing for Run: 4, History: 280000
+G4WT6 > Begin processing for Run: 4, History: 300000
+G4WT6 > Begin processing for Run: 4, History: 320000
+G4WT3 > Begin processing for Run: 4, History: 340000
+G4WT5 > Begin processing for Run: 4, History: 360000
+G4WT5 > Begin processing for Run: 4, History: 380000
+G4WT3 > Begin processing for Run: 4, History: 400000
+G4WT4 > Begin processing for Run: 4, History: 420000
+G4WT4 > Begin processing for Run: 4, History: 440000
+G4WT4 > Begin processing for Run: 4, History: 460000
+G4WT2 > Begin processing for Run: 4, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.314159 rad at: 50 (ms)
+G4WT3 > Begin processing for Run: 5, History: 0
+G4WT2 > Begin processing for Run: 5, History: 20000
+G4WT2 > Begin processing for Run: 5, History: 40000
+G4WT2 > Begin processing for Run: 5, History: 60000
+G4WT3 > Begin processing for Run: 5, History: 80000
+G4WT2 > Begin processing for Run: 5, History: 100000
+G4WT2 > Begin processing for Run: 5, History: 120000
+G4WT2 > Begin processing for Run: 5, History: 140000
+G4WT2 > Begin processing for Run: 5, History: 160000
+G4WT7 > Begin processing for Run: 5, History: 180000
+G4WT7 > Begin processing for Run: 5, History: 200000
+G4WT7 > Begin processing for Run: 5, History: 220000
+G4WT7 > Begin processing for Run: 5, History: 240000
+G4WT4 > Begin processing for Run: 5, History: 260000
+G4WT7 > Begin processing for Run: 5, History: 280000
+G4WT7 > Begin processing for Run: 5, History: 300000
+G4WT4 > Begin processing for Run: 5, History: 320000
+G4WT4 > Begin processing for Run: 5, History: 340000
+G4WT1 > Begin processing for Run: 5, History: 360000
+G4WT1 > Begin processing for Run: 5, History: 380000
+G4WT1 > Begin processing for Run: 5, History: 400000
+G4WT0 > Begin processing for Run: 5, History: 420000
+G4WT0 > Begin processing for Run: 5, History: 440000
+G4WT0 > Begin processing for Run: 5, History: 460000
+G4WT0 > Begin processing for Run: 5, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.376991 rad at: 60 (ms)
+G4WT1 > Begin processing for Run: 6, History: 0
+G4WT0 > Begin processing for Run: 6, History: 20000
+G4WT3 > Begin processing for Run: 6, History: 40000
+G4WT3 > Begin processing for Run: 6, History: 60000
+G4WT1 > Begin processing for Run: 6, History: 80000
+G4WT1 > Begin processing for Run: 6, History: 100000
+G4WT3 > Begin processing for Run: 6, History: 120000
+G4WT3 > Begin processing for Run: 6, History: 140000
+G4WT3 > Begin processing for Run: 6, History: 160000
+G4WT3 > Begin processing for Run: 6, History: 180000
+G4WT3 > Begin processing for Run: 6, History: 200000
+G4WT7 > Begin processing for Run: 6, History: 220000
+G4WT7 > Begin processing for Run: 6, History: 240000
+G4WT7 > Begin processing for Run: 6, History: 260000
+G4WT7 > Begin processing for Run: 6, History: 280000
+G4WT1 > Begin processing for Run: 6, History: 300000
+G4WT1 > Begin processing for Run: 6, History: 320000
+G4WT1 > Begin processing for Run: 6, History: 340000
+G4WT1 > Begin processing for Run: 6, History: 360000
+G4WT1 > Begin processing for Run: 6, History: 380000
+G4WT5 > Begin processing for Run: 6, History: 400000
+G4WT5 > Begin processing for Run: 6, History: 420000
+G4WT4 > Begin processing for Run: 6, History: 440000
+G4WT4 > Begin processing for Run: 6, History: 460000
+G4WT4 > Begin processing for Run: 6, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.439823 rad at: 70 (ms)
+G4WT4 > Begin processing for Run: 7, History: 0
+G4WT0 > Begin processing for Run: 7, History: 20000
+G4WT0 > Begin processing for Run: 7, History: 40000
+G4WT4 > Begin processing for Run: 7, History: 60000
+G4WT4 > Begin processing for Run: 7, History: 80000
+G4WT4 > Begin processing for Run: 7, History: 100000
+G4WT4 > Begin processing for Run: 7, History: 120000
+G4WT4 > Begin processing for Run: 7, History: 140000
+G4WT4 > Begin processing for Run: 7, History: 160000
+G4WT4 > Begin processing for Run: 7, History: 180000
+G4WT4 > Begin processing for Run: 7, History: 200000
+G4WT4 > Begin processing for Run: 7, History: 220000
+G4WT7 > Begin processing for Run: 7, History: 240000
+G4WT7 > Begin processing for Run: 7, History: 260000
+G4WT7 > Begin processing for Run: 7, History: 280000
+G4WT7 > Begin processing for Run: 7, History: 300000
+G4WT7 > Begin processing for Run: 7, History: 320000
+G4WT7 > Begin processing for Run: 7, History: 340000
+G4WT0 > Begin processing for Run: 7, History: 360000
+G4WT0 > Begin processing for Run: 7, History: 380000
+G4WT0 > Begin processing for Run: 7, History: 400000
+G4WT6 > Begin processing for Run: 7, History: 420000
+G4WT4 > Begin processing for Run: 7, History: 440000
+G4WT6 > Begin processing for Run: 7, History: 460000
+G4WT4 > Begin processing for Run: 7, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.502655 rad at: 80 (ms)
+G4WT0 > Begin processing for Run: 8, History: 0
+G4WT4 > Begin processing for Run: 8, History: 20000
+G4WT4 > Begin processing for Run: 8, History: 40000
+G4WT4 > Begin processing for Run: 8, History: 60000
+G4WT3 > Begin processing for Run: 8, History: 80000
+G4WT3 > Begin processing for Run: 8, History: 100000
+G4WT3 > Begin processing for Run: 8, History: 120000
+G4WT3 > Begin processing for Run: 8, History: 140000
+G4WT3 > Begin processing for Run: 8, History: 160000
+G4WT3 > Begin processing for Run: 8, History: 180000
+G4WT3 > Begin processing for Run: 8, History: 200000
+G4WT3 > Begin processing for Run: 8, History: 220000
+G4WT3 > Begin processing for Run: 8, History: 240000
+G4WT3 > Begin processing for Run: 8, History: 260000
+G4WT3 > Begin processing for Run: 8, History: 280000
+G4WT7 > Begin processing for Run: 8, History: 300000
+G4WT7 > Begin processing for Run: 8, History: 320000
+G4WT5 > Begin processing for Run: 8, History: 340000
+G4WT5 > Begin processing for Run: 8, History: 360000
+G4WT5 > Begin processing for Run: 8, History: 380000
+G4WT2 > Begin processing for Run: 8, History: 400000
+G4WT5 > Begin processing for Run: 8, History: 420000
+G4WT5 > Begin processing for Run: 8, History: 440000
+G4WT5 > Begin processing for Run: 8, History: 460000
+G4WT5 > Begin processing for Run: 8, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.565487 rad at: 90 (ms)
+G4WT1 > Begin processing for Run: 9, History: 0
+G4WT7 > Begin processing for Run: 9, History: 20000
+G4WT5 > Begin processing for Run: 9, History: 40000
+G4WT4 > Begin processing for Run: 9, History: 60000
+G4WT4 > Begin processing for Run: 9, History: 80000
+G4WT4 > Begin processing for Run: 9, History: 100000
+G4WT4 > Begin processing for Run: 9, History: 120000
+G4WT4 > Begin processing for Run: 9, History: 140000
+G4WT1 > Begin processing for Run: 9, History: 160000
+G4WT1 > Begin processing for Run: 9, History: 180000
+G4WT1 > Begin processing for Run: 9, History: 200000
+G4WT1 > Begin processing for Run: 9, History: 220000
+G4WT7 > Begin processing for Run: 9, History: 240000
+G4WT5 > Begin processing for Run: 9, History: 260000
+G4WT5 > Begin processing for Run: 9, History: 280000
+G4WT5 > Begin processing for Run: 9, History: 300000
+G4WT1 > Begin processing for Run: 9, History: 320000
+G4WT5 > Begin processing for Run: 9, History: 340000
+G4WT5 > Begin processing for Run: 9, History: 360000
+G4WT5 > Begin processing for Run: 9, History: 380000
+G4WT0 > Begin processing for Run: 9, History: 400000
+G4WT5 > Begin processing for Run: 9, History: 420000
+G4WT5 > Begin processing for Run: 9, History: 440000
+G4WT5 > Begin processing for Run: 9, History: 460000
+G4WT5 > Begin processing for Run: 9, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.628319 rad at: 100 (ms)
+G4WT6 > Begin processing for Run: 10, History: 0
+G4WT3 > Begin processing for Run: 10, History: 20000
+G4WT4 > Begin processing for Run: 10, History: 40000
+G4WT3 > Begin processing for Run: 10, History: 60000
+G4WT4 > Begin processing for Run: 10, History: 80000
+G4WT4 > Begin processing for Run: 10, History: 100000
+G4WT4 > Begin processing for Run: 10, History: 120000
+G4WT2 > Begin processing for Run: 10, History: 140000
+G4WT1 > Begin processing for Run: 10, History: 160000
+G4WT1 > Begin processing for Run: 10, History: 180000
+G4WT1 > Begin processing for Run: 10, History: 200000
+G4WT1 > Begin processing for Run: 10, History: 220000
+G4WT1 > Begin processing for Run: 10, History: 240000
+G4WT1 > Begin processing for Run: 10, History: 260000
+G4WT1 > Begin processing for Run: 10, History: 280000
+G4WT4 > Begin processing for Run: 10, History: 300000
+G4WT7 > Begin processing for Run: 10, History: 320000
+G4WT0 > Begin processing for Run: 10, History: 340000
+G4WT2 > Begin processing for Run: 10, History: 360000
+G4WT7 > Begin processing for Run: 10, History: 380000
+G4WT5 > Begin processing for Run: 10, History: 400000
+G4WT5 > Begin processing for Run: 10, History: 420000
+G4WT7 > Begin processing for Run: 10, History: 440000
+G4WT7 > Begin processing for Run: 10, History: 460000
+G4WT7 > Begin processing for Run: 10, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.69115 rad at: 110 (ms)
+G4WT1 > Begin processing for Run: 11, History: 0
+G4WT0 > Begin processing for Run: 11, History: 20000
+G4WT0 > Begin processing for Run: 11, History: 40000
+G4WT0 > Begin processing for Run: 11, History: 60000
+G4WT0 > Begin processing for Run: 11, History: 80000
+G4WT0 > Begin processing for Run: 11, History: 100000
+G4WT0 > Begin processing for Run: 11, History: 120000
+G4WT0 > Begin processing for Run: 11, History: 140000
+G4WT2 > Begin processing for Run: 11, History: 160000
+G4WT2 > Begin processing for Run: 11, History: 180000
+G4WT3 > Begin processing for Run: 11, History: 200000
+G4WT1 > Begin processing for Run: 11, History: 220000
+G4WT1 > Begin processing for Run: 11, History: 240000
+G4WT1 > Begin processing for Run: 11, History: 260000
+G4WT4 > Begin processing for Run: 11, History: 280000
+G4WT7 > Begin processing for Run: 11, History: 300000
+G4WT7 > Begin processing for Run: 11, History: 320000
+G4WT7 > Begin processing for Run: 11, History: 340000
+G4WT7 > Begin processing for Run: 11, History: 360000
+G4WT7 > Begin processing for Run: 11, History: 380000
+G4WT7 > Begin processing for Run: 11, History: 400000
+G4WT2 > Begin processing for Run: 11, History: 420000
+G4WT2 > Begin processing for Run: 11, History: 440000
+G4WT0 > Begin processing for Run: 11, History: 460000
+G4WT1 > Begin processing for Run: 11, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.753982 rad at: 120 (ms)
+G4WT6 > Begin processing for Run: 12, History: 0
+G4WT3 > Begin processing for Run: 12, History: 20000
+G4WT3 > Begin processing for Run: 12, History: 40000
+G4WT3 > Begin processing for Run: 12, History: 60000
+G4WT4 > Begin processing for Run: 12, History: 80000
+G4WT3 > Begin processing for Run: 12, History: 100000
+G4WT3 > Begin processing for Run: 12, History: 120000
+G4WT3 > Begin processing for Run: 12, History: 140000
+G4WT3 > Begin processing for Run: 12, History: 160000
+G4WT2 > Begin processing for Run: 12, History: 180000
+G4WT2 > Begin processing for Run: 12, History: 200000
+G4WT2 > Begin processing for Run: 12, History: 220000
+G4WT2 > Begin processing for Run: 12, History: 240000
+G4WT4 > Begin processing for Run: 12, History: 260000
+G4WT4 > Begin processing for Run: 12, History: 280000
+G4WT7 > Begin processing for Run: 12, History: 300000
+G4WT7 > Begin processing for Run: 12, History: 320000
+G4WT5 > Begin processing for Run: 12, History: 340000
+G4WT5 > Begin processing for Run: 12, History: 360000
+G4WT5 > Begin processing for Run: 12, History: 380000
+G4WT5 > Begin processing for Run: 12, History: 400000
+G4WT5 > Begin processing for Run: 12, History: 420000
+G4WT5 > Begin processing for Run: 12, History: 440000
+G4WT5 > Begin processing for Run: 12, History: 460000
+G4WT5 > Begin processing for Run: 12, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.816814 rad at: 130 (ms)
+G4WT2 > Begin processing for Run: 13, History: 0
+G4WT7 > Begin processing for Run: 13, History: 20000
+G4WT7 > Begin processing for Run: 13, History: 40000
+G4WT6 > Begin processing for Run: 13, History: 60000
+G4WT3 > Begin processing for Run: 13, History: 80000
+G4WT6 > Begin processing for Run: 13, History: 100000
+G4WT6 > Begin processing for Run: 13, History: 120000
+G4WT7 > Begin processing for Run: 13, History: 140000
+G4WT2 > Begin processing for Run: 13, History: 160000
+G4WT2 > Begin processing for Run: 13, History: 180000
+G4WT6 > Begin processing for Run: 13, History: 200000
+G4WT6 > Begin processing for Run: 13, History: 220000
+G4WT3 > Begin processing for Run: 13, History: 240000
+G4WT3 > Begin processing for Run: 13, History: 260000
+G4WT3 > Begin processing for Run: 13, History: 280000
+G4WT7 > Begin processing for Run: 13, History: 300000
+G4WT1 > Begin processing for Run: 13, History: 320000
+G4WT1 > Begin processing for Run: 13, History: 340000
+G4WT6 > Begin processing for Run: 13, History: 360000
+G4WT6 > Begin processing for Run: 13, History: 380000
+G4WT6 > Begin processing for Run: 13, History: 400000
+G4WT6 > Begin processing for Run: 13, History: 420000
+G4WT6 > Begin processing for Run: 13, History: 440000
+G4WT7 > Begin processing for Run: 13, History: 460000
+G4WT7 > Begin processing for Run: 13, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.879646 rad at: 140 (ms)
+G4WT5 > Begin processing for Run: 14, History: 0
+G4WT6 > Begin processing for Run: 14, History: 20000
+G4WT3 > Begin processing for Run: 14, History: 40000
+G4WT3 > Begin processing for Run: 14, History: 60000
+G4WT3 > Begin processing for Run: 14, History: 80000
+G4WT3 > Begin processing for Run: 14, History: 100000
+G4WT3 > Begin processing for Run: 14, History: 120000
+G4WT3 > Begin processing for Run: 14, History: 140000
+G4WT0 > Begin processing for Run: 14, History: 160000
+G4WT0 > Begin processing for Run: 14, History: 180000
+G4WT0 > Begin processing for Run: 14, History: 200000
+G4WT0 > Begin processing for Run: 14, History: 220000
+G4WT0 > Begin processing for Run: 14, History: 240000
+G4WT0 > Begin processing for Run: 14, History: 260000
+G4WT0 > Begin processing for Run: 14, History: 280000
+G4WT0 > Begin processing for Run: 14, History: 300000
+G4WT7 > Begin processing for Run: 14, History: 320000
+G4WT3 > Begin processing for Run: 14, History: 340000
+G4WT2 > Begin processing for Run: 14, History: 360000
+G4WT2 > Begin processing for Run: 14, History: 380000
+G4WT2 > Begin processing for Run: 14, History: 400000
+G4WT2 > Begin processing for Run: 14, History: 420000
+G4WT2 > Begin processing for Run: 14, History: 440000
+G4WT4 > Begin processing for Run: 14, History: 460000
+G4WT4 > Begin processing for Run: 14, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 0.942478 rad at: 150 (ms)
+G4WT1 > Begin processing for Run: 15, History: 0
+G4WT3 > Begin processing for Run: 15, History: 20000
+G4WT3 > Begin processing for Run: 15, History: 40000
+G4WT3 > Begin processing for Run: 15, History: 60000
+G4WT5 > Begin processing for Run: 15, History: 80000
+G4WT3 > Begin processing for Run: 15, History: 100000
+G4WT3 > Begin processing for Run: 15, History: 120000
+G4WT3 > Begin processing for Run: 15, History: 140000
+G4WT3 > Begin processing for Run: 15, History: 160000
+G4WT3 > Begin processing for Run: 15, History: 180000
+G4WT3 > Begin processing for Run: 15, History: 200000
+G4WT3 > Begin processing for Run: 15, History: 220000
+G4WT6 > Begin processing for Run: 15, History: 240000
+G4WT6 > Begin processing for Run: 15, History: 260000
+G4WT5 > Begin processing for Run: 15, History: 280000
+G4WT5 > Begin processing for Run: 15, History: 300000
+G4WT5 > Begin processing for Run: 15, History: 320000
+G4WT5 > Begin processing for Run: 15, History: 340000
+G4WT5 > Begin processing for Run: 15, History: 360000
+G4WT5 > Begin processing for Run: 15, History: 380000
+G4WT3 > Begin processing for Run: 15, History: 400000
+G4WT3 > Begin processing for Run: 15, History: 420000
+G4WT6 > Begin processing for Run: 15, History: 440000
+G4WT1 > Begin processing for Run: 15, History: 460000
+G4WT1 > Begin processing for Run: 15, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.00531 rad at: 160 (ms)
+G4WT6 > Begin processing for Run: 16, History: 0
+G4WT2 > Begin processing for Run: 16, History: 20000
+G4WT5 > Begin processing for Run: 16, History: 40000
+G4WT3 > Begin processing for Run: 16, History: 60000
+G4WT7 > Begin processing for Run: 16, History: 80000
+G4WT7 > Begin processing for Run: 16, History: 100000
+G4WT5 > Begin processing for Run: 16, History: 120000
+G4WT3 > Begin processing for Run: 16, History: 140000
+G4WT5 > Begin processing for Run: 16, History: 160000
+G4WT5 > Begin processing for Run: 16, History: 180000
+G4WT5 > Begin processing for Run: 16, History: 200000
+G4WT5 > Begin processing for Run: 16, History: 220000
+G4WT5 > Begin processing for Run: 16, History: 240000
+G4WT5 > Begin processing for Run: 16, History: 260000
+G4WT5 > Begin processing for Run: 16, History: 280000
+G4WT5 > Begin processing for Run: 16, History: 300000
+G4WT5 > Begin processing for Run: 16, History: 320000
+G4WT3 > Begin processing for Run: 16, History: 340000
+G4WT3 > Begin processing for Run: 16, History: 360000
+G4WT3 > Begin processing for Run: 16, History: 380000
+G4WT3 > Begin processing for Run: 16, History: 400000
+G4WT4 > Begin processing for Run: 16, History: 420000
+G4WT3 > Begin processing for Run: 16, History: 440000
+G4WT2 > Begin processing for Run: 16, History: 460000
+G4WT2 > Begin processing for Run: 16, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.06814 rad at: 170 (ms)
+G4WT1 > Begin processing for Run: 17, History: 0
+G4WT3 > Begin processing for Run: 17, History: 20000
+G4WT5 > Begin processing for Run: 17, History: 40000
+G4WT5 > Begin processing for Run: 17, History: 60000
+G4WT7 > Begin processing for Run: 17, History: 80000
+G4WT7 > Begin processing for Run: 17, History: 100000
+G4WT5 > Begin processing for Run: 17, History: 120000
+G4WT2 > Begin processing for Run: 17, History: 140000
+G4WT2 > Begin processing for Run: 17, History: 160000
+G4WT2 > Begin processing for Run: 17, History: 180000
+G4WT2 > Begin processing for Run: 17, History: 200000
+G4WT1 > Begin processing for Run: 17, History: 220000
+G4WT3 > Begin processing for Run: 17, History: 240000
+G4WT7 > Begin processing for Run: 17, History: 260000
+G4WT7 > Begin processing for Run: 17, History: 280000
+G4WT7 > Begin processing for Run: 17, History: 300000
+G4WT7 > Begin processing for Run: 17, History: 320000
+G4WT1 > Begin processing for Run: 17, History: 340000
+G4WT1 > Begin processing for Run: 17, History: 360000
+G4WT4 > Begin processing for Run: 17, History: 380000
+G4WT6 > Begin processing for Run: 17, History: 400000
+G4WT4 > Begin processing for Run: 17, History: 420000
+G4WT1 > Begin processing for Run: 17, History: 440000
+G4WT6 > Begin processing for Run: 17, History: 460000
+G4WT6 > Begin processing for Run: 17, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.13097 rad at: 180 (ms)
+G4WT0 > Begin processing for Run: 18, History: 0
+G4WT0 > Begin processing for Run: 18, History: 20000
+G4WT0 > Begin processing for Run: 18, History: 40000
+G4WT0 > Begin processing for Run: 18, History: 60000
+G4WT0 > Begin processing for Run: 18, History: 80000
+G4WT0 > Begin processing for Run: 18, History: 100000
+G4WT0 > Begin processing for Run: 18, History: 120000
+G4WT0 > Begin processing for Run: 18, History: 140000
+G4WT5 > Begin processing for Run: 18, History: 160000
+G4WT5 > Begin processing for Run: 18, History: 180000
+G4WT4 > Begin processing for Run: 18, History: 200000
+G4WT0 > Begin processing for Run: 18, History: 220000
+G4WT0 > Begin processing for Run: 18, History: 240000
+G4WT6 > Begin processing for Run: 18, History: 260000
+G4WT4 > Begin processing for Run: 18, History: 280000
+G4WT4 > Begin processing for Run: 18, History: 300000
+G4WT4 > Begin processing for Run: 18, History: 320000
+G4WT4 > Begin processing for Run: 18, History: 340000
+G4WT4 > Begin processing for Run: 18, History: 360000
+G4WT1 > Begin processing for Run: 18, History: 380000
+G4WT6 > Begin processing for Run: 18, History: 400000
+G4WT4 > Begin processing for Run: 18, History: 420000
+G4WT6 > Begin processing for Run: 18, History: 440000
+G4WT6 > Begin processing for Run: 18, History: 460000
+G4WT6 > Begin processing for Run: 18, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.19381 rad at: 190 (ms)
+G4WT6 > Begin processing for Run: 19, History: 0
+G4WT7 > Begin processing for Run: 19, History: 20000
+G4WT2 > Begin processing for Run: 19, History: 40000
+G4WT2 > Begin processing for Run: 19, History: 60000
+G4WT2 > Begin processing for Run: 19, History: 80000
+G4WT2 > Begin processing for Run: 19, History: 100000
+G4WT2 > Begin processing for Run: 19, History: 120000
+G4WT4 > Begin processing for Run: 19, History: 140000
+G4WT7 > Begin processing for Run: 19, History: 160000
+G4WT7 > Begin processing for Run: 19, History: 180000
+G4WT7 > Begin processing for Run: 19, History: 200000
+G4WT7 > Begin processing for Run: 19, History: 220000
+G4WT5 > Begin processing for Run: 19, History: 240000
+G4WT3 > Begin processing for Run: 19, History: 260000
+G4WT2 > Begin processing for Run: 19, History: 280000
+G4WT2 > Begin processing for Run: 19, History: 300000
+G4WT5 > Begin processing for Run: 19, History: 320000
+G4WT6 > Begin processing for Run: 19, History: 340000
+G4WT6 > Begin processing for Run: 19, History: 360000
+G4WT6 > Begin processing for Run: 19, History: 380000
+G4WT6 > Begin processing for Run: 19, History: 400000
+G4WT5 > Begin processing for Run: 19, History: 420000
+G4WT5 > Begin processing for Run: 19, History: 440000
+G4WT6 > Begin processing for Run: 19, History: 460000
+G4WT0 > Begin processing for Run: 19, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.25664 rad at: 200 (ms)
+G4WT2 > Begin processing for Run: 20, History: 0
+G4WT1 > Begin processing for Run: 20, History: 20000
+G4WT2 > Begin processing for Run: 20, History: 40000
+G4WT1 > Begin processing for Run: 20, History: 60000
+G4WT0 > Begin processing for Run: 20, History: 80000
+G4WT0 > Begin processing for Run: 20, History: 100000
+G4WT2 > Begin processing for Run: 20, History: 120000
+G4WT6 > Begin processing for Run: 20, History: 140000
+G4WT0 > Begin processing for Run: 20, History: 160000
+G4WT0 > Begin processing for Run: 20, History: 180000
+G4WT0 > Begin processing for Run: 20, History: 200000
+G4WT4 > Begin processing for Run: 20, History: 220000
+G4WT4 > Begin processing for Run: 20, History: 240000
+G4WT4 > Begin processing for Run: 20, History: 260000
+G4WT4 > Begin processing for Run: 20, History: 280000
+G4WT4 > Begin processing for Run: 20, History: 300000
+G4WT5 > Begin processing for Run: 20, History: 320000
+G4WT4 > Begin processing for Run: 20, History: 340000
+G4WT4 > Begin processing for Run: 20, History: 360000
+G4WT4 > Begin processing for Run: 20, History: 380000
+G4WT7 > Begin processing for Run: 20, History: 400000
+G4WT7 > Begin processing for Run: 20, History: 420000
+G4WT7 > Begin processing for Run: 20, History: 440000
+G4WT5 > Begin processing for Run: 20, History: 460000
+G4WT2 > Begin processing for Run: 20, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.31947 rad at: 210 (ms)
+G4WT7 > Begin processing for Run: 21, History: 0
+G4WT3 > Begin processing for Run: 21, History: 20000
+G4WT3 > Begin processing for Run: 21, History: 40000
+G4WT3 > Begin processing for Run: 21, History: 60000
+G4WT3 > Begin processing for Run: 21, History: 80000
+G4WT3 > Begin processing for Run: 21, History: 100000
+G4WT3 > Begin processing for Run: 21, History: 120000
+G4WT3 > Begin processing for Run: 21, History: 140000
+G4WT1 > Begin processing for Run: 21, History: 160000
+G4WT0 > Begin processing for Run: 21, History: 180000
+G4WT3 > Begin processing for Run: 21, History: 200000
+G4WT3 > Begin processing for Run: 21, History: 220000
+G4WT3 > Begin processing for Run: 21, History: 240000
+G4WT6 > Begin processing for Run: 21, History: 260000
+G4WT6 > Begin processing for Run: 21, History: 280000
+G4WT6 > Begin processing for Run: 21, History: 300000
+G4WT6 > Begin processing for Run: 21, History: 320000
+G4WT3 > Begin processing for Run: 21, History: 340000
+G4WT0 > Begin processing for Run: 21, History: 360000
+G4WT0 > Begin processing for Run: 21, History: 380000
+G4WT1 > Begin processing for Run: 21, History: 400000
+G4WT3 > Begin processing for Run: 21, History: 420000
+G4WT0 > Begin processing for Run: 21, History: 440000
+G4WT0 > Begin processing for Run: 21, History: 460000
+G4WT2 > Begin processing for Run: 21, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.3823 rad at: 220 (ms)
+G4WT5 > Begin processing for Run: 22, History: 0
+G4WT4 > Begin processing for Run: 22, History: 20000
+G4WT4 > Begin processing for Run: 22, History: 40000
+G4WT4 > Begin processing for Run: 22, History: 60000
+G4WT4 > Begin processing for Run: 22, History: 80000
+G4WT4 > Begin processing for Run: 22, History: 100000
+G4WT4 > Begin processing for Run: 22, History: 120000
+G4WT4 > Begin processing for Run: 22, History: 140000
+G4WT4 > Begin processing for Run: 22, History: 160000
+G4WT0 > Begin processing for Run: 22, History: 180000
+G4WT5 > Begin processing for Run: 22, History: 200000
+G4WT5 > Begin processing for Run: 22, History: 220000
+G4WT1 > Begin processing for Run: 22, History: 240000
+G4WT1 > Begin processing for Run: 22, History: 260000
+G4WT1 > Begin processing for Run: 22, History: 280000
+G4WT7 > Begin processing for Run: 22, History: 300000
+G4WT5 > Begin processing for Run: 22, History: 320000
+G4WT5 > Begin processing for Run: 22, History: 340000
+G4WT5 > Begin processing for Run: 22, History: 360000
+G4WT5 > Begin processing for Run: 22, History: 380000
+G4WT5 > Begin processing for Run: 22, History: 400000
+G4WT5 > Begin processing for Run: 22, History: 420000
+G4WT5 > Begin processing for Run: 22, History: 440000
+G4WT1 > Begin processing for Run: 22, History: 460000
+G4WT1 > Begin processing for Run: 22, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.44513 rad at: 230 (ms)
+G4WT6 > Begin processing for Run: 23, History: 0
+G4WT7 > Begin processing for Run: 23, History: 20000
+G4WT2 > Begin processing for Run: 23, History: 40000
+G4WT2 > Begin processing for Run: 23, History: 60000
+G4WT2 > Begin processing for Run: 23, History: 80000
+G4WT2 > Begin processing for Run: 23, History: 100000
+G4WT2 > Begin processing for Run: 23, History: 120000
+G4WT2 > Begin processing for Run: 23, History: 140000
+G4WT2 > Begin processing for Run: 23, History: 160000
+G4WT2 > Begin processing for Run: 23, History: 180000
+G4WT2 > Begin processing for Run: 23, History: 200000
+G4WT2 > Begin processing for Run: 23, History: 220000
+G4WT2 > Begin processing for Run: 23, History: 240000
+G4WT2 > Begin processing for Run: 23, History: 260000
+G4WT1 > Begin processing for Run: 23, History: 280000
+G4WT1 > Begin processing for Run: 23, History: 300000
+G4WT1 > Begin processing for Run: 23, History: 320000
+G4WT1 > Begin processing for Run: 23, History: 340000
+G4WT1 > Begin processing for Run: 23, History: 360000
+G4WT0 > Begin processing for Run: 23, History: 380000
+G4WT0 > Begin processing for Run: 23, History: 400000
+G4WT0 > Begin processing for Run: 23, History: 420000
+G4WT0 > Begin processing for Run: 23, History: 440000
+G4WT3 > Begin processing for Run: 23, History: 460000
+G4WT3 > Begin processing for Run: 23, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.50796 rad at: 240 (ms)
+G4WT6 > Begin processing for Run: 24, History: 0
+G4WT0 > Begin processing for Run: 24, History: 20000
+G4WT2 > Begin processing for Run: 24, History: 40000
+G4WT3 > Begin processing for Run: 24, History: 60000
+G4WT5 > Begin processing for Run: 24, History: 80000
+G4WT7 > Begin processing for Run: 24, History: 100000
+G4WT7 > Begin processing for Run: 24, History: 120000
+G4WT7 > Begin processing for Run: 24, History: 140000
+G4WT2 > Begin processing for Run: 24, History: 160000
+G4WT2 > Begin processing for Run: 24, History: 180000
+G4WT7 > Begin processing for Run: 24, History: 200000
+G4WT7 > Begin processing for Run: 24, History: 220000
+G4WT7 > Begin processing for Run: 24, History: 240000
+G4WT7 > Begin processing for Run: 24, History: 260000
+G4WT7 > Begin processing for Run: 24, History: 280000
+G4WT7 > Begin processing for Run: 24, History: 300000
+G4WT7 > Begin processing for Run: 24, History: 320000
+G4WT6 > Begin processing for Run: 24, History: 340000
+G4WT6 > Begin processing for Run: 24, History: 360000
+G4WT4 > Begin processing for Run: 24, History: 380000
+G4WT7 > Begin processing for Run: 24, History: 400000
+G4WT3 > Begin processing for Run: 24, History: 420000
+G4WT2 > Begin processing for Run: 24, History: 440000
+G4WT2 > Begin processing for Run: 24, History: 460000
+G4WT2 > Begin processing for Run: 24, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.5708 rad at: 250 (ms)
+G4WT3 > Begin processing for Run: 25, History: 0
+G4WT4 > Begin processing for Run: 25, History: 20000
+G4WT4 > Begin processing for Run: 25, History: 40000
+G4WT4 > Begin processing for Run: 25, History: 60000
+G4WT4 > Begin processing for Run: 25, History: 80000
+G4WT4 > Begin processing for Run: 25, History: 100000
+G4WT4 > Begin processing for Run: 25, History: 120000
+G4WT4 > Begin processing for Run: 25, History: 140000
+G4WT4 > Begin processing for Run: 25, History: 160000
+G4WT4 > Begin processing for Run: 25, History: 180000
+G4WT4 > Begin processing for Run: 25, History: 200000
+G4WT5 > Begin processing for Run: 25, History: 220000
+G4WT1 > Begin processing for Run: 25, History: 240000
+G4WT5 > Begin processing for Run: 25, History: 260000
+G4WT1 > Begin processing for Run: 25, History: 280000
+G4WT1 > Begin processing for Run: 25, History: 300000
+G4WT1 > Begin processing for Run: 25, History: 320000
+G4WT1 > Begin processing for Run: 25, History: 340000
+G4WT1 > Begin processing for Run: 25, History: 360000
+G4WT4 > Begin processing for Run: 25, History: 380000
+G4WT4 > Begin processing for Run: 25, History: 400000
+G4WT4 > Begin processing for Run: 25, History: 420000
+G4WT2 > Begin processing for Run: 25, History: 440000
+G4WT6 > Begin processing for Run: 25, History: 460000
+G4WT1 > Begin processing for Run: 25, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.63363 rad at: 260 (ms)
+G4WT0 > Begin processing for Run: 26, History: 0
+G4WT2 > Begin processing for Run: 26, History: 20000
+G4WT2 > Begin processing for Run: 26, History: 40000
+G4WT2 > Begin processing for Run: 26, History: 60000
+G4WT2 > Begin processing for Run: 26, History: 80000
+G4WT6 > Begin processing for Run: 26, History: 100000
+G4WT7 > Begin processing for Run: 26, History: 120000
+G4WT4 > Begin processing for Run: 26, History: 140000
+G4WT4 > Begin processing for Run: 26, History: 160000
+G4WT1 > Begin processing for Run: 26, History: 180000
+G4WT4 > Begin processing for Run: 26, History: 200000
+G4WT2 > Begin processing for Run: 26, History: 220000
+G4WT3 > Begin processing for Run: 26, History: 240000
+G4WT1 > Begin processing for Run: 26, History: 260000
+G4WT1 > Begin processing for Run: 26, History: 280000
+G4WT7 > Begin processing for Run: 26, History: 300000
+G4WT7 > Begin processing for Run: 26, History: 320000
+G4WT7 > Begin processing for Run: 26, History: 340000
+G4WT7 > Begin processing for Run: 26, History: 360000
+G4WT6 > Begin processing for Run: 26, History: 380000
+G4WT6 > Begin processing for Run: 26, History: 400000
+G4WT6 > Begin processing for Run: 26, History: 420000
+G4WT6 > Begin processing for Run: 26, History: 440000
+G4WT2 > Begin processing for Run: 26, History: 460000
+G4WT0 > Begin processing for Run: 26, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.69646 rad at: 270 (ms)
+G4WT2 > Begin processing for Run: 27, History: 0
+G4WT5 > Begin processing for Run: 27, History: 20000
+G4WT5 > Begin processing for Run: 27, History: 40000
+G4WT6 > Begin processing for Run: 27, History: 60000
+G4WT6 > Begin processing for Run: 27, History: 80000
+G4WT6 > Begin processing for Run: 27, History: 100000
+G4WT6 > Begin processing for Run: 27, History: 120000
+G4WT4 > Begin processing for Run: 27, History: 140000
+G4WT4 > Begin processing for Run: 27, History: 160000
+G4WT4 > Begin processing for Run: 27, History: 180000
+G4WT4 > Begin processing for Run: 27, History: 200000
+G4WT7 > Begin processing for Run: 27, History: 220000
+G4WT5 > Begin processing for Run: 27, History: 240000
+G4WT5 > Begin processing for Run: 27, History: 260000
+G4WT5 > Begin processing for Run: 27, History: 280000
+G4WT7 > Begin processing for Run: 27, History: 300000
+G4WT4 > Begin processing for Run: 27, History: 320000
+G4WT1 > Begin processing for Run: 27, History: 340000
+G4WT1 > Begin processing for Run: 27, History: 360000
+G4WT3 > Begin processing for Run: 27, History: 380000
+G4WT3 > Begin processing for Run: 27, History: 400000
+G4WT4 > Begin processing for Run: 27, History: 420000
+G4WT6 > Begin processing for Run: 27, History: 440000
+G4WT6 > Begin processing for Run: 27, History: 460000
+G4WT6 > Begin processing for Run: 27, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.75929 rad at: 280 (ms)
+G4WT1 > Begin processing for Run: 28, History: 0
+G4WT7 > Begin processing for Run: 28, History: 20000
+G4WT7 > Begin processing for Run: 28, History: 40000
+G4WT7 > Begin processing for Run: 28, History: 60000
+G4WT7 > Begin processing for Run: 28, History: 80000
+G4WT0 > Begin processing for Run: 28, History: 100000
+G4WT1 > Begin processing for Run: 28, History: 120000
+G4WT1 > Begin processing for Run: 28, History: 140000
+G4WT5 > Begin processing for Run: 28, History: 160000
+G4WT5 > Begin processing for Run: 28, History: 180000
+G4WT1 > Begin processing for Run: 28, History: 200000
+G4WT4 > Begin processing for Run: 28, History: 220000
+G4WT3 > Begin processing for Run: 28, History: 240000
+G4WT6 > Begin processing for Run: 28, History: 260000
+G4WT3 > Begin processing for Run: 28, History: 280000
+G4WT3 > Begin processing for Run: 28, History: 300000
+G4WT3 > Begin processing for Run: 28, History: 320000
+G4WT5 > Begin processing for Run: 28, History: 340000
+G4WT6 > Begin processing for Run: 28, History: 360000
+G4WT5 > Begin processing for Run: 28, History: 380000
+G4WT5 > Begin processing for Run: 28, History: 400000
+G4WT7 > Begin processing for Run: 28, History: 420000
+G4WT7 > Begin processing for Run: 28, History: 440000
+G4WT6 > Begin processing for Run: 28, History: 460000
+G4WT7 > Begin processing for Run: 28, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.82212 rad at: 290 (ms)
+G4WT5 > Begin processing for Run: 29, History: 0
+G4WT3 > Begin processing for Run: 29, History: 20000
+G4WT5 > Begin processing for Run: 29, History: 40000
+G4WT3 > Begin processing for Run: 29, History: 60000
+G4WT3 > Begin processing for Run: 29, History: 80000
+G4WT3 > Begin processing for Run: 29, History: 100000
+G4WT3 > Begin processing for Run: 29, History: 120000
+G4WT6 > Begin processing for Run: 29, History: 140000
+G4WT6 > Begin processing for Run: 29, History: 160000
+G4WT5 > Begin processing for Run: 29, History: 180000
+G4WT0 > Begin processing for Run: 29, History: 200000
+G4WT0 > Begin processing for Run: 29, History: 220000
+G4WT3 > Begin processing for Run: 29, History: 240000
+G4WT3 > Begin processing for Run: 29, History: 260000
+G4WT5 > Begin processing for Run: 29, History: 280000
+G4WT5 > Begin processing for Run: 29, History: 300000
+G4WT5 > Begin processing for Run: 29, History: 320000
+G4WT5 > Begin processing for Run: 29, History: 340000
+G4WT5 > Begin processing for Run: 29, History: 360000
+G4WT0 > Begin processing for Run: 29, History: 380000
+G4WT5 > Begin processing for Run: 29, History: 400000
+G4WT6 > Begin processing for Run: 29, History: 420000
+G4WT6 > Begin processing for Run: 29, History: 440000
+G4WT2 > Begin processing for Run: 29, History: 460000
+G4WT1 > Begin processing for Run: 29, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.88496 rad at: 300 (ms)
+G4WT3 > Begin processing for Run: 30, History: 0
+G4WT0 > Begin processing for Run: 30, History: 20000
+G4WT7 > Begin processing for Run: 30, History: 40000
+G4WT0 > Begin processing for Run: 30, History: 60000
+G4WT0 > Begin processing for Run: 30, History: 80000
+G4WT0 > Begin processing for Run: 30, History: 100000
+G4WT0 > Begin processing for Run: 30, History: 120000
+G4WT0 > Begin processing for Run: 30, History: 140000
+G4WT0 > Begin processing for Run: 30, History: 160000
+G4WT0 > Begin processing for Run: 30, History: 180000
+G4WT0 > Begin processing for Run: 30, History: 200000
+G4WT6 > Begin processing for Run: 30, History: 220000
+G4WT7 > Begin processing for Run: 30, History: 240000
+G4WT7 > Begin processing for Run: 30, History: 260000
+G4WT6 > Begin processing for Run: 30, History: 280000
+G4WT6 > Begin processing for Run: 30, History: 300000
+G4WT3 > Begin processing for Run: 30, History: 320000
+G4WT3 > Begin processing for Run: 30, History: 340000
+G4WT3 > Begin processing for Run: 30, History: 360000
+G4WT3 > Begin processing for Run: 30, History: 380000
+G4WT2 > Begin processing for Run: 30, History: 400000
+G4WT2 > Begin processing for Run: 30, History: 420000
+G4WT5 > Begin processing for Run: 30, History: 440000
+G4WT7 > Begin processing for Run: 30, History: 460000
+G4WT7 > Begin processing for Run: 30, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 1.94779 rad at: 310 (ms)
+G4WT3 > Begin processing for Run: 31, History: 0
+G4WT7 > Begin processing for Run: 31, History: 20000
+G4WT7 > Begin processing for Run: 31, History: 40000
+G4WT2 > Begin processing for Run: 31, History: 60000
+G4WT0 > Begin processing for Run: 31, History: 80000
+G4WT3 > Begin processing for Run: 31, History: 100000
+G4WT4 > Begin processing for Run: 31, History: 120000
+G4WT4 > Begin processing for Run: 31, History: 140000
+G4WT3 > Begin processing for Run: 31, History: 160000
+G4WT3 > Begin processing for Run: 31, History: 180000
+G4WT3 > Begin processing for Run: 31, History: 200000
+G4WT6 > Begin processing for Run: 31, History: 220000
+G4WT6 > Begin processing for Run: 31, History: 240000
+G4WT6 > Begin processing for Run: 31, History: 260000
+G4WT6 > Begin processing for Run: 31, History: 280000
+G4WT6 > Begin processing for Run: 31, History: 300000
+G4WT3 > Begin processing for Run: 31, History: 320000
+G4WT6 > Begin processing for Run: 31, History: 340000
+G4WT6 > Begin processing for Run: 31, History: 360000
+G4WT5 > Begin processing for Run: 31, History: 380000
+G4WT1 > Begin processing for Run: 31, History: 400000
+G4WT1 > Begin processing for Run: 31, History: 420000
+G4WT1 > Begin processing for Run: 31, History: 440000
+G4WT0 > Begin processing for Run: 31, History: 460000
+G4WT5 > Begin processing for Run: 31, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.01062 rad at: 320 (ms)
+G4WT3 > Begin processing for Run: 32, History: 0
+G4WT6 > Begin processing for Run: 32, History: 20000
+G4WT7 > Begin processing for Run: 32, History: 40000
+G4WT7 > Begin processing for Run: 32, History: 60000
+G4WT7 > Begin processing for Run: 32, History: 80000
+G4WT7 > Begin processing for Run: 32, History: 100000
+G4WT7 > Begin processing for Run: 32, History: 120000
+G4WT5 > Begin processing for Run: 32, History: 140000
+G4WT6 > Begin processing for Run: 32, History: 160000
+G4WT2 > Begin processing for Run: 32, History: 180000
+G4WT2 > Begin processing for Run: 32, History: 200000
+G4WT7 > Begin processing for Run: 32, History: 220000
+G4WT7 > Begin processing for Run: 32, History: 240000
+G4WT6 > Begin processing for Run: 32, History: 260000
+G4WT0 > Begin processing for Run: 32, History: 280000
+G4WT0 > Begin processing for Run: 32, History: 300000
+G4WT4 > Begin processing for Run: 32, History: 320000
+G4WT4 > Begin processing for Run: 32, History: 340000
+G4WT1 > Begin processing for Run: 32, History: 360000
+G4WT1 > Begin processing for Run: 32, History: 380000
+G4WT3 > Begin processing for Run: 32, History: 400000
+G4WT2 > Begin processing for Run: 32, History: 420000
+G4WT4 > Begin processing for Run: 32, History: 440000
+G4WT4 > Begin processing for Run: 32, History: 460000
+G4WT4 > Begin processing for Run: 32, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.07345 rad at: 330 (ms)
+G4WT5 > Begin processing for Run: 33, History: 0
+G4WT0 > Begin processing for Run: 33, History: 20000
+G4WT2 > Begin processing for Run: 33, History: 40000
+G4WT2 > Begin processing for Run: 33, History: 60000
+G4WT2 > Begin processing for Run: 33, History: 80000
+G4WT3 > Begin processing for Run: 33, History: 100000
+G4WT3 > Begin processing for Run: 33, History: 120000
+G4WT1 > Begin processing for Run: 33, History: 140000
+G4WT5 > Begin processing for Run: 33, History: 160000
+G4WT5 > Begin processing for Run: 33, History: 180000
+G4WT5 > Begin processing for Run: 33, History: 200000
+G4WT3 > Begin processing for Run: 33, History: 220000
+G4WT5 > Begin processing for Run: 33, History: 240000
+G4WT6 > Begin processing for Run: 33, History: 260000
+G4WT6 > Begin processing for Run: 33, History: 280000
+G4WT6 > Begin processing for Run: 33, History: 300000
+G4WT5 > Begin processing for Run: 33, History: 320000
+G4WT3 > Begin processing for Run: 33, History: 340000
+G4WT6 > Begin processing for Run: 33, History: 360000
+G4WT6 > Begin processing for Run: 33, History: 380000
+G4WT6 > Begin processing for Run: 33, History: 400000
+G4WT6 > Begin processing for Run: 33, History: 420000
+G4WT7 > Begin processing for Run: 33, History: 440000
+G4WT7 > Begin processing for Run: 33, History: 460000
+G4WT1 > Begin processing for Run: 33, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.13628 rad at: 340 (ms)
+G4WT5 > Begin processing for Run: 34, History: 0
+G4WT3 > Begin processing for Run: 34, History: 20000
+G4WT6 > Begin processing for Run: 34, History: 40000
+G4WT2 > Begin processing for Run: 34, History: 60000
+G4WT2 > Begin processing for Run: 34, History: 80000
+G4WT2 > Begin processing for Run: 34, History: 100000
+G4WT6 > Begin processing for Run: 34, History: 120000
+G4WT6 > Begin processing for Run: 34, History: 140000
+G4WT2 > Begin processing for Run: 34, History: 160000
+G4WT6 > Begin processing for Run: 34, History: 180000
+G4WT4 > Begin processing for Run: 34, History: 200000
+G4WT2 > Begin processing for Run: 34, History: 220000
+G4WT2 > Begin processing for Run: 34, History: 240000
+G4WT5 > Begin processing for Run: 34, History: 260000
+G4WT7 > Begin processing for Run: 34, History: 280000
+G4WT7 > Begin processing for Run: 34, History: 300000
+G4WT3 > Begin processing for Run: 34, History: 320000
+G4WT3 > Begin processing for Run: 34, History: 340000
+G4WT3 > Begin processing for Run: 34, History: 360000
+G4WT2 > Begin processing for Run: 34, History: 380000
+G4WT2 > Begin processing for Run: 34, History: 400000
+G4WT2 > Begin processing for Run: 34, History: 420000
+G4WT1 > Begin processing for Run: 34, History: 440000
+G4WT0 > Begin processing for Run: 34, History: 460000
+G4WT0 > Begin processing for Run: 34, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.19911 rad at: 350 (ms)
+G4WT4 > Begin processing for Run: 35, History: 0
+G4WT0 > Begin processing for Run: 35, History: 20000
+G4WT5 > Begin processing for Run: 35, History: 40000
+G4WT7 > Begin processing for Run: 35, History: 60000
+G4WT2 > Begin processing for Run: 35, History: 80000
+G4WT2 > Begin processing for Run: 35, History: 100000
+G4WT2 > Begin processing for Run: 35, History: 120000
+G4WT2 > Begin processing for Run: 35, History: 140000
+G4WT2 > Begin processing for Run: 35, History: 160000
+G4WT7 > Begin processing for Run: 35, History: 180000
+G4WT6 > Begin processing for Run: 35, History: 200000
+G4WT7 > Begin processing for Run: 35, History: 220000
+G4WT3 > Begin processing for Run: 35, History: 240000
+G4WT3 > Begin processing for Run: 35, History: 260000
+G4WT3 > Begin processing for Run: 35, History: 280000
+G4WT4 > Begin processing for Run: 35, History: 300000
+G4WT4 > Begin processing for Run: 35, History: 320000
+G4WT4 > Begin processing for Run: 35, History: 340000
+G4WT0 > Begin processing for Run: 35, History: 360000
+G4WT0 > Begin processing for Run: 35, History: 380000
+G4WT5 > Begin processing for Run: 35, History: 400000
+G4WT5 > Begin processing for Run: 35, History: 420000
+G4WT5 > Begin processing for Run: 35, History: 440000
+G4WT1 > Begin processing for Run: 35, History: 460000
+G4WT1 > Begin processing for Run: 35, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.26195 rad at: 360 (ms)
+G4WT5 > Begin processing for Run: 36, History: 0
+G4WT5 > Begin processing for Run: 36, History: 20000
+G4WT3 > Begin processing for Run: 36, History: 40000
+G4WT3 > Begin processing for Run: 36, History: 60000
+G4WT5 > Begin processing for Run: 36, History: 80000
+G4WT1 > Begin processing for Run: 36, History: 100000
+G4WT5 > Begin processing for Run: 36, History: 120000
+G4WT2 > Begin processing for Run: 36, History: 140000
+G4WT5 > Begin processing for Run: 36, History: 160000
+G4WT7 > Begin processing for Run: 36, History: 180000
+G4WT5 > Begin processing for Run: 36, History: 200000
+G4WT5 > Begin processing for Run: 36, History: 220000
+G4WT6 > Begin processing for Run: 36, History: 240000
+G4WT0 > Begin processing for Run: 36, History: 260000
+G4WT0 > Begin processing for Run: 36, History: 280000
+G4WT0 > Begin processing for Run: 36, History: 300000
+G4WT0 > Begin processing for Run: 36, History: 320000
+G4WT7 > Begin processing for Run: 36, History: 340000
+G4WT7 > Begin processing for Run: 36, History: 360000
+G4WT0 > Begin processing for Run: 36, History: 380000
+G4WT0 > Begin processing for Run: 36, History: 400000
+G4WT0 > Begin processing for Run: 36, History: 420000
+G4WT0 > Begin processing for Run: 36, History: 440000
+G4WT0 > Begin processing for Run: 36, History: 460000
+G4WT4 > Begin processing for Run: 36, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.32478 rad at: 370 (ms)
+G4WT6 > Begin processing for Run: 37, History: 0
+G4WT4 > Begin processing for Run: 37, History: 20000
+G4WT4 > Begin processing for Run: 37, History: 40000
+G4WT2 > Begin processing for Run: 37, History: 60000
+G4WT3 > Begin processing for Run: 37, History: 80000
+G4WT4 > Begin processing for Run: 37, History: 100000
+G4WT4 > Begin processing for Run: 37, History: 120000
+G4WT4 > Begin processing for Run: 37, History: 140000
+G4WT4 > Begin processing for Run: 37, History: 160000
+G4WT4 > Begin processing for Run: 37, History: 180000
+G4WT3 > Begin processing for Run: 37, History: 200000
+G4WT3 > Begin processing for Run: 37, History: 220000
+G4WT7 > Begin processing for Run: 37, History: 240000
+G4WT7 > Begin processing for Run: 37, History: 260000
+G4WT7 > Begin processing for Run: 37, History: 280000
+G4WT4 > Begin processing for Run: 37, History: 300000
+G4WT4 > Begin processing for Run: 37, History: 320000
+G4WT4 > Begin processing for Run: 37, History: 340000
+G4WT4 > Begin processing for Run: 37, History: 360000
+G4WT6 > Begin processing for Run: 37, History: 380000
+G4WT4 > Begin processing for Run: 37, History: 400000
+G4WT0 > Begin processing for Run: 37, History: 420000
+G4WT4 > Begin processing for Run: 37, History: 440000
+G4WT4 > Begin processing for Run: 37, History: 460000
+G4WT4 > Begin processing for Run: 37, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.38761 rad at: 380 (ms)
+G4WT7 > Begin processing for Run: 38, History: 0
+G4WT3 > Begin processing for Run: 38, History: 20000
+G4WT3 > Begin processing for Run: 38, History: 40000
+G4WT3 > Begin processing for Run: 38, History: 60000
+G4WT3 > Begin processing for Run: 38, History: 80000
+G4WT3 > Begin processing for Run: 38, History: 100000
+G4WT2 > Begin processing for Run: 38, History: 120000
+G4WT7 > Begin processing for Run: 38, History: 140000
+G4WT3 > Begin processing for Run: 38, History: 160000
+G4WT3 > Begin processing for Run: 38, History: 180000
+G4WT4 > Begin processing for Run: 38, History: 200000
+G4WT4 > Begin processing for Run: 38, History: 220000
+G4WT3 > Begin processing for Run: 38, History: 240000
+G4WT3 > Begin processing for Run: 38, History: 260000
+G4WT6 > Begin processing for Run: 38, History: 280000
+G4WT1 > Begin processing for Run: 38, History: 300000
+G4WT6 > Begin processing for Run: 38, History: 320000
+G4WT4 > Begin processing for Run: 38, History: 340000
+G4WT6 > Begin processing for Run: 38, History: 360000
+G4WT7 > Begin processing for Run: 38, History: 380000
+G4WT7 > Begin processing for Run: 38, History: 400000
+G4WT4 > Begin processing for Run: 38, History: 420000
+G4WT6 > Begin processing for Run: 38, History: 440000
+G4WT3 > Begin processing for Run: 38, History: 460000
+G4WT3 > Begin processing for Run: 38, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.45044 rad at: 390 (ms)
+G4WT7 > Begin processing for Run: 39, History: 0
+G4WT3 > Begin processing for Run: 39, History: 20000
+G4WT3 > Begin processing for Run: 39, History: 40000
+G4WT7 > Begin processing for Run: 39, History: 60000
+G4WT3 > Begin processing for Run: 39, History: 80000
+G4WT3 > Begin processing for Run: 39, History: 100000
+G4WT6 > Begin processing for Run: 39, History: 120000
+G4WT0 > Begin processing for Run: 39, History: 140000
+G4WT6 > Begin processing for Run: 39, History: 160000
+G4WT4 > Begin processing for Run: 39, History: 180000
+G4WT5 > Begin processing for Run: 39, History: 200000
+G4WT4 > Begin processing for Run: 39, History: 220000
+G4WT0 > Begin processing for Run: 39, History: 240000
+G4WT4 > Begin processing for Run: 39, History: 260000
+G4WT1 > Begin processing for Run: 39, History: 280000
+G4WT1 > Begin processing for Run: 39, History: 300000
+G4WT1 > Begin processing for Run: 39, History: 320000
+G4WT0 > Begin processing for Run: 39, History: 340000
+G4WT3 > Begin processing for Run: 39, History: 360000
+G4WT6 > Begin processing for Run: 39, History: 380000
+G4WT7 > Begin processing for Run: 39, History: 400000
+G4WT4 > Begin processing for Run: 39, History: 420000
+G4WT4 > Begin processing for Run: 39, History: 440000
+G4WT3 > Begin processing for Run: 39, History: 460000
+G4WT0 > Begin processing for Run: 39, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.51327 rad at: 400 (ms)
+G4WT3 > Begin processing for Run: 40, History: 0
+G4WT1 > Begin processing for Run: 40, History: 20000
+G4WT3 > Begin processing for Run: 40, History: 40000
+G4WT3 > Begin processing for Run: 40, History: 60000
+G4WT4 > Begin processing for Run: 40, History: 80000
+G4WT4 > Begin processing for Run: 40, History: 100000
+G4WT5 > Begin processing for Run: 40, History: 120000
+G4WT2 > Begin processing for Run: 40, History: 140000
+G4WT2 > Begin processing for Run: 40, History: 160000
+G4WT1 > Begin processing for Run: 40, History: 180000
+G4WT6 > Begin processing for Run: 40, History: 200000
+G4WT7 > Begin processing for Run: 40, History: 220000
+G4WT7 > Begin processing for Run: 40, History: 240000
+G4WT7 > Begin processing for Run: 40, History: 260000
+G4WT2 > Begin processing for Run: 40, History: 280000
+G4WT3 > Begin processing for Run: 40, History: 300000
+G4WT3 > Begin processing for Run: 40, History: 320000
+G4WT1 > Begin processing for Run: 40, History: 340000
+G4WT1 > Begin processing for Run: 40, History: 360000
+G4WT1 > Begin processing for Run: 40, History: 380000
+G4WT0 > Begin processing for Run: 40, History: 400000
+G4WT2 > Begin processing for Run: 40, History: 420000
+G4WT2 > Begin processing for Run: 40, History: 440000
+G4WT2 > Begin processing for Run: 40, History: 460000
+G4WT2 > Begin processing for Run: 40, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.57611 rad at: 410 (ms)
+G4WT2 > Begin processing for Run: 41, History: 0
+G4WT4 > Begin processing for Run: 41, History: 20000
+G4WT6 > Begin processing for Run: 41, History: 40000
+G4WT4 > Begin processing for Run: 41, History: 60000
+G4WT6 > Begin processing for Run: 41, History: 80000
+G4WT1 > Begin processing for Run: 41, History: 100000
+G4WT2 > Begin processing for Run: 41, History: 120000
+G4WT2 > Begin processing for Run: 41, History: 140000
+G4WT6 > Begin processing for Run: 41, History: 160000
+G4WT6 > Begin processing for Run: 41, History: 180000
+G4WT4 > Begin processing for Run: 41, History: 200000
+G4WT2 > Begin processing for Run: 41, History: 220000
+G4WT1 > Begin processing for Run: 41, History: 240000
+G4WT5 > Begin processing for Run: 41, History: 260000
+G4WT6 > Begin processing for Run: 41, History: 280000
+G4WT6 > Begin processing for Run: 41, History: 300000
+G4WT4 > Begin processing for Run: 41, History: 320000
+G4WT0 > Begin processing for Run: 41, History: 340000
+G4WT4 > Begin processing for Run: 41, History: 360000
+G4WT4 > Begin processing for Run: 41, History: 380000
+G4WT4 > Begin processing for Run: 41, History: 400000
+G4WT4 > Begin processing for Run: 41, History: 420000
+G4WT6 > Begin processing for Run: 41, History: 440000
+G4WT4 > Begin processing for Run: 41, History: 460000
+G4WT4 > Begin processing for Run: 41, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.63894 rad at: 420 (ms)
+G4WT6 > Begin processing for Run: 42, History: 0
+G4WT5 > Begin processing for Run: 42, History: 20000
+G4WT0 > Begin processing for Run: 42, History: 40000
+G4WT0 > Begin processing for Run: 42, History: 60000
+G4WT0 > Begin processing for Run: 42, History: 80000
+G4WT2 > Begin processing for Run: 42, History: 100000
+G4WT3 > Begin processing for Run: 42, History: 120000
+G4WT1 > Begin processing for Run: 42, History: 140000
+G4WT4 > Begin processing for Run: 42, History: 160000
+G4WT1 > Begin processing for Run: 42, History: 180000
+G4WT4 > Begin processing for Run: 42, History: 200000
+G4WT7 > Begin processing for Run: 42, History: 220000
+G4WT7 > Begin processing for Run: 42, History: 240000
+G4WT4 > Begin processing for Run: 42, History: 260000
+G4WT0 > Begin processing for Run: 42, History: 280000
+G4WT6 > Begin processing for Run: 42, History: 300000
+G4WT4 > Begin processing for Run: 42, History: 320000
+G4WT4 > Begin processing for Run: 42, History: 340000
+G4WT1 > Begin processing for Run: 42, History: 360000
+G4WT6 > Begin processing for Run: 42, History: 380000
+G4WT0 > Begin processing for Run: 42, History: 400000
+G4WT5 > Begin processing for Run: 42, History: 420000
+G4WT0 > Begin processing for Run: 42, History: 440000
+G4WT5 > Begin processing for Run: 42, History: 460000
+G4WT5 > Begin processing for Run: 42, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.70177 rad at: 430 (ms)
+G4WT0 > Begin processing for Run: 43, History: 0
+G4WT7 > Begin processing for Run: 43, History: 20000
+G4WT7 > Begin processing for Run: 43, History: 40000
+G4WT6 > Begin processing for Run: 43, History: 60000
+G4WT6 > Begin processing for Run: 43, History: 80000
+G4WT7 > Begin processing for Run: 43, History: 100000
+G4WT4 > Begin processing for Run: 43, History: 120000
+G4WT1 > Begin processing for Run: 43, History: 140000
+G4WT1 > Begin processing for Run: 43, History: 160000
+G4WT1 > Begin processing for Run: 43, History: 180000
+G4WT6 > Begin processing for Run: 43, History: 200000
+G4WT2 > Begin processing for Run: 43, History: 220000
+G4WT6 > Begin processing for Run: 43, History: 240000
+G4WT2 > Begin processing for Run: 43, History: 260000
+G4WT4 > Begin processing for Run: 43, History: 280000
+G4WT3 > Begin processing for Run: 43, History: 300000
+G4WT4 > Begin processing for Run: 43, History: 320000
+G4WT2 > Begin processing for Run: 43, History: 340000
+G4WT2 > Begin processing for Run: 43, History: 360000
+G4WT4 > Begin processing for Run: 43, History: 380000
+G4WT4 > Begin processing for Run: 43, History: 400000
+G4WT4 > Begin processing for Run: 43, History: 420000
+G4WT4 > Begin processing for Run: 43, History: 440000
+G4WT4 > Begin processing for Run: 43, History: 460000
+G4WT4 > Begin processing for Run: 43, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.7646 rad at: 440 (ms)
+G4WT4 > Begin processing for Run: 44, History: 0
+G4WT4 > Begin processing for Run: 44, History: 20000
+G4WT6 > Begin processing for Run: 44, History: 40000
+G4WT6 > Begin processing for Run: 44, History: 60000
+G4WT6 > Begin processing for Run: 44, History: 80000
+G4WT3 > Begin processing for Run: 44, History: 100000
+G4WT2 > Begin processing for Run: 44, History: 120000
+G4WT2 > Begin processing for Run: 44, History: 140000
+G4WT5 > Begin processing for Run: 44, History: 160000
+G4WT5 > Begin processing for Run: 44, History: 180000
+G4WT3 > Begin processing for Run: 44, History: 200000
+G4WT3 > Begin processing for Run: 44, History: 220000
+G4WT3 > Begin processing for Run: 44, History: 240000
+G4WT3 > Begin processing for Run: 44, History: 260000
+G4WT3 > Begin processing for Run: 44, History: 280000
+G4WT7 > Begin processing for Run: 44, History: 300000
+G4WT0 > Begin processing for Run: 44, History: 320000
+G4WT0 > Begin processing for Run: 44, History: 340000
+G4WT2 > Begin processing for Run: 44, History: 360000
+G4WT0 > Begin processing for Run: 44, History: 380000
+G4WT0 > Begin processing for Run: 44, History: 400000
+G4WT0 > Begin processing for Run: 44, History: 420000
+G4WT0 > Begin processing for Run: 44, History: 440000
+G4WT6 > Begin processing for Run: 44, History: 460000
+G4WT4 > Begin processing for Run: 44, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.82743 rad at: 450 (ms)
+G4WT4 > Begin processing for Run: 45, History: 0
+G4WT2 > Begin processing for Run: 45, History: 20000
+G4WT1 > Begin processing for Run: 45, History: 40000
+G4WT3 > Begin processing for Run: 45, History: 60000
+G4WT2 > Begin processing for Run: 45, History: 80000
+G4WT2 > Begin processing for Run: 45, History: 100000
+G4WT3 > Begin processing for Run: 45, History: 120000
+G4WT5 > Begin processing for Run: 45, History: 140000
+G4WT5 > Begin processing for Run: 45, History: 160000
+G4WT5 > Begin processing for Run: 45, History: 180000
+G4WT1 > Begin processing for Run: 45, History: 200000
+G4WT1 > Begin processing for Run: 45, History: 220000
+G4WT1 > Begin processing for Run: 45, History: 240000
+G4WT1 > Begin processing for Run: 45, History: 260000
+G4WT1 > Begin processing for Run: 45, History: 280000
+G4WT4 > Begin processing for Run: 45, History: 300000
+G4WT4 > Begin processing for Run: 45, History: 320000
+G4WT4 > Begin processing for Run: 45, History: 340000
+G4WT4 > Begin processing for Run: 45, History: 360000
+G4WT4 > Begin processing for Run: 45, History: 380000
+G4WT4 > Begin processing for Run: 45, History: 400000
+G4WT4 > Begin processing for Run: 45, History: 420000
+G4WT3 > Begin processing for Run: 45, History: 440000
+G4WT3 > Begin processing for Run: 45, History: 460000
+G4WT3 > Begin processing for Run: 45, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.89027 rad at: 460 (ms)
+G4WT5 > Begin processing for Run: 46, History: 0
+G4WT3 > Begin processing for Run: 46, History: 20000
+G4WT3 > Begin processing for Run: 46, History: 40000
+G4WT3 > Begin processing for Run: 46, History: 60000
+G4WT3 > Begin processing for Run: 46, History: 80000
+G4WT6 > Begin processing for Run: 46, History: 100000
+G4WT6 > Begin processing for Run: 46, History: 120000
+G4WT6 > Begin processing for Run: 46, History: 140000
+G4WT6 > Begin processing for Run: 46, History: 160000
+G4WT6 > Begin processing for Run: 46, History: 180000
+G4WT6 > Begin processing for Run: 46, History: 200000
+G4WT6 > Begin processing for Run: 46, History: 220000
+G4WT5 > Begin processing for Run: 46, History: 240000
+G4WT2 > Begin processing for Run: 46, History: 260000
+G4WT6 > Begin processing for Run: 46, History: 280000
+G4WT6 > Begin processing for Run: 46, History: 300000
+G4WT2 > Begin processing for Run: 46, History: 320000
+G4WT2 > Begin processing for Run: 46, History: 340000
+G4WT6 > Begin processing for Run: 46, History: 360000
+G4WT6 > Begin processing for Run: 46, History: 380000
+G4WT7 > Begin processing for Run: 46, History: 400000
+G4WT7 > Begin processing for Run: 46, History: 420000
+G4WT4 > Begin processing for Run: 46, History: 440000
+G4WT0 > Begin processing for Run: 46, History: 460000
+G4WT2 > Begin processing for Run: 46, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 2.9531 rad at: 470 (ms)
+G4WT1 > Begin processing for Run: 47, History: 0
+G4WT4 > Begin processing for Run: 47, History: 20000
+G4WT4 > Begin processing for Run: 47, History: 40000
+G4WT4 > Begin processing for Run: 47, History: 60000
+G4WT4 > Begin processing for Run: 47, History: 80000
+G4WT4 > Begin processing for Run: 47, History: 100000
+G4WT4 > Begin processing for Run: 47, History: 120000
+G4WT4 > Begin processing for Run: 47, History: 140000
+G4WT4 > Begin processing for Run: 47, History: 160000
+G4WT4 > Begin processing for Run: 47, History: 180000
+G4WT4 > Begin processing for Run: 47, History: 200000
+G4WT4 > Begin processing for Run: 47, History: 220000
+G4WT4 > Begin processing for Run: 47, History: 240000
+G4WT7 > Begin processing for Run: 47, History: 260000
+G4WT7 > Begin processing for Run: 47, History: 280000
+G4WT7 > Begin processing for Run: 47, History: 300000
+G4WT3 > Begin processing for Run: 47, History: 320000
+G4WT3 > Begin processing for Run: 47, History: 340000
+G4WT3 > Begin processing for Run: 47, History: 360000
+G4WT3 > Begin processing for Run: 47, History: 380000
+G4WT3 > Begin processing for Run: 47, History: 400000
+G4WT3 > Begin processing for Run: 47, History: 420000
+G4WT3 > Begin processing for Run: 47, History: 440000
+G4WT3 > Begin processing for Run: 47, History: 460000
+G4WT0 > Begin processing for Run: 47, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.01593 rad at: 480 (ms)
+G4WT0 > Begin processing for Run: 48, History: 0
+G4WT1 > Begin processing for Run: 48, History: 20000
+G4WT1 > Begin processing for Run: 48, History: 40000
+G4WT2 > Begin processing for Run: 48, History: 60000
+G4WT1 > Begin processing for Run: 48, History: 80000
+G4WT1 > Begin processing for Run: 48, History: 100000
+G4WT2 > Begin processing for Run: 48, History: 120000
+G4WT3 > Begin processing for Run: 48, History: 140000
+G4WT4 > Begin processing for Run: 48, History: 160000
+G4WT2 > Begin processing for Run: 48, History: 180000
+G4WT5 > Begin processing for Run: 48, History: 200000
+G4WT5 > Begin processing for Run: 48, History: 220000
+G4WT5 > Begin processing for Run: 48, History: 240000
+G4WT4 > Begin processing for Run: 48, History: 260000
+G4WT4 > Begin processing for Run: 48, History: 280000
+G4WT1 > Begin processing for Run: 48, History: 300000
+G4WT6 > Begin processing for Run: 48, History: 320000
+G4WT5 > Begin processing for Run: 48, History: 340000
+G4WT5 > Begin processing for Run: 48, History: 360000
+G4WT5 > Begin processing for Run: 48, History: 380000
+G4WT5 > Begin processing for Run: 48, History: 400000
+G4WT0 > Begin processing for Run: 48, History: 420000
+G4WT0 > Begin processing for Run: 48, History: 440000
+G4WT0 > Begin processing for Run: 48, History: 460000
+G4WT0 > Begin processing for Run: 48, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.07876 rad at: 490 (ms)
+G4WT0 > Begin processing for Run: 49, History: 0
+G4WT7 > Begin processing for Run: 49, History: 20000
+G4WT7 > Begin processing for Run: 49, History: 40000
+G4WT7 > Begin processing for Run: 49, History: 60000
+G4WT7 > Begin processing for Run: 49, History: 80000
+G4WT7 > Begin processing for Run: 49, History: 100000
+G4WT7 > Begin processing for Run: 49, History: 120000
+G4WT4 > Begin processing for Run: 49, History: 140000
+G4WT4 > Begin processing for Run: 49, History: 160000
+G4WT4 > Begin processing for Run: 49, History: 180000
+G4WT4 > Begin processing for Run: 49, History: 200000
+G4WT4 > Begin processing for Run: 49, History: 220000
+G4WT4 > Begin processing for Run: 49, History: 240000
+G4WT4 > Begin processing for Run: 49, History: 260000
+G4WT4 > Begin processing for Run: 49, History: 280000
+G4WT3 > Begin processing for Run: 49, History: 300000
+G4WT3 > Begin processing for Run: 49, History: 320000
+G4WT3 > Begin processing for Run: 49, History: 340000
+G4WT3 > Begin processing for Run: 49, History: 360000
+G4WT3 > Begin processing for Run: 49, History: 380000
+G4WT3 > Begin processing for Run: 49, History: 400000
+G4WT0 > Begin processing for Run: 49, History: 420000
+G4WT0 > Begin processing for Run: 49, History: 440000
+G4WT0 > Begin processing for Run: 49, History: 460000
+G4WT0 > Begin processing for Run: 49, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.14159 rad at: 500 (ms)
+G4WT5 > Begin processing for Run: 50, History: 0
+G4WT6 > Begin processing for Run: 50, History: 20000
+G4WT7 > Begin processing for Run: 50, History: 40000
+G4WT7 > Begin processing for Run: 50, History: 60000
+G4WT7 > Begin processing for Run: 50, History: 80000
+G4WT7 > Begin processing for Run: 50, History: 100000
+G4WT7 > Begin processing for Run: 50, History: 120000
+G4WT4 > Begin processing for Run: 50, History: 140000
+G4WT4 > Begin processing for Run: 50, History: 160000
+G4WT4 > Begin processing for Run: 50, History: 180000
+G4WT4 > Begin processing for Run: 50, History: 200000
+G4WT3 > Begin processing for Run: 50, History: 220000
+G4WT7 > Begin processing for Run: 50, History: 240000
+G4WT7 > Begin processing for Run: 50, History: 260000
+G4WT7 > Begin processing for Run: 50, History: 280000
+G4WT7 > Begin processing for Run: 50, History: 300000
+G4WT7 > Begin processing for Run: 50, History: 320000
+G4WT6 > Begin processing for Run: 50, History: 340000
+G4WT5 > Begin processing for Run: 50, History: 360000
+G4WT5 > Begin processing for Run: 50, History: 380000
+G4WT5 > Begin processing for Run: 50, History: 400000
+G4WT5 > Begin processing for Run: 50, History: 420000
+G4WT4 > Begin processing for Run: 50, History: 440000
+G4WT5 > Begin processing for Run: 50, History: 460000
+G4WT5 > Begin processing for Run: 50, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.20442 rad at: 510 (ms)
+G4WT4 > Begin processing for Run: 51, History: 0
+G4WT6 > Begin processing for Run: 51, History: 20000
+G4WT6 > Begin processing for Run: 51, History: 40000
+G4WT6 > Begin processing for Run: 51, History: 60000
+G4WT6 > Begin processing for Run: 51, History: 80000
+G4WT6 > Begin processing for Run: 51, History: 100000
+G4WT6 > Begin processing for Run: 51, History: 120000
+G4WT6 > Begin processing for Run: 51, History: 140000
+G4WT6 > Begin processing for Run: 51, History: 160000
+G4WT6 > Begin processing for Run: 51, History: 180000
+G4WT6 > Begin processing for Run: 51, History: 200000
+G4WT6 > Begin processing for Run: 51, History: 220000
+G4WT6 > Begin processing for Run: 51, History: 240000
+G4WT6 > Begin processing for Run: 51, History: 260000
+G4WT0 > Begin processing for Run: 51, History: 280000
+G4WT0 > Begin processing for Run: 51, History: 300000
+G4WT0 > Begin processing for Run: 51, History: 320000
+G4WT0 > Begin processing for Run: 51, History: 340000
+G4WT0 > Begin processing for Run: 51, History: 360000
+G4WT0 > Begin processing for Run: 51, History: 380000
+G4WT5 > Begin processing for Run: 51, History: 400000
+G4WT5 > Begin processing for Run: 51, History: 420000
+G4WT5 > Begin processing for Run: 51, History: 440000
+G4WT5 > Begin processing for Run: 51, History: 460000
+G4WT7 > Begin processing for Run: 51, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.26726 rad at: 520 (ms)
+G4WT2 > Begin processing for Run: 52, History: 0
+G4WT6 > Begin processing for Run: 52, History: 20000
+G4WT3 > Begin processing for Run: 52, History: 40000
+G4WT3 > Begin processing for Run: 52, History: 60000
+G4WT3 > Begin processing for Run: 52, History: 80000
+G4WT3 > Begin processing for Run: 52, History: 100000
+G4WT6 > Begin processing for Run: 52, History: 120000
+G4WT6 > Begin processing for Run: 52, History: 140000
+G4WT6 > Begin processing for Run: 52, History: 160000
+G4WT6 > Begin processing for Run: 52, History: 180000
+G4WT3 > Begin processing for Run: 52, History: 200000
+G4WT3 > Begin processing for Run: 52, History: 220000
+G4WT6 > Begin processing for Run: 52, History: 240000
+G4WT3 > Begin processing for Run: 52, History: 260000
+G4WT3 > Begin processing for Run: 52, History: 280000
+G4WT3 > Begin processing for Run: 52, History: 300000
+G4WT3 > Begin processing for Run: 52, History: 320000
+G4WT5 > Begin processing for Run: 52, History: 340000
+G4WT3 > Begin processing for Run: 52, History: 360000
+G4WT3 > Begin processing for Run: 52, History: 380000
+G4WT3 > Begin processing for Run: 52, History: 400000
+G4WT2 > Begin processing for Run: 52, History: 420000
+G4WT3 > Begin processing for Run: 52, History: 440000
+G4WT5 > Begin processing for Run: 52, History: 460000
+G4WT5 > Begin processing for Run: 52, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.33009 rad at: 530 (ms)
+G4WT0 > Begin processing for Run: 53, History: 0
+G4WT1 > Begin processing for Run: 53, History: 20000
+G4WT1 > Begin processing for Run: 53, History: 40000
+G4WT5 > Begin processing for Run: 53, History: 60000
+G4WT1 > Begin processing for Run: 53, History: 80000
+G4WT1 > Begin processing for Run: 53, History: 100000
+G4WT2 > Begin processing for Run: 53, History: 120000
+G4WT3 > Begin processing for Run: 53, History: 140000
+G4WT3 > Begin processing for Run: 53, History: 160000
+G4WT3 > Begin processing for Run: 53, History: 180000
+G4WT3 > Begin processing for Run: 53, History: 200000
+G4WT3 > Begin processing for Run: 53, History: 220000
+G4WT3 > Begin processing for Run: 53, History: 240000
+G4WT3 > Begin processing for Run: 53, History: 260000
+G4WT3 > Begin processing for Run: 53, History: 280000
+G4WT1 > Begin processing for Run: 53, History: 300000
+G4WT1 > Begin processing for Run: 53, History: 320000
+G4WT5 > Begin processing for Run: 53, History: 340000
+G4WT3 > Begin processing for Run: 53, History: 360000
+G4WT3 > Begin processing for Run: 53, History: 380000
+G4WT1 > Begin processing for Run: 53, History: 400000
+G4WT1 > Begin processing for Run: 53, History: 420000
+G4WT1 > Begin processing for Run: 53, History: 440000
+G4WT1 > Begin processing for Run: 53, History: 460000
+G4WT1 > Begin processing for Run: 53, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.39292 rad at: 540 (ms)
+G4WT3 > Begin processing for Run: 54, History: 0
+G4WT4 > Begin processing for Run: 54, History: 20000
+G4WT4 > Begin processing for Run: 54, History: 40000
+G4WT4 > Begin processing for Run: 54, History: 60000
+G4WT7 > Begin processing for Run: 54, History: 80000
+G4WT7 > Begin processing for Run: 54, History: 100000
+G4WT6 > Begin processing for Run: 54, History: 120000
+G4WT6 > Begin processing for Run: 54, History: 140000
+G4WT7 > Begin processing for Run: 54, History: 160000
+G4WT6 > Begin processing for Run: 54, History: 180000
+G4WT7 > Begin processing for Run: 54, History: 200000
+G4WT6 > Begin processing for Run: 54, History: 220000
+G4WT6 > Begin processing for Run: 54, History: 240000
+G4WT6 > Begin processing for Run: 54, History: 260000
+G4WT6 > Begin processing for Run: 54, History: 280000
+G4WT7 > Begin processing for Run: 54, History: 300000
+G4WT5 > Begin processing for Run: 54, History: 320000
+G4WT5 > Begin processing for Run: 54, History: 340000
+G4WT4 > Begin processing for Run: 54, History: 360000
+G4WT4 > Begin processing for Run: 54, History: 380000
+G4WT3 > Begin processing for Run: 54, History: 400000
+G4WT3 > Begin processing for Run: 54, History: 420000
+G4WT3 > Begin processing for Run: 54, History: 440000
+G4WT5 > Begin processing for Run: 54, History: 460000
+G4WT5 > Begin processing for Run: 54, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.45575 rad at: 550 (ms)
+G4WT5 > Begin processing for Run: 55, History: 0
+G4WT6 > Begin processing for Run: 55, History: 20000
+G4WT2 > Begin processing for Run: 55, History: 40000
+G4WT4 > Begin processing for Run: 55, History: 60000
+G4WT4 > Begin processing for Run: 55, History: 80000
+G4WT2 > Begin processing for Run: 55, History: 100000
+G4WT2 > Begin processing for Run: 55, History: 120000
+G4WT2 > Begin processing for Run: 55, History: 140000
+G4WT4 > Begin processing for Run: 55, History: 160000
+G4WT2 > Begin processing for Run: 55, History: 180000
+G4WT2 > Begin processing for Run: 55, History: 200000
+G4WT4 > Begin processing for Run: 55, History: 220000
+G4WT5 > Begin processing for Run: 55, History: 240000
+G4WT5 > Begin processing for Run: 55, History: 260000
+G4WT5 > Begin processing for Run: 55, History: 280000
+G4WT5 > Begin processing for Run: 55, History: 300000
+G4WT5 > Begin processing for Run: 55, History: 320000
+G4WT5 > Begin processing for Run: 55, History: 340000
+G4WT0 > Begin processing for Run: 55, History: 360000
+G4WT0 > Begin processing for Run: 55, History: 380000
+G4WT5 > Begin processing for Run: 55, History: 400000
+G4WT5 > Begin processing for Run: 55, History: 420000
+G4WT5 > Begin processing for Run: 55, History: 440000
+G4WT5 > Begin processing for Run: 55, History: 460000
+G4WT5 > Begin processing for Run: 55, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.51858 rad at: 560 (ms)
+G4WT7 > Begin processing for Run: 56, History: 0
+G4WT6 > Begin processing for Run: 56, History: 20000
+G4WT3 > Begin processing for Run: 56, History: 40000
+G4WT3 > Begin processing for Run: 56, History: 60000
+G4WT3 > Begin processing for Run: 56, History: 80000
+G4WT3 > Begin processing for Run: 56, History: 100000
+G4WT3 > Begin processing for Run: 56, History: 120000
+G4WT4 > Begin processing for Run: 56, History: 140000
+G4WT4 > Begin processing for Run: 56, History: 160000
+G4WT4 > Begin processing for Run: 56, History: 180000
+G4WT4 > Begin processing for Run: 56, History: 200000
+G4WT4 > Begin processing for Run: 56, History: 220000
+G4WT4 > Begin processing for Run: 56, History: 240000
+G4WT4 > Begin processing for Run: 56, History: 260000
+G4WT0 > Begin processing for Run: 56, History: 280000
+G4WT0 > Begin processing for Run: 56, History: 300000
+G4WT0 > Begin processing for Run: 56, History: 320000
+G4WT0 > Begin processing for Run: 56, History: 340000
+G4WT6 > Begin processing for Run: 56, History: 360000
+G4WT7 > Begin processing for Run: 56, History: 380000
+G4WT3 > Begin processing for Run: 56, History: 400000
+G4WT0 > Begin processing for Run: 56, History: 420000
+G4WT3 > Begin processing for Run: 56, History: 440000
+G4WT3 > Begin processing for Run: 56, History: 460000
+G4WT4 > Begin processing for Run: 56, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.58142 rad at: 570 (ms)
+G4WT3 > Begin processing for Run: 57, History: 0
+G4WT3 > Begin processing for Run: 57, History: 20000
+G4WT1 > Begin processing for Run: 57, History: 40000
+G4WT3 > Begin processing for Run: 57, History: 60000
+G4WT1 > Begin processing for Run: 57, History: 80000
+G4WT4 > Begin processing for Run: 57, History: 100000
+G4WT4 > Begin processing for Run: 57, History: 120000
+G4WT4 > Begin processing for Run: 57, History: 140000
+G4WT4 > Begin processing for Run: 57, History: 160000
+G4WT2 > Begin processing for Run: 57, History: 180000
+G4WT2 > Begin processing for Run: 57, History: 200000
+G4WT2 > Begin processing for Run: 57, History: 220000
+G4WT2 > Begin processing for Run: 57, History: 240000
+G4WT2 > Begin processing for Run: 57, History: 260000
+G4WT2 > Begin processing for Run: 57, History: 280000
+G4WT0 > Begin processing for Run: 57, History: 300000
+G4WT0 > Begin processing for Run: 57, History: 320000
+G4WT0 > Begin processing for Run: 57, History: 340000
+G4WT0 > Begin processing for Run: 57, History: 360000
+G4WT0 > Begin processing for Run: 57, History: 380000
+G4WT6 > Begin processing for Run: 57, History: 400000
+G4WT6 > Begin processing for Run: 57, History: 420000
+G4WT6 > Begin processing for Run: 57, History: 440000
+G4WT6 > Begin processing for Run: 57, History: 460000
+G4WT6 > Begin processing for Run: 57, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.64425 rad at: 580 (ms)
+G4WT4 > Begin processing for Run: 58, History: 0
+G4WT4 > Begin processing for Run: 58, History: 20000
+G4WT4 > Begin processing for Run: 58, History: 40000
+G4WT4 > Begin processing for Run: 58, History: 60000
+G4WT4 > Begin processing for Run: 58, History: 80000
+G4WT6 > Begin processing for Run: 58, History: 100000
+G4WT6 > Begin processing for Run: 58, History: 120000
+G4WT6 > Begin processing for Run: 58, History: 140000
+G4WT0 > Begin processing for Run: 58, History: 160000
+G4WT0 > Begin processing for Run: 58, History: 180000
+G4WT1 > Begin processing for Run: 58, History: 200000
+G4WT1 > Begin processing for Run: 58, History: 220000
+G4WT6 > Begin processing for Run: 58, History: 240000
+G4WT6 > Begin processing for Run: 58, History: 260000
+G4WT6 > Begin processing for Run: 58, History: 280000
+G4WT4 > Begin processing for Run: 58, History: 300000
+G4WT4 > Begin processing for Run: 58, History: 320000
+G4WT4 > Begin processing for Run: 58, History: 340000
+G4WT4 > Begin processing for Run: 58, History: 360000
+G4WT7 > Begin processing for Run: 58, History: 380000
+G4WT7 > Begin processing for Run: 58, History: 400000
+G4WT1 > Begin processing for Run: 58, History: 420000
+G4WT1 > Begin processing for Run: 58, History: 440000
+G4WT1 > Begin processing for Run: 58, History: 460000
+G4WT1 > Begin processing for Run: 58, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.70708 rad at: 590 (ms)
+G4WT3 > Begin processing for Run: 59, History: 0
+G4WT3 > Begin processing for Run: 59, History: 20000
+G4WT3 > Begin processing for Run: 59, History: 40000
+G4WT3 > Begin processing for Run: 59, History: 60000
+G4WT3 > Begin processing for Run: 59, History: 80000
+G4WT3 > Begin processing for Run: 59, History: 100000
+G4WT3 > Begin processing for Run: 59, History: 120000
+G4WT3 > Begin processing for Run: 59, History: 140000
+G4WT3 > Begin processing for Run: 59, History: 160000
+G4WT6 > Begin processing for Run: 59, History: 180000
+G4WT6 > Begin processing for Run: 59, History: 200000
+G4WT3 > Begin processing for Run: 59, History: 220000
+G4WT1 > Begin processing for Run: 59, History: 240000
+G4WT1 > Begin processing for Run: 59, History: 260000
+G4WT1 > Begin processing for Run: 59, History: 280000
+G4WT7 > Begin processing for Run: 59, History: 300000
+G4WT7 > Begin processing for Run: 59, History: 320000
+G4WT7 > Begin processing for Run: 59, History: 340000
+G4WT7 > Begin processing for Run: 59, History: 360000
+G4WT7 > Begin processing for Run: 59, History: 380000
+G4WT7 > Begin processing for Run: 59, History: 400000
+G4WT7 > Begin processing for Run: 59, History: 420000
+G4WT7 > Begin processing for Run: 59, History: 440000
+G4WT4 > Begin processing for Run: 59, History: 460000
+G4WT4 > Begin processing for Run: 59, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.76991 rad at: 600 (ms)
+G4WT1 > Begin processing for Run: 60, History: 0
+G4WT2 > Begin processing for Run: 60, History: 20000
+G4WT2 > Begin processing for Run: 60, History: 40000
+G4WT6 > Begin processing for Run: 60, History: 60000
+G4WT6 > Begin processing for Run: 60, History: 80000
+G4WT6 > Begin processing for Run: 60, History: 100000
+G4WT6 > Begin processing for Run: 60, History: 120000
+G4WT6 > Begin processing for Run: 60, History: 140000
+G4WT6 > Begin processing for Run: 60, History: 160000
+G4WT6 > Begin processing for Run: 60, History: 180000
+G4WT6 > Begin processing for Run: 60, History: 200000
+G4WT6 > Begin processing for Run: 60, History: 220000
+G4WT6 > Begin processing for Run: 60, History: 240000
+G4WT6 > Begin processing for Run: 60, History: 260000
+G4WT6 > Begin processing for Run: 60, History: 280000
+G4WT6 > Begin processing for Run: 60, History: 300000
+G4WT6 > Begin processing for Run: 60, History: 320000
+G4WT6 > Begin processing for Run: 60, History: 340000
+G4WT6 > Begin processing for Run: 60, History: 360000
+G4WT6 > Begin processing for Run: 60, History: 380000
+G4WT6 > Begin processing for Run: 60, History: 400000
+G4WT3 > Begin processing for Run: 60, History: 420000
+G4WT4 > Begin processing for Run: 60, History: 440000
+G4WT6 > Begin processing for Run: 60, History: 460000
+G4WT6 > Begin processing for Run: 60, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.83274 rad at: 610 (ms)
+G4WT0 > Begin processing for Run: 61, History: 0
+G4WT7 > Begin processing for Run: 61, History: 20000
+G4WT0 > Begin processing for Run: 61, History: 40000
+G4WT0 > Begin processing for Run: 61, History: 60000
+G4WT7 > Begin processing for Run: 61, History: 80000
+G4WT0 > Begin processing for Run: 61, History: 100000
+G4WT0 > Begin processing for Run: 61, History: 120000
+G4WT7 > Begin processing for Run: 61, History: 140000
+G4WT7 > Begin processing for Run: 61, History: 160000
+G4WT7 > Begin processing for Run: 61, History: 180000
+G4WT7 > Begin processing for Run: 61, History: 200000
+G4WT5 > Begin processing for Run: 61, History: 220000
+G4WT5 > Begin processing for Run: 61, History: 240000
+G4WT5 > Begin processing for Run: 61, History: 260000
+G4WT5 > Begin processing for Run: 61, History: 280000
+G4WT1 > Begin processing for Run: 61, History: 300000
+G4WT5 > Begin processing for Run: 61, History: 320000
+G4WT2 > Begin processing for Run: 61, History: 340000
+G4WT2 > Begin processing for Run: 61, History: 360000
+G4WT7 > Begin processing for Run: 61, History: 380000
+G4WT7 > Begin processing for Run: 61, History: 400000
+G4WT7 > Begin processing for Run: 61, History: 420000
+G4WT6 > Begin processing for Run: 61, History: 440000
+G4WT6 > Begin processing for Run: 61, History: 460000
+G4WT2 > Begin processing for Run: 61, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.89557 rad at: 620 (ms)
+G4WT3 > Begin processing for Run: 62, History: 0
+G4WT3 > Begin processing for Run: 62, History: 20000
+G4WT3 > Begin processing for Run: 62, History: 40000
+G4WT3 > Begin processing for Run: 62, History: 60000
+G4WT3 > Begin processing for Run: 62, History: 80000
+G4WT3 > Begin processing for Run: 62, History: 100000
+G4WT3 > Begin processing for Run: 62, History: 120000
+G4WT4 > Begin processing for Run: 62, History: 140000
+G4WT2 > Begin processing for Run: 62, History: 160000
+G4WT5 > Begin processing for Run: 62, History: 180000
+G4WT3 > Begin processing for Run: 62, History: 200000
+G4WT5 > Begin processing for Run: 62, History: 220000
+G4WT5 > Begin processing for Run: 62, History: 240000
+G4WT5 > Begin processing for Run: 62, History: 260000
+G4WT5 > Begin processing for Run: 62, History: 280000
+G4WT0 > Begin processing for Run: 62, History: 300000
+G4WT5 > Begin processing for Run: 62, History: 320000
+G4WT0 > Begin processing for Run: 62, History: 340000
+G4WT2 > Begin processing for Run: 62, History: 360000
+G4WT4 > Begin processing for Run: 62, History: 380000
+G4WT4 > Begin processing for Run: 62, History: 400000
+G4WT7 > Begin processing for Run: 62, History: 420000
+G4WT7 > Begin processing for Run: 62, History: 440000
+G4WT7 > Begin processing for Run: 62, History: 460000
+G4WT7 > Begin processing for Run: 62, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 3.95841 rad at: 630 (ms)
+G4WT4 > Begin processing for Run: 63, History: 0
+G4WT3 > Begin processing for Run: 63, History: 20000
+G4WT3 > Begin processing for Run: 63, History: 40000
+G4WT2 > Begin processing for Run: 63, History: 60000
+G4WT3 > Begin processing for Run: 63, History: 80000
+G4WT3 > Begin processing for Run: 63, History: 100000
+G4WT1 > Begin processing for Run: 63, History: 120000
+G4WT2 > Begin processing for Run: 63, History: 140000
+G4WT7 > Begin processing for Run: 63, History: 160000
+G4WT7 > Begin processing for Run: 63, History: 180000
+G4WT7 > Begin processing for Run: 63, History: 200000
+G4WT7 > Begin processing for Run: 63, History: 220000
+G4WT6 > Begin processing for Run: 63, History: 240000
+G4WT7 > Begin processing for Run: 63, History: 260000
+G4WT7 > Begin processing for Run: 63, History: 280000
+G4WT6 > Begin processing for Run: 63, History: 300000
+G4WT3 > Begin processing for Run: 63, History: 320000
+G4WT3 > Begin processing for Run: 63, History: 340000
+G4WT2 > Begin processing for Run: 63, History: 360000
+G4WT4 > Begin processing for Run: 63, History: 380000
+G4WT5 > Begin processing for Run: 63, History: 400000
+G4WT6 > Begin processing for Run: 63, History: 420000
+G4WT5 > Begin processing for Run: 63, History: 440000
+G4WT5 > Begin processing for Run: 63, History: 460000
+G4WT5 > Begin processing for Run: 63, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.02124 rad at: 640 (ms)
+G4WT2 > Begin processing for Run: 64, History: 0
+G4WT4 > Begin processing for Run: 64, History: 20000
+G4WT7 > Begin processing for Run: 64, History: 40000
+G4WT7 > Begin processing for Run: 64, History: 60000
+G4WT7 > Begin processing for Run: 64, History: 80000
+G4WT6 > Begin processing for Run: 64, History: 100000
+G4WT0 > Begin processing for Run: 64, History: 120000
+G4WT0 > Begin processing for Run: 64, History: 140000
+G4WT0 > Begin processing for Run: 64, History: 160000
+G4WT0 > Begin processing for Run: 64, History: 180000
+G4WT2 > Begin processing for Run: 64, History: 200000
+G4WT2 > Begin processing for Run: 64, History: 220000
+G4WT3 > Begin processing for Run: 64, History: 240000
+G4WT2 > Begin processing for Run: 64, History: 260000
+G4WT7 > Begin processing for Run: 64, History: 280000
+G4WT1 > Begin processing for Run: 64, History: 300000
+G4WT1 > Begin processing for Run: 64, History: 320000
+G4WT7 > Begin processing for Run: 64, History: 340000
+G4WT1 > Begin processing for Run: 64, History: 360000
+G4WT1 > Begin processing for Run: 64, History: 380000
+G4WT5 > Begin processing for Run: 64, History: 400000
+G4WT5 > Begin processing for Run: 64, History: 420000
+G4WT3 > Begin processing for Run: 64, History: 440000
+G4WT3 > Begin processing for Run: 64, History: 460000
+G4WT5 > Begin processing for Run: 64, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.08407 rad at: 650 (ms)
+G4WT3 > Begin processing for Run: 65, History: 0
+G4WT4 > Begin processing for Run: 65, History: 20000
+G4WT3 > Begin processing for Run: 65, History: 40000
+G4WT5 > Begin processing for Run: 65, History: 60000
+G4WT2 > Begin processing for Run: 65, History: 80000
+G4WT2 > Begin processing for Run: 65, History: 100000
+G4WT4 > Begin processing for Run: 65, History: 120000
+G4WT3 > Begin processing for Run: 65, History: 140000
+G4WT2 > Begin processing for Run: 65, History: 160000
+G4WT6 > Begin processing for Run: 65, History: 180000
+G4WT2 > Begin processing for Run: 65, History: 200000
+G4WT6 > Begin processing for Run: 65, History: 220000
+G4WT6 > Begin processing for Run: 65, History: 240000
+G4WT7 > Begin processing for Run: 65, History: 260000
+G4WT7 > Begin processing for Run: 65, History: 280000
+G4WT7 > Begin processing for Run: 65, History: 300000
+G4WT7 > Begin processing for Run: 65, History: 320000
+G4WT3 > Begin processing for Run: 65, History: 340000
+G4WT0 > Begin processing for Run: 65, History: 360000
+G4WT0 > Begin processing for Run: 65, History: 380000
+G4WT2 > Begin processing for Run: 65, History: 400000
+G4WT1 > Begin processing for Run: 65, History: 420000
+G4WT1 > Begin processing for Run: 65, History: 440000
+G4WT4 > Begin processing for Run: 65, History: 460000
+G4WT1 > Begin processing for Run: 65, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.1469 rad at: 660 (ms)
+G4WT0 > Begin processing for Run: 66, History: 0
+G4WT3 > Begin processing for Run: 66, History: 20000
+G4WT7 > Begin processing for Run: 66, History: 40000
+G4WT3 > Begin processing for Run: 66, History: 60000
+G4WT3 > Begin processing for Run: 66, History: 80000
+G4WT7 > Begin processing for Run: 66, History: 100000
+G4WT7 > Begin processing for Run: 66, History: 120000
+G4WT0 > Begin processing for Run: 66, History: 140000
+G4WT3 > Begin processing for Run: 66, History: 160000
+G4WT0 > Begin processing for Run: 66, History: 180000
+G4WT7 > Begin processing for Run: 66, History: 200000
+G4WT3 > Begin processing for Run: 66, History: 220000
+G4WT6 > Begin processing for Run: 66, History: 240000
+G4WT6 > Begin processing for Run: 66, History: 260000
+G4WT2 > Begin processing for Run: 66, History: 280000
+G4WT2 > Begin processing for Run: 66, History: 300000
+G4WT2 > Begin processing for Run: 66, History: 320000
+G4WT2 > Begin processing for Run: 66, History: 340000
+G4WT2 > Begin processing for Run: 66, History: 360000
+G4WT2 > Begin processing for Run: 66, History: 380000
+G4WT2 > Begin processing for Run: 66, History: 400000
+G4WT2 > Begin processing for Run: 66, History: 420000
+G4WT2 > Begin processing for Run: 66, History: 440000
+G4WT2 > Begin processing for Run: 66, History: 460000
+G4WT3 > Begin processing for Run: 66, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.20973 rad at: 670 (ms)
+G4WT7 > Begin processing for Run: 67, History: 0
+G4WT7 > Begin processing for Run: 67, History: 20000
+G4WT0 > Begin processing for Run: 67, History: 40000
+G4WT2 > Begin processing for Run: 67, History: 60000
+G4WT2 > Begin processing for Run: 67, History: 80000
+G4WT2 > Begin processing for Run: 67, History: 100000
+G4WT2 > Begin processing for Run: 67, History: 120000
+G4WT5 > Begin processing for Run: 67, History: 140000
+G4WT7 > Begin processing for Run: 67, History: 160000
+G4WT1 > Begin processing for Run: 67, History: 180000
+G4WT1 > Begin processing for Run: 67, History: 200000
+G4WT1 > Begin processing for Run: 67, History: 220000
+G4WT1 > Begin processing for Run: 67, History: 240000
+G4WT4 > Begin processing for Run: 67, History: 260000
+G4WT2 > Begin processing for Run: 67, History: 280000
+G4WT2 > Begin processing for Run: 67, History: 300000
+G4WT5 > Begin processing for Run: 67, History: 320000
+G4WT2 > Begin processing for Run: 67, History: 340000
+G4WT0 > Begin processing for Run: 67, History: 360000
+G4WT2 > Begin processing for Run: 67, History: 380000
+G4WT2 > Begin processing for Run: 67, History: 400000
+G4WT2 > Begin processing for Run: 67, History: 420000
+G4WT7 > Begin processing for Run: 67, History: 440000
+G4WT7 > Begin processing for Run: 67, History: 460000
+G4WT0 > Begin processing for Run: 67, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.27257 rad at: 680 (ms)
+G4WT6 > Begin processing for Run: 68, History: 0
+G4WT0 > Begin processing for Run: 68, History: 20000
+G4WT0 > Begin processing for Run: 68, History: 40000
+G4WT0 > Begin processing for Run: 68, History: 60000
+G4WT0 > Begin processing for Run: 68, History: 80000
+G4WT3 > Begin processing for Run: 68, History: 100000
+G4WT5 > Begin processing for Run: 68, History: 120000
+G4WT5 > Begin processing for Run: 68, History: 140000
+G4WT2 > Begin processing for Run: 68, History: 160000
+G4WT2 > Begin processing for Run: 68, History: 180000
+G4WT3 > Begin processing for Run: 68, History: 200000
+G4WT4 > Begin processing for Run: 68, History: 220000
+G4WT4 > Begin processing for Run: 68, History: 240000
+G4WT4 > Begin processing for Run: 68, History: 260000
+G4WT7 > Begin processing for Run: 68, History: 280000
+G4WT4 > Begin processing for Run: 68, History: 300000
+G4WT4 > Begin processing for Run: 68, History: 320000
+G4WT4 > Begin processing for Run: 68, History: 340000
+G4WT5 > Begin processing for Run: 68, History: 360000
+G4WT2 > Begin processing for Run: 68, History: 380000
+G4WT5 > Begin processing for Run: 68, History: 400000
+G4WT1 > Begin processing for Run: 68, History: 420000
+G4WT7 > Begin processing for Run: 68, History: 440000
+G4WT7 > Begin processing for Run: 68, History: 460000
+G4WT3 > Begin processing for Run: 68, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.3354 rad at: 690 (ms)
+G4WT7 > Begin processing for Run: 69, History: 0
+G4WT2 > Begin processing for Run: 69, History: 20000
+G4WT2 > Begin processing for Run: 69, History: 40000
+G4WT1 > Begin processing for Run: 69, History: 60000
+G4WT1 > Begin processing for Run: 69, History: 80000
+G4WT1 > Begin processing for Run: 69, History: 100000
+G4WT1 > Begin processing for Run: 69, History: 120000
+G4WT4 > Begin processing for Run: 69, History: 140000
+G4WT0 > Begin processing for Run: 69, History: 160000
+G4WT4 > Begin processing for Run: 69, History: 180000
+G4WT0 > Begin processing for Run: 69, History: 200000
+G4WT0 > Begin processing for Run: 69, History: 220000
+G4WT5 > Begin processing for Run: 69, History: 240000
+G4WT5 > Begin processing for Run: 69, History: 260000
+G4WT5 > Begin processing for Run: 69, History: 280000
+G4WT5 > Begin processing for Run: 69, History: 300000
+G4WT7 > Begin processing for Run: 69, History: 320000
+G4WT7 > Begin processing for Run: 69, History: 340000
+G4WT0 > Begin processing for Run: 69, History: 360000
+G4WT0 > Begin processing for Run: 69, History: 380000
+G4WT2 > Begin processing for Run: 69, History: 400000
+G4WT3 > Begin processing for Run: 69, History: 420000
+G4WT4 > Begin processing for Run: 69, History: 440000
+G4WT6 > Begin processing for Run: 69, History: 460000
+G4WT6 > Begin processing for Run: 69, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.39823 rad at: 700 (ms)
+G4WT6 > Begin processing for Run: 70, History: 0
+G4WT2 > Begin processing for Run: 70, History: 20000
+G4WT4 > Begin processing for Run: 70, History: 40000
+G4WT5 > Begin processing for Run: 70, History: 60000
+G4WT5 > Begin processing for Run: 70, History: 80000
+G4WT4 > Begin processing for Run: 70, History: 100000
+G4WT3 > Begin processing for Run: 70, History: 120000
+G4WT3 > Begin processing for Run: 70, History: 140000
+G4WT3 > Begin processing for Run: 70, History: 160000
+G4WT3 > Begin processing for Run: 70, History: 180000
+G4WT3 > Begin processing for Run: 70, History: 200000
+G4WT3 > Begin processing for Run: 70, History: 220000
+G4WT5 > Begin processing for Run: 70, History: 240000
+G4WT5 > Begin processing for Run: 70, History: 260000
+G4WT5 > Begin processing for Run: 70, History: 280000
+G4WT5 > Begin processing for Run: 70, History: 300000
+G4WT3 > Begin processing for Run: 70, History: 320000
+G4WT3 > Begin processing for Run: 70, History: 340000
+G4WT0 > Begin processing for Run: 70, History: 360000
+G4WT7 > Begin processing for Run: 70, History: 380000
+G4WT7 > Begin processing for Run: 70, History: 400000
+G4WT7 > Begin processing for Run: 70, History: 420000
+G4WT7 > Begin processing for Run: 70, History: 440000
+G4WT1 > Begin processing for Run: 70, History: 460000
+G4WT1 > Begin processing for Run: 70, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.46106 rad at: 710 (ms)
+G4WT0 > Begin processing for Run: 71, History: 0
+G4WT3 > Begin processing for Run: 71, History: 20000
+G4WT1 > Begin processing for Run: 71, History: 40000
+G4WT1 > Begin processing for Run: 71, History: 60000
+G4WT3 > Begin processing for Run: 71, History: 80000
+G4WT3 > Begin processing for Run: 71, History: 100000
+G4WT1 > Begin processing for Run: 71, History: 120000
+G4WT5 > Begin processing for Run: 71, History: 140000
+G4WT4 > Begin processing for Run: 71, History: 160000
+G4WT1 > Begin processing for Run: 71, History: 180000
+G4WT1 > Begin processing for Run: 71, History: 200000
+G4WT1 > Begin processing for Run: 71, History: 220000
+G4WT1 > Begin processing for Run: 71, History: 240000
+G4WT1 > Begin processing for Run: 71, History: 260000
+G4WT0 > Begin processing for Run: 71, History: 280000
+G4WT0 > Begin processing for Run: 71, History: 300000
+G4WT0 > Begin processing for Run: 71, History: 320000
+G4WT1 > Begin processing for Run: 71, History: 340000
+G4WT0 > Begin processing for Run: 71, History: 360000
+G4WT3 > Begin processing for Run: 71, History: 380000
+G4WT3 > Begin processing for Run: 71, History: 400000
+G4WT7 > Begin processing for Run: 71, History: 420000
+G4WT7 > Begin processing for Run: 71, History: 440000
+G4WT7 > Begin processing for Run: 71, History: 460000
+G4WT2 > Begin processing for Run: 71, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.52389 rad at: 720 (ms)
+G4WT0 > Begin processing for Run: 72, History: 0
+G4WT2 > Begin processing for Run: 72, History: 20000
+G4WT2 > Begin processing for Run: 72, History: 40000
+G4WT2 > Begin processing for Run: 72, History: 60000
+G4WT2 > Begin processing for Run: 72, History: 80000
+G4WT4 > Begin processing for Run: 72, History: 100000
+G4WT4 > Begin processing for Run: 72, History: 120000
+G4WT5 > Begin processing for Run: 72, History: 140000
+G4WT5 > Begin processing for Run: 72, History: 160000
+G4WT6 > Begin processing for Run: 72, History: 180000
+G4WT5 > Begin processing for Run: 72, History: 200000
+G4WT0 > Begin processing for Run: 72, History: 220000
+G4WT0 > Begin processing for Run: 72, History: 240000
+G4WT3 > Begin processing for Run: 72, History: 260000
+G4WT3 > Begin processing for Run: 72, History: 280000
+G4WT3 > Begin processing for Run: 72, History: 300000
+G4WT6 > Begin processing for Run: 72, History: 320000
+G4WT4 > Begin processing for Run: 72, History: 340000
+G4WT4 > Begin processing for Run: 72, History: 360000
+G4WT1 > Begin processing for Run: 72, History: 380000
+G4WT1 > Begin processing for Run: 72, History: 400000
+G4WT7 > Begin processing for Run: 72, History: 420000
+G4WT1 > Begin processing for Run: 72, History: 440000
+G4WT1 > Begin processing for Run: 72, History: 460000
+G4WT3 > Begin processing for Run: 72, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.58673 rad at: 730 (ms)
+G4WT4 > Begin processing for Run: 73, History: 0
+G4WT4 > Begin processing for Run: 73, History: 20000
+G4WT7 > Begin processing for Run: 73, History: 40000
+G4WT7 > Begin processing for Run: 73, History: 60000
+G4WT7 > Begin processing for Run: 73, History: 80000
+G4WT4 > Begin processing for Run: 73, History: 100000
+G4WT4 > Begin processing for Run: 73, History: 120000
+G4WT4 > Begin processing for Run: 73, History: 140000
+G4WT5 > Begin processing for Run: 73, History: 160000
+G4WT2 > Begin processing for Run: 73, History: 180000
+G4WT2 > Begin processing for Run: 73, History: 200000
+G4WT2 > Begin processing for Run: 73, History: 220000
+G4WT5 > Begin processing for Run: 73, History: 240000
+G4WT3 > Begin processing for Run: 73, History: 260000
+G4WT5 > Begin processing for Run: 73, History: 280000
+G4WT5 > Begin processing for Run: 73, History: 300000
+G4WT7 > Begin processing for Run: 73, History: 320000
+G4WT3 > Begin processing for Run: 73, History: 340000
+G4WT4 > Begin processing for Run: 73, History: 360000
+G4WT4 > Begin processing for Run: 73, History: 380000
+G4WT4 > Begin processing for Run: 73, History: 400000
+G4WT0 > Begin processing for Run: 73, History: 420000
+G4WT0 > Begin processing for Run: 73, History: 440000
+G4WT2 > Begin processing for Run: 73, History: 460000
+G4WT3 > Begin processing for Run: 73, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.64956 rad at: 740 (ms)
+G4WT2 > Begin processing for Run: 74, History: 0
+G4WT2 > Begin processing for Run: 74, History: 20000
+G4WT5 > Begin processing for Run: 74, History: 40000
+G4WT4 > Begin processing for Run: 74, History: 60000
+G4WT4 > Begin processing for Run: 74, History: 80000
+G4WT6 > Begin processing for Run: 74, History: 100000
+G4WT5 > Begin processing for Run: 74, History: 120000
+G4WT1 > Begin processing for Run: 74, History: 140000
+G4WT6 > Begin processing for Run: 74, History: 160000
+G4WT1 > Begin processing for Run: 74, History: 180000
+G4WT1 > Begin processing for Run: 74, History: 200000
+G4WT7 > Begin processing for Run: 74, History: 220000
+G4WT7 > Begin processing for Run: 74, History: 240000
+G4WT3 > Begin processing for Run: 74, History: 260000
+G4WT3 > Begin processing for Run: 74, History: 280000
+G4WT6 > Begin processing for Run: 74, History: 300000
+G4WT6 > Begin processing for Run: 74, History: 320000
+G4WT4 > Begin processing for Run: 74, History: 340000
+G4WT4 > Begin processing for Run: 74, History: 360000
+G4WT5 > Begin processing for Run: 74, History: 380000
+G4WT4 > Begin processing for Run: 74, History: 400000
+G4WT7 > Begin processing for Run: 74, History: 420000
+G4WT7 > Begin processing for Run: 74, History: 440000
+G4WT7 > Begin processing for Run: 74, History: 460000
+G4WT3 > Begin processing for Run: 74, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.71239 rad at: 750 (ms)
+G4WT5 > Begin processing for Run: 75, History: 0
+G4WT1 > Begin processing for Run: 75, History: 20000
+G4WT1 > Begin processing for Run: 75, History: 40000
+G4WT5 > Begin processing for Run: 75, History: 60000
+G4WT5 > Begin processing for Run: 75, History: 80000
+G4WT5 > Begin processing for Run: 75, History: 100000
+G4WT6 > Begin processing for Run: 75, History: 120000
+G4WT6 > Begin processing for Run: 75, History: 140000
+G4WT3 > Begin processing for Run: 75, History: 160000
+G4WT5 > Begin processing for Run: 75, History: 180000
+G4WT5 > Begin processing for Run: 75, History: 200000
+G4WT5 > Begin processing for Run: 75, History: 220000
+G4WT5 > Begin processing for Run: 75, History: 240000
+G4WT5 > Begin processing for Run: 75, History: 260000
+G4WT5 > Begin processing for Run: 75, History: 280000
+G4WT4 > Begin processing for Run: 75, History: 300000
+G4WT7 > Begin processing for Run: 75, History: 320000
+G4WT7 > Begin processing for Run: 75, History: 340000
+G4WT4 > Begin processing for Run: 75, History: 360000
+G4WT4 > Begin processing for Run: 75, History: 380000
+G4WT1 > Begin processing for Run: 75, History: 400000
+G4WT4 > Begin processing for Run: 75, History: 420000
+G4WT2 > Begin processing for Run: 75, History: 440000
+G4WT2 > Begin processing for Run: 75, History: 460000
+G4WT6 > Begin processing for Run: 75, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.77522 rad at: 760 (ms)
+G4WT0 > Begin processing for Run: 76, History: 0
+G4WT6 > Begin processing for Run: 76, History: 20000
+G4WT6 > Begin processing for Run: 76, History: 40000
+G4WT6 > Begin processing for Run: 76, History: 60000
+G4WT6 > Begin processing for Run: 76, History: 80000
+G4WT3 > Begin processing for Run: 76, History: 100000
+G4WT6 > Begin processing for Run: 76, History: 120000
+G4WT3 > Begin processing for Run: 76, History: 140000
+G4WT3 > Begin processing for Run: 76, History: 160000
+G4WT4 > Begin processing for Run: 76, History: 180000
+G4WT7 > Begin processing for Run: 76, History: 200000
+G4WT0 > Begin processing for Run: 76, History: 220000
+G4WT2 > Begin processing for Run: 76, History: 240000
+G4WT2 > Begin processing for Run: 76, History: 260000
+G4WT7 > Begin processing for Run: 76, History: 280000
+G4WT2 > Begin processing for Run: 76, History: 300000
+G4WT3 > Begin processing for Run: 76, History: 320000
+G4WT4 > Begin processing for Run: 76, History: 340000
+G4WT1 > Begin processing for Run: 76, History: 360000
+G4WT5 > Begin processing for Run: 76, History: 380000
+G4WT5 > Begin processing for Run: 76, History: 400000
+G4WT5 > Begin processing for Run: 76, History: 420000
+G4WT1 > Begin processing for Run: 76, History: 440000
+G4WT0 > Begin processing for Run: 76, History: 460000
+G4WT3 > Begin processing for Run: 76, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.83805 rad at: 770 (ms)
+G4WT5 > Begin processing for Run: 77, History: 0
+G4WT5 > Begin processing for Run: 77, History: 20000
+G4WT7 > Begin processing for Run: 77, History: 40000
+G4WT4 > Begin processing for Run: 77, History: 60000
+G4WT6 > Begin processing for Run: 77, History: 80000
+G4WT2 > Begin processing for Run: 77, History: 100000
+G4WT3 > Begin processing for Run: 77, History: 120000
+G4WT3 > Begin processing for Run: 77, History: 140000
+G4WT3 > Begin processing for Run: 77, History: 160000
+G4WT7 > Begin processing for Run: 77, History: 180000
+G4WT7 > Begin processing for Run: 77, History: 200000
+G4WT6 > Begin processing for Run: 77, History: 220000
+G4WT2 > Begin processing for Run: 77, History: 240000
+G4WT5 > Begin processing for Run: 77, History: 260000
+G4WT5 > Begin processing for Run: 77, History: 280000
+G4WT1 > Begin processing for Run: 77, History: 300000
+G4WT5 > Begin processing for Run: 77, History: 320000
+G4WT7 > Begin processing for Run: 77, History: 340000
+G4WT7 > Begin processing for Run: 77, History: 360000
+G4WT7 > Begin processing for Run: 77, History: 380000
+G4WT0 > Begin processing for Run: 77, History: 400000
+G4WT3 > Begin processing for Run: 77, History: 420000
+G4WT5 > Begin processing for Run: 77, History: 440000
+G4WT6 > Begin processing for Run: 77, History: 460000
+G4WT6 > Begin processing for Run: 77, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.90088 rad at: 780 (ms)
+G4WT0 > Begin processing for Run: 78, History: 0
+G4WT3 > Begin processing for Run: 78, History: 20000
+G4WT3 > Begin processing for Run: 78, History: 40000
+G4WT2 > Begin processing for Run: 78, History: 60000
+G4WT2 > Begin processing for Run: 78, History: 80000
+G4WT2 > Begin processing for Run: 78, History: 100000
+G4WT2 > Begin processing for Run: 78, History: 120000
+G4WT4 > Begin processing for Run: 78, History: 140000
+G4WT1 > Begin processing for Run: 78, History: 160000
+G4WT3 > Begin processing for Run: 78, History: 180000
+G4WT7 > Begin processing for Run: 78, History: 200000
+G4WT4 > Begin processing for Run: 78, History: 220000
+G4WT4 > Begin processing for Run: 78, History: 240000
+G4WT1 > Begin processing for Run: 78, History: 260000
+G4WT6 > Begin processing for Run: 78, History: 280000
+G4WT6 > Begin processing for Run: 78, History: 300000
+G4WT0 > Begin processing for Run: 78, History: 320000
+G4WT6 > Begin processing for Run: 78, History: 340000
+G4WT5 > Begin processing for Run: 78, History: 360000
+G4WT6 > Begin processing for Run: 78, History: 380000
+G4WT5 > Begin processing for Run: 78, History: 400000
+G4WT4 > Begin processing for Run: 78, History: 420000
+G4WT4 > Begin processing for Run: 78, History: 440000
+G4WT4 > Begin processing for Run: 78, History: 460000
+G4WT2 > Begin processing for Run: 78, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 4.96372 rad at: 790 (ms)
+G4WT3 > Begin processing for Run: 79, History: 0
+G4WT5 > Begin processing for Run: 79, History: 20000
+G4WT5 > Begin processing for Run: 79, History: 40000
+G4WT7 > Begin processing for Run: 79, History: 60000
+G4WT7 > Begin processing for Run: 79, History: 80000
+G4WT2 > Begin processing for Run: 79, History: 100000
+G4WT7 > Begin processing for Run: 79, History: 120000
+G4WT7 > Begin processing for Run: 79, History: 140000
+G4WT7 > Begin processing for Run: 79, History: 160000
+G4WT2 > Begin processing for Run: 79, History: 180000
+G4WT1 > Begin processing for Run: 79, History: 200000
+G4WT3 > Begin processing for Run: 79, History: 220000
+G4WT3 > Begin processing for Run: 79, History: 240000
+G4WT3 > Begin processing for Run: 79, History: 260000
+G4WT3 > Begin processing for Run: 79, History: 280000
+G4WT3 > Begin processing for Run: 79, History: 300000
+G4WT1 > Begin processing for Run: 79, History: 320000
+G4WT2 > Begin processing for Run: 79, History: 340000
+G4WT2 > Begin processing for Run: 79, History: 360000
+G4WT2 > Begin processing for Run: 79, History: 380000
+G4WT2 > Begin processing for Run: 79, History: 400000
+G4WT5 > Begin processing for Run: 79, History: 420000
+G4WT5 > Begin processing for Run: 79, History: 440000
+G4WT5 > Begin processing for Run: 79, History: 460000
+G4WT7 > Begin processing for Run: 79, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.02655 rad at: 800 (ms)
+G4WT0 > Begin processing for Run: 80, History: 0
+G4WT0 > Begin processing for Run: 80, History: 20000
+G4WT2 > Begin processing for Run: 80, History: 40000
+G4WT0 > Begin processing for Run: 80, History: 60000
+G4WT6 > Begin processing for Run: 80, History: 80000
+G4WT2 > Begin processing for Run: 80, History: 100000
+G4WT0 > Begin processing for Run: 80, History: 120000
+G4WT0 > Begin processing for Run: 80, History: 140000
+G4WT0 > Begin processing for Run: 80, History: 160000
+G4WT0 > Begin processing for Run: 80, History: 180000
+G4WT2 > Begin processing for Run: 80, History: 200000
+G4WT2 > Begin processing for Run: 80, History: 220000
+G4WT5 > Begin processing for Run: 80, History: 240000
+G4WT2 > Begin processing for Run: 80, History: 260000
+G4WT6 > Begin processing for Run: 80, History: 280000
+G4WT6 > Begin processing for Run: 80, History: 300000
+G4WT2 > Begin processing for Run: 80, History: 320000
+G4WT3 > Begin processing for Run: 80, History: 340000
+G4WT1 > Begin processing for Run: 80, History: 360000
+G4WT2 > Begin processing for Run: 80, History: 380000
+G4WT1 > Begin processing for Run: 80, History: 400000
+G4WT2 > Begin processing for Run: 80, History: 420000
+G4WT3 > Begin processing for Run: 80, History: 440000
+G4WT0 > Begin processing for Run: 80, History: 460000
+G4WT0 > Begin processing for Run: 80, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.08938 rad at: 810 (ms)
+G4WT3 > Begin processing for Run: 81, History: 0
+G4WT2 > Begin processing for Run: 81, History: 20000
+G4WT2 > Begin processing for Run: 81, History: 40000
+G4WT0 > Begin processing for Run: 81, History: 60000
+G4WT0 > Begin processing for Run: 81, History: 80000
+G4WT0 > Begin processing for Run: 81, History: 100000
+G4WT0 > Begin processing for Run: 81, History: 120000
+G4WT0 > Begin processing for Run: 81, History: 140000
+G4WT0 > Begin processing for Run: 81, History: 160000
+G4WT0 > Begin processing for Run: 81, History: 180000
+G4WT0 > Begin processing for Run: 81, History: 200000
+G4WT0 > Begin processing for Run: 81, History: 220000
+G4WT0 > Begin processing for Run: 81, History: 240000
+G4WT0 > Begin processing for Run: 81, History: 260000
+G4WT0 > Begin processing for Run: 81, History: 280000
+G4WT3 > Begin processing for Run: 81, History: 300000
+G4WT7 > Begin processing for Run: 81, History: 320000
+G4WT7 > Begin processing for Run: 81, History: 340000
+G4WT1 > Begin processing for Run: 81, History: 360000
+G4WT4 > Begin processing for Run: 81, History: 380000
+G4WT4 > Begin processing for Run: 81, History: 400000
+G4WT1 > Begin processing for Run: 81, History: 420000
+G4WT2 > Begin processing for Run: 81, History: 440000
+G4WT1 > Begin processing for Run: 81, History: 460000
+G4WT0 > Begin processing for Run: 81, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.15221 rad at: 820 (ms)
+G4WT7 > Begin processing for Run: 82, History: 0
+G4WT4 > Begin processing for Run: 82, History: 20000
+G4WT4 > Begin processing for Run: 82, History: 40000
+G4WT1 > Begin processing for Run: 82, History: 60000
+G4WT6 > Begin processing for Run: 82, History: 80000
+G4WT5 > Begin processing for Run: 82, History: 100000
+G4WT6 > Begin processing for Run: 82, History: 120000
+G4WT6 > Begin processing for Run: 82, History: 140000
+G4WT6 > Begin processing for Run: 82, History: 160000
+G4WT6 > Begin processing for Run: 82, History: 180000
+G4WT6 > Begin processing for Run: 82, History: 200000
+G4WT5 > Begin processing for Run: 82, History: 220000
+G4WT5 > Begin processing for Run: 82, History: 240000
+G4WT5 > Begin processing for Run: 82, History: 260000
+G4WT6 > Begin processing for Run: 82, History: 280000
+G4WT6 > Begin processing for Run: 82, History: 300000
+G4WT6 > Begin processing for Run: 82, History: 320000
+G4WT6 > Begin processing for Run: 82, History: 340000
+G4WT1 > Begin processing for Run: 82, History: 360000
+G4WT1 > Begin processing for Run: 82, History: 380000
+G4WT6 > Begin processing for Run: 82, History: 400000
+G4WT6 > Begin processing for Run: 82, History: 420000
+G4WT6 > Begin processing for Run: 82, History: 440000
+G4WT1 > Begin processing for Run: 82, History: 460000
+G4WT6 > Begin processing for Run: 82, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.21504 rad at: 830 (ms)
+G4WT5 > Begin processing for Run: 83, History: 0
+G4WT2 > Begin processing for Run: 83, History: 20000
+G4WT2 > Begin processing for Run: 83, History: 40000
+G4WT2 > Begin processing for Run: 83, History: 60000
+G4WT2 > Begin processing for Run: 83, History: 80000
+G4WT7 > Begin processing for Run: 83, History: 100000
+G4WT6 > Begin processing for Run: 83, History: 120000
+G4WT6 > Begin processing for Run: 83, History: 140000
+G4WT6 > Begin processing for Run: 83, History: 160000
+G4WT6 > Begin processing for Run: 83, History: 180000
+G4WT6 > Begin processing for Run: 83, History: 200000
+G4WT6 > Begin processing for Run: 83, History: 220000
+G4WT6 > Begin processing for Run: 83, History: 240000
+G4WT6 > Begin processing for Run: 83, History: 260000
+G4WT6 > Begin processing for Run: 83, History: 280000
+G4WT6 > Begin processing for Run: 83, History: 300000
+G4WT6 > Begin processing for Run: 83, History: 320000
+G4WT6 > Begin processing for Run: 83, History: 340000
+G4WT6 > Begin processing for Run: 83, History: 360000
+G4WT6 > Begin processing for Run: 83, History: 380000
+G4WT6 > Begin processing for Run: 83, History: 400000
+G4WT6 > Begin processing for Run: 83, History: 420000
+G4WT5 > Begin processing for Run: 83, History: 440000
+G4WT3 > Begin processing for Run: 83, History: 460000
+G4WT3 > Begin processing for Run: 83, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.27788 rad at: 840 (ms)
+G4WT3 > Begin processing for Run: 84, History: 0
+G4WT4 > Begin processing for Run: 84, History: 20000
+G4WT5 > Begin processing for Run: 84, History: 40000
+G4WT5 > Begin processing for Run: 84, History: 60000
+G4WT0 > Begin processing for Run: 84, History: 80000
+G4WT0 > Begin processing for Run: 84, History: 100000
+G4WT0 > Begin processing for Run: 84, History: 120000
+G4WT0 > Begin processing for Run: 84, History: 140000
+G4WT0 > Begin processing for Run: 84, History: 160000
+G4WT0 > Begin processing for Run: 84, History: 180000
+G4WT0 > Begin processing for Run: 84, History: 200000
+G4WT1 > Begin processing for Run: 84, History: 220000
+G4WT0 > Begin processing for Run: 84, History: 240000
+G4WT0 > Begin processing for Run: 84, History: 260000
+G4WT7 > Begin processing for Run: 84, History: 280000
+G4WT7 > Begin processing for Run: 84, History: 300000
+G4WT7 > Begin processing for Run: 84, History: 320000
+G4WT7 > Begin processing for Run: 84, History: 340000
+G4WT7 > Begin processing for Run: 84, History: 360000
+G4WT7 > Begin processing for Run: 84, History: 380000
+G4WT5 > Begin processing for Run: 84, History: 400000
+G4WT5 > Begin processing for Run: 84, History: 420000
+G4WT5 > Begin processing for Run: 84, History: 440000
+G4WT7 > Begin processing for Run: 84, History: 460000
+G4WT4 > Begin processing for Run: 84, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.34071 rad at: 850 (ms)
+G4WT5 > Begin processing for Run: 85, History: 0
+G4WT6 > Begin processing for Run: 85, History: 20000
+G4WT0 > Begin processing for Run: 85, History: 40000
+G4WT3 > Begin processing for Run: 85, History: 60000
+G4WT3 > Begin processing for Run: 85, History: 80000
+G4WT3 > Begin processing for Run: 85, History: 100000
+G4WT3 > Begin processing for Run: 85, History: 120000
+G4WT2 > Begin processing for Run: 85, History: 140000
+G4WT2 > Begin processing for Run: 85, History: 160000
+G4WT2 > Begin processing for Run: 85, History: 180000
+G4WT2 > Begin processing for Run: 85, History: 200000
+G4WT2 > Begin processing for Run: 85, History: 220000
+G4WT2 > Begin processing for Run: 85, History: 240000
+G4WT2 > Begin processing for Run: 85, History: 260000
+G4WT2 > Begin processing for Run: 85, History: 280000
+G4WT2 > Begin processing for Run: 85, History: 300000
+G4WT2 > Begin processing for Run: 85, History: 320000
+G4WT5 > Begin processing for Run: 85, History: 340000
+G4WT5 > Begin processing for Run: 85, History: 360000
+G4WT5 > Begin processing for Run: 85, History: 380000
+G4WT5 > Begin processing for Run: 85, History: 400000
+G4WT0 > Begin processing for Run: 85, History: 420000
+G4WT0 > Begin processing for Run: 85, History: 440000
+G4WT7 > Begin processing for Run: 85, History: 460000
+G4WT6 > Begin processing for Run: 85, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.40354 rad at: 860 (ms)
+G4WT1 > Begin processing for Run: 86, History: 0
+G4WT3 > Begin processing for Run: 86, History: 20000
+G4WT4 > Begin processing for Run: 86, History: 40000
+G4WT4 > Begin processing for Run: 86, History: 60000
+G4WT4 > Begin processing for Run: 86, History: 80000
+G4WT4 > Begin processing for Run: 86, History: 100000
+G4WT4 > Begin processing for Run: 86, History: 120000
+G4WT4 > Begin processing for Run: 86, History: 140000
+G4WT0 > Begin processing for Run: 86, History: 160000
+G4WT0 > Begin processing for Run: 86, History: 180000
+G4WT0 > Begin processing for Run: 86, History: 200000
+G4WT0 > Begin processing for Run: 86, History: 220000
+G4WT4 > Begin processing for Run: 86, History: 240000
+G4WT4 > Begin processing for Run: 86, History: 260000
+G4WT4 > Begin processing for Run: 86, History: 280000
+G4WT4 > Begin processing for Run: 86, History: 300000
+G4WT4 > Begin processing for Run: 86, History: 320000
+G4WT5 > Begin processing for Run: 86, History: 340000
+G4WT5 > Begin processing for Run: 86, History: 360000
+G4WT7 > Begin processing for Run: 86, History: 380000
+G4WT7 > Begin processing for Run: 86, History: 400000
+G4WT5 > Begin processing for Run: 86, History: 420000
+G4WT1 > Begin processing for Run: 86, History: 440000
+G4WT1 > Begin processing for Run: 86, History: 460000
+G4WT6 > Begin processing for Run: 86, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.46637 rad at: 870 (ms)
+G4WT4 > Begin processing for Run: 87, History: 0
+G4WT0 > Begin processing for Run: 87, History: 20000
+G4WT0 > Begin processing for Run: 87, History: 40000
+G4WT0 > Begin processing for Run: 87, History: 60000
+G4WT0 > Begin processing for Run: 87, History: 80000
+G4WT0 > Begin processing for Run: 87, History: 100000
+G4WT0 > Begin processing for Run: 87, History: 120000
+G4WT3 > Begin processing for Run: 87, History: 140000
+G4WT0 > Begin processing for Run: 87, History: 160000
+G4WT0 > Begin processing for Run: 87, History: 180000
+G4WT5 > Begin processing for Run: 87, History: 200000
+G4WT5 > Begin processing for Run: 87, History: 220000
+G4WT5 > Begin processing for Run: 87, History: 240000
+G4WT5 > Begin processing for Run: 87, History: 260000
+G4WT5 > Begin processing for Run: 87, History: 280000
+G4WT5 > Begin processing for Run: 87, History: 300000
+G4WT5 > Begin processing for Run: 87, History: 320000
+G4WT5 > Begin processing for Run: 87, History: 340000
+G4WT5 > Begin processing for Run: 87, History: 360000
+G4WT3 > Begin processing for Run: 87, History: 380000
+G4WT3 > Begin processing for Run: 87, History: 400000
+G4WT3 > Begin processing for Run: 87, History: 420000
+G4WT6 > Begin processing for Run: 87, History: 440000
+G4WT6 > Begin processing for Run: 87, History: 460000
+G4WT4 > Begin processing for Run: 87, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.5292 rad at: 880 (ms)
+G4WT4 > Begin processing for Run: 88, History: 0
+G4WT4 > Begin processing for Run: 88, History: 20000
+G4WT4 > Begin processing for Run: 88, History: 40000
+G4WT0 > Begin processing for Run: 88, History: 60000
+G4WT0 > Begin processing for Run: 88, History: 80000
+G4WT0 > Begin processing for Run: 88, History: 100000
+G4WT0 > Begin processing for Run: 88, History: 120000
+G4WT4 > Begin processing for Run: 88, History: 140000
+G4WT0 > Begin processing for Run: 88, History: 160000
+G4WT4 > Begin processing for Run: 88, History: 180000
+G4WT4 > Begin processing for Run: 88, History: 200000
+G4WT7 > Begin processing for Run: 88, History: 220000
+G4WT1 > Begin processing for Run: 88, History: 240000
+G4WT4 > Begin processing for Run: 88, History: 260000
+G4WT4 > Begin processing for Run: 88, History: 280000
+G4WT4 > Begin processing for Run: 88, History: 300000
+G4WT2 > Begin processing for Run: 88, History: 320000
+G4WT2 > Begin processing for Run: 88, History: 340000
+G4WT7 > Begin processing for Run: 88, History: 360000
+G4WT7 > Begin processing for Run: 88, History: 380000
+G4WT7 > Begin processing for Run: 88, History: 400000
+G4WT3 > Begin processing for Run: 88, History: 420000
+G4WT7 > Begin processing for Run: 88, History: 440000
+G4WT3 > Begin processing for Run: 88, History: 460000
+G4WT3 > Begin processing for Run: 88, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.59203 rad at: 890 (ms)
+G4WT2 > Begin processing for Run: 89, History: 0
+G4WT0 > Begin processing for Run: 89, History: 20000
+G4WT3 > Begin processing for Run: 89, History: 40000
+G4WT4 > Begin processing for Run: 89, History: 60000
+G4WT6 > Begin processing for Run: 89, History: 80000
+G4WT1 > Begin processing for Run: 89, History: 100000
+G4WT1 > Begin processing for Run: 89, History: 120000
+G4WT3 > Begin processing for Run: 89, History: 140000
+G4WT6 > Begin processing for Run: 89, History: 160000
+G4WT4 > Begin processing for Run: 89, History: 180000
+G4WT4 > Begin processing for Run: 89, History: 200000
+G4WT4 > Begin processing for Run: 89, History: 220000
+G4WT4 > Begin processing for Run: 89, History: 240000
+G4WT0 > Begin processing for Run: 89, History: 260000
+G4WT0 > Begin processing for Run: 89, History: 280000
+G4WT0 > Begin processing for Run: 89, History: 300000
+G4WT1 > Begin processing for Run: 89, History: 320000
+G4WT4 > Begin processing for Run: 89, History: 340000
+G4WT4 > Begin processing for Run: 89, History: 360000
+G4WT2 > Begin processing for Run: 89, History: 380000
+G4WT2 > Begin processing for Run: 89, History: 400000
+G4WT2 > Begin processing for Run: 89, History: 420000
+G4WT3 > Begin processing for Run: 89, History: 440000
+G4WT3 > Begin processing for Run: 89, History: 460000
+G4WT3 > Begin processing for Run: 89, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.65487 rad at: 900 (ms)
+G4WT7 > Begin processing for Run: 90, History: 0
+G4WT3 > Begin processing for Run: 90, History: 20000
+G4WT3 > Begin processing for Run: 90, History: 40000
+G4WT3 > Begin processing for Run: 90, History: 60000
+G4WT3 > Begin processing for Run: 90, History: 80000
+G4WT3 > Begin processing for Run: 90, History: 100000
+G4WT3 > Begin processing for Run: 90, History: 120000
+G4WT7 > Begin processing for Run: 90, History: 140000
+G4WT7 > Begin processing for Run: 90, History: 160000
+G4WT3 > Begin processing for Run: 90, History: 180000
+G4WT7 > Begin processing for Run: 90, History: 200000
+G4WT2 > Begin processing for Run: 90, History: 220000
+G4WT1 > Begin processing for Run: 90, History: 240000
+G4WT1 > Begin processing for Run: 90, History: 260000
+G4WT1 > Begin processing for Run: 90, History: 280000
+G4WT0 > Begin processing for Run: 90, History: 300000
+G4WT5 > Begin processing for Run: 90, History: 320000
+G4WT5 > Begin processing for Run: 90, History: 340000
+G4WT0 > Begin processing for Run: 90, History: 360000
+G4WT0 > Begin processing for Run: 90, History: 380000
+G4WT1 > Begin processing for Run: 90, History: 400000
+G4WT1 > Begin processing for Run: 90, History: 420000
+G4WT1 > Begin processing for Run: 90, History: 440000
+G4WT6 > Begin processing for Run: 90, History: 460000
+G4WT6 > Begin processing for Run: 90, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.7177 rad at: 910 (ms)
+G4WT4 > Begin processing for Run: 91, History: 0
+G4WT4 > Begin processing for Run: 91, History: 20000
+G4WT5 > Begin processing for Run: 91, History: 40000
+G4WT2 > Begin processing for Run: 91, History: 60000
+G4WT2 > Begin processing for Run: 91, History: 80000
+G4WT2 > Begin processing for Run: 91, History: 100000
+G4WT2 > Begin processing for Run: 91, History: 120000
+G4WT2 > Begin processing for Run: 91, History: 140000
+G4WT2 > Begin processing for Run: 91, History: 160000
+G4WT2 > Begin processing for Run: 91, History: 180000
+G4WT2 > Begin processing for Run: 91, History: 200000
+G4WT2 > Begin processing for Run: 91, History: 220000
+G4WT2 > Begin processing for Run: 91, History: 240000
+G4WT2 > Begin processing for Run: 91, History: 260000
+G4WT0 > Begin processing for Run: 91, History: 280000
+G4WT0 > Begin processing for Run: 91, History: 300000
+G4WT0 > Begin processing for Run: 91, History: 320000
+G4WT4 > Begin processing for Run: 91, History: 340000
+G4WT4 > Begin processing for Run: 91, History: 360000
+G4WT4 > Begin processing for Run: 91, History: 380000
+G4WT1 > Begin processing for Run: 91, History: 400000
+G4WT1 > Begin processing for Run: 91, History: 420000
+G4WT4 > Begin processing for Run: 91, History: 440000
+G4WT1 > Begin processing for Run: 91, History: 460000
+G4WT1 > Begin processing for Run: 91, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.78053 rad at: 920 (ms)
+G4WT5 > Begin processing for Run: 92, History: 0
+G4WT0 > Begin processing for Run: 92, History: 20000
+G4WT0 > Begin processing for Run: 92, History: 40000
+G4WT0 > Begin processing for Run: 92, History: 60000
+G4WT0 > Begin processing for Run: 92, History: 80000
+G4WT2 > Begin processing for Run: 92, History: 100000
+G4WT2 > Begin processing for Run: 92, History: 120000
+G4WT2 > Begin processing for Run: 92, History: 140000
+G4WT3 > Begin processing for Run: 92, History: 160000
+G4WT3 > Begin processing for Run: 92, History: 180000
+G4WT7 > Begin processing for Run: 92, History: 200000
+G4WT7 > Begin processing for Run: 92, History: 220000
+G4WT2 > Begin processing for Run: 92, History: 240000
+G4WT2 > Begin processing for Run: 92, History: 260000
+G4WT2 > Begin processing for Run: 92, History: 280000
+G4WT2 > Begin processing for Run: 92, History: 300000
+G4WT2 > Begin processing for Run: 92, History: 320000
+G4WT2 > Begin processing for Run: 92, History: 340000
+G4WT2 > Begin processing for Run: 92, History: 360000
+G4WT2 > Begin processing for Run: 92, History: 380000
+G4WT2 > Begin processing for Run: 92, History: 400000
+G4WT0 > Begin processing for Run: 92, History: 420000
+G4WT2 > Begin processing for Run: 92, History: 440000
+G4WT2 > Begin processing for Run: 92, History: 460000
+G4WT2 > Begin processing for Run: 92, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.84336 rad at: 930 (ms)
+G4WT7 > Begin processing for Run: 93, History: 0
+G4WT3 > Begin processing for Run: 93, History: 20000
+G4WT3 > Begin processing for Run: 93, History: 40000
+G4WT3 > Begin processing for Run: 93, History: 60000
+G4WT3 > Begin processing for Run: 93, History: 80000
+G4WT3 > Begin processing for Run: 93, History: 100000
+G4WT5 > Begin processing for Run: 93, History: 120000
+G4WT5 > Begin processing for Run: 93, History: 140000
+G4WT2 > Begin processing for Run: 93, History: 160000
+G4WT2 > Begin processing for Run: 93, History: 180000
+G4WT2 > Begin processing for Run: 93, History: 200000
+G4WT3 > Begin processing for Run: 93, History: 220000
+G4WT1 > Begin processing for Run: 93, History: 240000
+G4WT1 > Begin processing for Run: 93, History: 260000
+G4WT5 > Begin processing for Run: 93, History: 280000
+G4WT5 > Begin processing for Run: 93, History: 300000
+G4WT5 > Begin processing for Run: 93, History: 320000
+G4WT5 > Begin processing for Run: 93, History: 340000
+G4WT5 > Begin processing for Run: 93, History: 360000
+G4WT5 > Begin processing for Run: 93, History: 380000
+G4WT5 > Begin processing for Run: 93, History: 400000
+G4WT5 > Begin processing for Run: 93, History: 420000
+G4WT5 > Begin processing for Run: 93, History: 440000
+G4WT5 > Begin processing for Run: 93, History: 460000
+G4WT7 > Begin processing for Run: 93, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.90619 rad at: 940 (ms)
+G4WT1 > Begin processing for Run: 94, History: 0
+G4WT2 > Begin processing for Run: 94, History: 20000
+G4WT2 > Begin processing for Run: 94, History: 40000
+G4WT3 > Begin processing for Run: 94, History: 60000
+G4WT3 > Begin processing for Run: 94, History: 80000
+G4WT2 > Begin processing for Run: 94, History: 100000
+G4WT2 > Begin processing for Run: 94, History: 120000
+G4WT2 > Begin processing for Run: 94, History: 140000
+G4WT2 > Begin processing for Run: 94, History: 160000
+G4WT5 > Begin processing for Run: 94, History: 180000
+G4WT5 > Begin processing for Run: 94, History: 200000
+G4WT5 > Begin processing for Run: 94, History: 220000
+G4WT3 > Begin processing for Run: 94, History: 240000
+G4WT3 > Begin processing for Run: 94, History: 260000
+G4WT3 > Begin processing for Run: 94, History: 280000
+G4WT3 > Begin processing for Run: 94, History: 300000
+G4WT3 > Begin processing for Run: 94, History: 320000
+G4WT3 > Begin processing for Run: 94, History: 340000
+G4WT3 > Begin processing for Run: 94, History: 360000
+G4WT3 > Begin processing for Run: 94, History: 380000
+G4WT3 > Begin processing for Run: 94, History: 400000
+G4WT3 > Begin processing for Run: 94, History: 420000
+G4WT3 > Begin processing for Run: 94, History: 440000
+G4WT3 > Begin processing for Run: 94, History: 460000
+G4WT3 > Begin processing for Run: 94, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 5.96903 rad at: 950 (ms)
+G4WT6 > Begin processing for Run: 95, History: 0
+G4WT2 > Begin processing for Run: 95, History: 20000
+G4WT2 > Begin processing for Run: 95, History: 40000
+G4WT2 > Begin processing for Run: 95, History: 60000
+G4WT2 > Begin processing for Run: 95, History: 80000
+G4WT2 > Begin processing for Run: 95, History: 100000
+G4WT5 > Begin processing for Run: 95, History: 120000
+G4WT5 > Begin processing for Run: 95, History: 140000
+G4WT5 > Begin processing for Run: 95, History: 160000
+G4WT5 > Begin processing for Run: 95, History: 180000
+G4WT5 > Begin processing for Run: 95, History: 200000
+G4WT5 > Begin processing for Run: 95, History: 220000
+G4WT5 > Begin processing for Run: 95, History: 240000
+G4WT2 > Begin processing for Run: 95, History: 260000
+G4WT7 > Begin processing for Run: 95, History: 280000
+G4WT7 > Begin processing for Run: 95, History: 300000
+G4WT6 > Begin processing for Run: 95, History: 320000
+G4WT7 > Begin processing for Run: 95, History: 340000
+G4WT6 > Begin processing for Run: 95, History: 360000
+G4WT7 > Begin processing for Run: 95, History: 380000
+G4WT6 > Begin processing for Run: 95, History: 400000
+G4WT1 > Begin processing for Run: 95, History: 420000
+G4WT7 > Begin processing for Run: 95, History: 440000
+G4WT7 > Begin processing for Run: 95, History: 460000
+G4WT7 > Begin processing for Run: 95, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 6.03186 rad at: 960 (ms)
+G4WT3 > Begin processing for Run: 96, History: 0
+G4WT5 > Begin processing for Run: 96, History: 20000
+G4WT5 > Begin processing for Run: 96, History: 40000
+G4WT5 > Begin processing for Run: 96, History: 60000
+G4WT5 > Begin processing for Run: 96, History: 80000
+G4WT4 > Begin processing for Run: 96, History: 100000
+G4WT2 > Begin processing for Run: 96, History: 120000
+G4WT2 > Begin processing for Run: 96, History: 140000
+G4WT2 > Begin processing for Run: 96, History: 160000
+G4WT2 > Begin processing for Run: 96, History: 180000
+G4WT2 > Begin processing for Run: 96, History: 200000
+G4WT2 > Begin processing for Run: 96, History: 220000
+G4WT2 > Begin processing for Run: 96, History: 240000
+G4WT2 > Begin processing for Run: 96, History: 260000
+G4WT2 > Begin processing for Run: 96, History: 280000
+G4WT7 > Begin processing for Run: 96, History: 300000
+G4WT7 > Begin processing for Run: 96, History: 320000
+G4WT5 > Begin processing for Run: 96, History: 340000
+G4WT5 > Begin processing for Run: 96, History: 360000
+G4WT5 > Begin processing for Run: 96, History: 380000
+G4WT5 > Begin processing for Run: 96, History: 400000
+G4WT5 > Begin processing for Run: 96, History: 420000
+G4WT5 > Begin processing for Run: 96, History: 440000
+G4WT5 > Begin processing for Run: 96, History: 460000
+G4WT5 > Begin processing for Run: 96, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 6.09469 rad at: 970 (ms)
+G4WT2 > Begin processing for Run: 97, History: 0
+G4WT2 > Begin processing for Run: 97, History: 20000
+G4WT2 > Begin processing for Run: 97, History: 40000
+G4WT4 > Begin processing for Run: 97, History: 60000
+G4WT3 > Begin processing for Run: 97, History: 80000
+G4WT3 > Begin processing for Run: 97, History: 100000
+G4WT3 > Begin processing for Run: 97, History: 120000
+G4WT2 > Begin processing for Run: 97, History: 140000
+G4WT2 > Begin processing for Run: 97, History: 160000
+G4WT6 > Begin processing for Run: 97, History: 180000
+G4WT6 > Begin processing for Run: 97, History: 200000
+G4WT6 > Begin processing for Run: 97, History: 220000
+G4WT4 > Begin processing for Run: 97, History: 240000
+G4WT4 > Begin processing for Run: 97, History: 260000
+G4WT5 > Begin processing for Run: 97, History: 280000
+G4WT5 > Begin processing for Run: 97, History: 300000
+G4WT1 > Begin processing for Run: 97, History: 320000
+G4WT6 > Begin processing for Run: 97, History: 340000
+G4WT1 > Begin processing for Run: 97, History: 360000
+G4WT0 > Begin processing for Run: 97, History: 380000
+G4WT0 > Begin processing for Run: 97, History: 400000
+G4WT0 > Begin processing for Run: 97, History: 420000
+G4WT0 > Begin processing for Run: 97, History: 440000
+G4WT0 > Begin processing for Run: 97, History: 460000
+G4WT0 > Begin processing for Run: 97, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 6.15752 rad at: 980 (ms)
+G4WT5 > Begin processing for Run: 98, History: 0
+G4WT1 > Begin processing for Run: 98, History: 20000
+G4WT0 > Begin processing for Run: 98, History: 40000
+G4WT2 > Begin processing for Run: 98, History: 60000
+G4WT2 > Begin processing for Run: 98, History: 80000
+G4WT2 > Begin processing for Run: 98, History: 100000
+G4WT2 > Begin processing for Run: 98, History: 120000
+G4WT2 > Begin processing for Run: 98, History: 140000
+G4WT4 > Begin processing for Run: 98, History: 160000
+G4WT4 > Begin processing for Run: 98, History: 180000
+G4WT3 > Begin processing for Run: 98, History: 200000
+G4WT2 > Begin processing for Run: 98, History: 220000
+G4WT2 > Begin processing for Run: 98, History: 240000
+G4WT6 > Begin processing for Run: 98, History: 260000
+G4WT6 > Begin processing for Run: 98, History: 280000
+G4WT4 > Begin processing for Run: 98, History: 300000
+G4WT6 > Begin processing for Run: 98, History: 320000
+G4WT6 > Begin processing for Run: 98, History: 340000
+G4WT4 > Begin processing for Run: 98, History: 360000
+G4WT7 > Begin processing for Run: 98, History: 380000
+G4WT7 > Begin processing for Run: 98, History: 400000
+G4WT0 > Begin processing for Run: 98, History: 420000
+G4WT1 > Begin processing for Run: 98, History: 440000
+G4WT4 > Begin processing for Run: 98, History: 460000
+G4WT4 > Begin processing for Run: 98, History: 480000
+
+TimeFeature updated: tf/targetrotation/value = 6.22035 rad at: 990 (ms)
+G4WT4 > Begin processing for Run: 99, History: 0
+G4WT4 > Begin processing for Run: 99, History: 20000
+G4WT4 > Begin processing for Run: 99, History: 40000
+G4WT4 > Begin processing for Run: 99, History: 60000
+G4WT4 > Begin processing for Run: 99, History: 80000
+G4WT4 > Begin processing for Run: 99, History: 100000
+G4WT4 > Begin processing for Run: 99, History: 120000
+G4WT4 > Begin processing for Run: 99, History: 140000
+G4WT3 > Begin processing for Run: 99, History: 160000
+G4WT3 > Begin processing for Run: 99, History: 180000
+G4WT5 > Begin processing for Run: 99, History: 200000
+G4WT7 > Begin processing for Run: 99, History: 220000
+G4WT7 > Begin processing for Run: 99, History: 240000
+G4WT7 > Begin processing for Run: 99, History: 260000
+G4WT7 > Begin processing for Run: 99, History: 280000
+G4WT7 > Begin processing for Run: 99, History: 300000
+G4WT7 > Begin processing for Run: 99, History: 320000
+G4WT7 > Begin processing for Run: 99, History: 340000
+G4WT7 > Begin processing for Run: 99, History: 360000
+G4WT5 > Begin processing for Run: 99, History: 380000
+G4WT2 > Begin processing for Run: 99, History: 400000
+G4WT0 > Begin processing for Run: 99, History: 420000
+G4WT6 > Begin processing for Run: 99, History: 440000
+G4WT2 > Begin processing for Run: 99, History: 460000
+G4WT6 > Begin processing for Run: 99, History: 480000
+
+TOPAS run sequence complete.
+Particle source Demo: Total number of histories: 0
+Particle source ElectronSource: Total number of histories: 50000000
+
+Scorer: DoseUniformity
+Results have been written to file: NH3_2D_Map.csv
+
+Scorer: RotDepthDose
+Results have been written to file: NH3_dEdz_20260226.csv
+
+Scorer: RotUniformity
+Results have been written to file: NH3_2D_Map_20260226.csv
