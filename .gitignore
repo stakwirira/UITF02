@@ -1,20 +1,24 @@
+# Operating system and editor files
 .DS_Store
+.vscode/
+.idea/
+
+# Python bytecode
 __pycache__/
 *.py[cod]
 
-# Local reference documents and generated report exports (UITF study).
-uitf-dnp-irradiation/From Prof Karl .pdf
-uitf-dnp-irradiation/UNH-UITF BeamNetUS Proposal.docx
-uitf-dnp-irradiation/crabb.pdf
-uitf-dnp-irradiation/UITF02_Report.pdf
-uitf-dnp-irradiation/Project_Report.tex
+# Local-only material: reference papers, proposals, and drafts. Keep these in
+# local/ or at the repository root; neither location is tracked.
+local/
+/*.pdf
+/*.docx
+/*.tex
 
-# Local presentation build notes and generated source code (UITF study).
-uitf-dnp-irradiation/outputs/**/claim-spine.txt
-uitf-dnp-irradiation/outputs/**/profile-plan.txt
-uitf-dnp-irradiation/outputs/**/source-notes.txt
-uitf-dnp-irradiation/outputs/**/slides/
+# Generated build directories and TOPAS phase-space output
+outputs/
+*.phsp
+*.header
 
-# Empty local clones of the same GitHub repository.
+# Nested local clones
 UITF02/
 UITF02-[0-9]*/

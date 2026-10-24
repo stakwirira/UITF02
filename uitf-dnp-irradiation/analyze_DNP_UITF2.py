@@ -42,7 +42,7 @@ OUTPUTS:
     Table 2:   Polarization proxy scaling from radical yield estimate
 
 USAGE:
-    python3 analyze_DNP_UITF.py [--output_dir ./UITF_DNP_Output]
+    python3 analyze_DNP_UITF2.py [--output_dir ./UITF_DNP_Output]
                                 [--mode cold|warm|both]
                                 [--material ND3|NH3|dButanol]
 
