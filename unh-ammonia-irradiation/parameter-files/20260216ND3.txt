@@ -1,23 +1,23 @@
 # ==============================================================================
 # TOPAS PARAMETER FILE: ND3 Target Irradiation Simulation
-# AUTHOR:               Samuel Barachel Takwirira
-# ADVISOR:              Karl Slifer, PhD
-# DEPARTMENT:           Nuclear Physics Department
-# SCHOOL:               University  of New Hampshire 
+# AUTHOR:               Samuel B. Takwirira
+# ADVISOR:              Prof. Karl Slifer
+# GROUP:                Nuclear Physics Group
+# INSTITUTION:          University of New Hampshire
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
 # 1. BASIC SETTINGS
 # ------------------------------------------------------------------------------
-i:Ts/NumberOfThreads                 = 8       # Could be 4 for smaller chips
+i:Ts/NumberOfThreads                 = 8       # Worker threads; match the available CPU cores
 i:Ts/ShowHistoryCountAtInterval      = 20000
-i:Ts/Seed                            = 0       # More realitsic
+i:Ts/Seed                            = 0       # Random-number seed
 b:Ts/UseQt                           = "True" # Keep False for batch/cluster runs
 
 # ------------------------------------------------------------------------------
 # 2. PHYSICS MODULES
 # ------------------------------------------------------------------------------
-# "opt4" is excellent/best for low-energy electron precision
+# "opt4": most accurate option for low-energy electron transport
 sv:Ph/Default/Modules                = 1 "g4em-standard_opt4"
 
 # ------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ sv:Ph/Default/Modules                = 1 "g4em-standard_opt4"
 # ------------------------------------------------------------------------------
 
 # --- World Volume ---
-s:Ge/World/Material  = "G4_AIR" 
+s:Ge/World/Material  = "G4_AIR"
 d:Ge/World/HLX       = 50.0 cm
 d:Ge/World/HLY       = 50.0 cm
 d:Ge/World/HLZ       = 100.0 cm
@@ -55,9 +55,9 @@ s:Ge/LArBath/DrawingStyle  = "FullWireFrame"
 # ====================================================================
 d:Tf/TimelineStart              = 0.0 s
 d:Tf/TimelineEnd                = 1.0 s
-i:Tf/NumberOfSequentialTimes    = 100 
+i:Tf/NumberOfSequentialTimes    = 100
 
-# Define a unitless engine
+# Unitless progress variable
 s:Tf/RotateProgress/Function    = "Linear"
 u:Tf/RotateProgress/StartValue  = 0.0
 # The Rate tells TOPAS how much to increase the value per second.
@@ -74,8 +74,8 @@ s:Ge/TargetBasket/Material      = "SolidND3"
 # Dimensions (10cm total thickness)
 d:Ge/TargetBasket/HLX           = 2.5 cm
 d:Ge/TargetBasket/HLY           = 2.5 cm
-d:Ge/TargetBasket/HLZ           = 5.0 cm  
-d:Ge/TargetBasket/TransZ        = 5.0 cm  
+d:Ge/TargetBasket/HLZ           = 5.0 cm
+d:Ge/TargetBasket/TransZ        = 5.0 cm
 
 # Rotation Logic: [Number] [Unit] * [Parameter]
 # This follows the rule: "number unit * name_of_unitless_parameter"
@@ -97,9 +97,9 @@ s:Ge/TargetBasket/Color         = "magenta"
 # ==========================================
 
 # 1. Define Deuterium Element (NIST Standard)
-# Using Symbol "H" to satisfy TOPAS/Geant4 symbol requirements 
+# Using Symbol "H" to satisfy TOPAS/Geant4 symbol requirements
 # while setting AtomicMass to the Deuterium value.
-s:El/Deuterium/Symbol     = "H" 
+s:El/Deuterium/Symbol     = "H"
 i:El/Deuterium/Z          = 1
 d:El/Deuterium/AtomicMass = 2.01410178 g/mole
 

@@ -1,3 +1,11 @@
+# ==============================================================================
+# TOPAS PARAMETER FILE: Beam Phase-Space Check
+# AUTHOR:               Samuel B. Takwirira
+# ADVISOR:              Prof. Karl Slifer
+# GROUP:                Nuclear Physics Group
+# INSTITUTION:          University of New Hampshire
+# ==============================================================================
+
 # ------------------------------------------------------------------------------
 # 1. SESSION & IO
 # ------------------------------------------------------------------------------
@@ -17,14 +25,14 @@ d:Ge/World/HLZ      = 50 cm
 # Thin detector box at Z=0
 s:Ge/Detector/Type     = "TsBox"
 s:Ge/Detector/Parent   = "World"
-s:Ge/Detector/Material = "Vacuum" 
+s:Ge/Detector/Material = "Vacuum"
 d:Ge/Detector/HLX      = 10 cm
 d:Ge/Detector/HLY      = 10 cm
 d:Ge/Detector/HLZ      = 0.05 mm
 d:Ge/Detector/TransZ   = 0 cm
 
 # ------------------------------------------------------------------------------
-# 3. BEAM (Your exact parameters)
+# 3. BEAM (production beam parameters)
 # ------------------------------------------------------------------------------
 s:So/Beam/Type         = "Beam"
 s:So/Beam/Component    = "World"
@@ -36,18 +44,18 @@ i:So/Beam/NumberOfHistoriesInRun = 100000
 d:So/Beam/BeamPositionZ = -10 cm
 
 s:So/Beam/BeamPositionDistribution = "Gaussian"
-s:So/Beam/BeamPositionCutoffShape  = "Ellipse" # <--- The "1,000 Error" Fix
+s:So/Beam/BeamPositionCutoffShape  = "Ellipse" # Required with a Gaussian position distribution
 d:So/Beam/BeamPositionSpreadX      = 0.8 cm
 d:So/Beam/BeamPositionSpreadY      = 0.8 cm
 d:So/Beam/BeamPositionCutoffX      = 2.0 cm
 d:So/Beam/BeamPositionCutoffY      = 2.0 cm
 
 # ------------------------------------------------------------------------------
-# 4. SCORING (Documented Face Syntax)
+# 4. SCORING
 # ------------------------------------------------------------------------------
 s:Sc/BeamCheck/Quantity    = "PhaseSpace"
 s:Sc/BeamCheck/Component   = "Detector"
-s:Sc/BeamCheck/Surface     = "Detector/ZMinusSurface" 
+s:Sc/BeamCheck/Surface     = "Detector/ZMinusSurface"
 s:Sc/BeamCheck/OutputType  = "ASCII"
 s:Sc/BeamCheck/OutputFile  = "BeamResults"
 b:Sc/BeamCheck/OutputColumnHeader = "True"
