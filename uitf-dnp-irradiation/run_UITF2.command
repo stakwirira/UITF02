@@ -3,12 +3,14 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-export TOPAS_G4_DATA_DIR=/Applications/G4Data
-export QT_QPA_PLATFORM_PLUGIN_PATH=/Applications/topas/Frameworks
-export PATH="/Applications/topas/bin:$PATH"
+# Default macOS install locations; override any of these from the environment.
+TOPAS_DIR="${TOPAS_DIR:-/Applications/topas}"
+export TOPAS_G4_DATA_DIR="${TOPAS_G4_DATA_DIR:-/Applications/G4Data}"
+export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH:-$TOPAS_DIR/Frameworks}"
+export PATH="$TOPAS_DIR/bin:$PATH"
 
-TOPAS="/Applications/topas/bin/topas"
-MATLAB="/Applications/MATLAB_R2025a.app/bin/matlab"
+TOPAS="${TOPAS:-$TOPAS_DIR/bin/topas}"
+MATLAB="${MATLAB:-/Applications/MATLAB_R2025a.app/bin/matlab}"
 
 section() {
   echo ""
