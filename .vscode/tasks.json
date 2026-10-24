@@ -6,7 +6,7 @@
       "type": "shell",
       "command": "./run_UITF2.command",
       "options": {
-        "cwd": "${workspaceFolder}"
+        "cwd": "${workspaceFolder}/uitf-dnp-irradiation"
       },
       "group": {
         "kind": "build",
