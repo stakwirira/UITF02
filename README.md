@@ -1,102 +1,86 @@
 # UITF02: Electron Irradiation of Polarized Ammonia Targets
 
-TOPAS/Geant4 Monte Carlo studies of electron-beam irradiation of solid ammonia
-(NH3 and ND3) used to prepare targets for dynamic nuclear polarization (DNP).
+Monte Carlo studies (TOPAS/Geant4) of electron-beam irradiation of solid
+ammonia (NH3 and ND3) as part of preparing targets for dynamic nuclear
+polarization (DNP).
 
 **Samuel B. Takwirira**, Nuclear Physics Group, University of New Hampshire.
 Advisor: Prof. Karl Slifer. Carried out in collaboration with the Jefferson Lab
 Target Group.
 
-![Front, mirrored-back, and combined cold cumulative dose through the UITF ND3 target](uitf-dnp-irradiation/figures_matlab/pptx_deck_assets/01_front_back_superimposed_cold_dose.png)
-
 ## Background
 
-Ammonia targets need radiation-induced paramagnetic centers before DNP can
-polarize them. Whether a target is well prepared depends on more than the
-delivered charge. It also depends on where the ionization dose lands, how
-evenly it covers the target volume, and how much heat a cold irradiation
-deposits. These studies use Monte Carlo transport to answer those questions
-before beam time.
+Before DNP can polarize an ammonia target, irradiation has to create
+paramagnetic centers in it. How well a target is prepared depends on more
+than the delivered charge. It also depends on where the ionization dose is
+deposited, how evenly it covers the target volume, and how much heat a cold
+irradiation deposits. These studies use Monte Carlo transport to estimate
+those quantities before beam time.
 
 ## Studies
 
-The repository holds two studies. The first developed the methods that the
-second used.
+| | Study | Period | Setup |
+| --- | --- | --- | --- |
+| 1 | [UNH ammonia irradiation studies](unh-ammonia-irradiation/) | Dec 2025 – Apr 2026 | 20 MeV electrons; ND3/NH3 target in a liquid-argon bath |
+| 2 | [UITF two-sided DNP irradiation](uitf-dnp-irradiation/) | May – Jul 2026 | 8 MeV electrons at JLab UITF; packed ND3 in liquid helium, irradiated from the front and then the back |
 
-| | Study | Period | Setup | Main output |
-| --- | --- | --- | --- | --- |
-| 1 | [**UNH ammonia irradiation studies**](unh-ammonia-irradiation/) | Dec 2025 – Apr 2026 | 20 MeV e⁻ beam, ND3/NH3 basket in a liquid-argon bath | Parameter-file series, depth-dose and 2D maps, slide decks |
-| 2 | [**UITF two-sided DNP irradiation**](uitf-dnp-irradiation/) | May – Jul 2026 | 8 MeV e⁻ at JLab UITF, packed ND3 in a liquid-helium bath, front/back exposure | [Project report](uitf-dnp-irradiation/Project_Report.pdf) and presentation deck |
+The first study developed the geometry, materials, scoring, and analysis
+methods that the second study used.
 
 ### 1. UNH Ammonia Irradiation Studies
 
-This study builds up a model of an ammonia target basket inside an aluminum
-dewar filled with liquid argon. The model starts with a homogeneous ND3 block
-and moves on to a rotating target (TOPAS 4D time features), packed 1 mm NH3
-spheres, regular sphere lattices, and finally a voxelized random-sphere
-phantom. Dose is scored separately in NH3 and LAr. See the
-[study README](unh-ammonia-irradiation/README.md) for how the parameter files
-developed over time.
+A sequence of TOPAS models of an ammonia target basket inside an aluminum
+dewar filled with liquid argon. The models start with a homogeneous ND3 block
+and move on to rotating targets (TOPAS time features), packed 1 mm NH3
+spheres, regular sphere lattices, and a voxelized random-sphere phantom. Dose
+is scored separately in the ammonia and the argon.
 
 ### 2. UITF Two-Sided DNP Irradiation
 
-This study asks whether an 8 MeV electron beam at the Jefferson Lab Upgraded
-Injector Test Facility can irradiate a 6.5 cm packed ND3 target from both
-sides with a usable dose field and an acceptable cold heat load. Results:
+Asks whether an 8 MeV electron beam at the Jefferson Lab Upgraded Injector
+Test Facility can irradiate a 6.5 cm packed ND3 target from both faces, giving
+a usable dose field at an acceptable cold heat load. The findings are in the
+[project report](uitf-dnp-irradiation/Project_Report.pdf):
 
-- One-sided exposure does not cover the full 6.5 cm target length.
-- Sequential front/back irradiation gives the cumulative dose field the
-  proposal needs.
+- A single-sided exposure does not cover the full 6.5 cm target length.
+- Irradiating the front and then the back gives the cumulative dose field
+  the proposal needs.
 - Cold case (1 uA): about `4.97e15 e-/cm2` per side and `0.064 W` heat load
   per active side.
-- Warm case (10 uA): about `9.97e16 e-/cm2` per side and `0.644 W` per active
-  side.
-- Radical chemistry and the final polarization are outside what TOPAS models
-  and need ESR/NMR benchmarks.
-
-See the [study README](uitf-dnp-irradiation/README.md) and the
-[project report](uitf-dnp-irradiation/Project_Report.pdf).
+- Warm case (10 uA): about `9.97e16 e-/cm2` per side and `0.644 W` per
+  active side.
+- TOPAS does not model radical chemistry or the final polarization; these
+  need ESR/NMR benchmarks.
 
 ## Repository Layout
 
 ```
 UITF02/
-├── unh-ammonia-irradiation/    Study 1: UNH NH3/ND3 irradiation development
+├── unh-ammonia-irradiation/    Study 1
 │   ├── parameter-files/        TOPAS parameter files, named by date
-│   ├── voxel-phantom/          voxel phantom generator and phantom cards
+│   ├── voxel-phantom/          phantom generator and the cards that use it
 │   ├── beam-check/             beam phase-space validation
 │   ├── analysis/               MATLAB plotting scripts
-│   ├── results/                scorer CSV outputs
-│   ├── logs/  figures/  presentations/  notes/
-│   └── README.md
-└── uitf-dnp-irradiation/       Study 2: UITF two-sided 8 MeV irradiation
+│   ├── results/                TOPAS scorer outputs (CSV)
+│   ├── logs/                   TOPAS console logs
+│   ├── figures/                geometry views and exported plots
+│   └── presentations/          slide deck
+└── uitf-dnp-irradiation/       Study 2
     ├── UITF2-*.txt             TOPAS geometry and production cards
-    ├── analyze_DNP_UITF2*.{py,m}
+    ├── analyze_DNP_UITF2.py    single-run analysis
+    ├── analyze_DNP_UITF2_MATLAB.m
     ├── run_UITF2.command       full pipeline
-    ├── UITF_DNP_Output_*/      scorer outputs
+    ├── UITF_DNP_Output_*/      scorer outputs and diagnostic figures
     ├── figures_matlab/         report and presentation figures
-    ├── outputs/                presentation deck
-    ├── Project_Report.pdf
-    └── README.md
+    ├── presentation/           slide deck and previews
+    └── Project_Report.pdf
 ```
+
+Each study folder has its own README with the details and run instructions.
 
 ## Software
 
 - [TOPAS](https://www.topasmc.org/) 3.9 (Geant4-based) with
   `g4em-standard_opt4` electromagnetic physics
-- MATLAB R2025a for the analysis and figures
-- Python 3 with `numpy`, `pandas`, `matplotlib`, and `scipy` (UITF
-  single-run analysis and phantom generation)
-
-## Repository History
-
-This repository combines three earlier repositories, and the full commit
-history of each is preserved:
-
-- `UITF02`: the UITF study (now `uitf-dnp-irradiation/`)
-- `UITF02-EDITS2`: an earlier working copy of the UITF study, merged into the
-  same folder
-- `TOPAS-UNH`: the UNH studies (now `unh-ammonia-irradiation/`)
-
-To see a file's history from before the move, use
-`git log --follow <path>`.
+- MATLAB R2025a
+- Python 3 with `numpy`, `pandas`, `matplotlib`, and `scipy`
