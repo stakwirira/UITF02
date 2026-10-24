@@ -1,5 +1,9 @@
 # ==============================================================================
-# TOPAS CONFIGURATION: NH3 VOXELIZED PHANTOM IN LIQUID ARGON
+# TOPAS PARAMETER FILE: NH3 Voxelized Phantom in Liquid Argon
+# AUTHOR:               Samuel B. Takwirira
+# ADVISOR:              Prof. Karl Slifer
+# GROUP:                Nuclear Physics Group
+# INSTITUTION:          University of New Hampshire
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
@@ -58,13 +62,13 @@ d:Ge/TargetBasket/TransZ   = 5.0 cm
 # --- Voxelized Target (The Phantom) ---
 s:Ge/Target/Type                          = "TsImageCube"
 s:Ge/Target/Parent                        = "TargetBasket"
-s:Ge/Target/InputDirectory                = "" 
+s:Ge/Target/InputDirectory                = ""
 s:Ge/Target/InputFile                     = "phantom.raw"
 s:Ge/Target/DataType                      = "uint8"
 s:Ge/Target/ImagingToMaterialConverter    = "MaterialTagNumber"
 
 # Map raw voxel values to materials (0=LAr, 1=NH3)
-iv:Ge/Target/MaterialTagNumbers           = 2 0 1 
+iv:Ge/Target/MaterialTagNumbers           = 2 0 1
 sv:Ge/Target/MaterialNames                = 2 "G4_lAr" "SolidNH3"
 
 # Grid Dimensions

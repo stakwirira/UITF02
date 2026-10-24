@@ -1,22 +1,23 @@
 # ==============================================================================
 # TOPAS PARAMETER FILE: ND3 Target Irradiation Simulation
-# AUTHOR:               Samuel Barachel Takwirira
-# DEPARTMENT:           Nuclear Physics Department
-# SCHOOL:               University  of New Hampshire 
+# AUTHOR:               Samuel B. Takwirira
+# ADVISOR:              Prof. Karl Slifer
+# GROUP:                Nuclear Physics Group
+# INSTITUTION:          University of New Hampshire
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
 # 1. BASIC SETTINGS
 # ------------------------------------------------------------------------------
-i:Ts/NumberOfThreads                 = 8       # Could be 4 for smaller chips
+i:Ts/NumberOfThreads                 = 8       # Worker threads; match the available CPU cores
 i:Ts/ShowHistoryCountAtInterval      = 200000
-i:Ts/Seed                            = 0       # More realitsic
+i:Ts/Seed                            = 0       # Random-number seed
 b:Ts/UseQt                           = "False" # Keep False for batch/cluster runs
 
 # ------------------------------------------------------------------------------
 # 2. PHYSICS MODULES
 # ------------------------------------------------------------------------------
-# "opt4" is excellent/best for low-energy electron precision
+# "opt4": most accurate option for low-energy electron transport
 sv:Ph/Default/Modules                = 1 "g4em-standard_opt4"
 
 # ------------------------------------------------------------------------------
@@ -24,7 +25,7 @@ sv:Ph/Default/Modules                = 1 "g4em-standard_opt4"
 # ------------------------------------------------------------------------------
 
 # --- World Volume ---
-s:Ge/World/Material                  = "G4_AIR" # "Vacuum" is not quite right.
+s:Ge/World/Material                  = "G4_AIR" # Air rather than vacuum around the cryostat
 d:Ge/World/HLX                       = 50.0 cm
 d:Ge/World/HLY                       = 50.0 cm
 d:Ge/World/HLZ                       = 100.0 cm
@@ -38,10 +39,10 @@ d:Ge/Dewar/HL                        = 45.0 cm
 d:Ge/Dewar/TransZ                    = 0.0 cm
 s:Ge/Dewar/Color                     = "orange"
 s:Ge/Dewar/DrawingStyle              = "Cloud"
-b:Ge/Dewar/Visible                   = "False"  # Un[comment] to make Dewar [in]visible
+b:Ge/Dewar/Visible                   = "False"  # Uncomment to hide the dewar
 
 # --- Liquid Argon Bath (LAr) ---
-# Wall thickness Notes: 9.2 - 9.0 = 2mm wall. Thin, but valid for simulation.
+# Wall thickness: 9.2 - 9.0 = 2 mm
 s:Ge/LArBath/Type                    = "TsCylinder"
 s:Ge/LArBath/Parent                  = "Dewar"
 s:Ge/LArBath/Material                = "LiquidArgon"
@@ -52,12 +53,12 @@ s:Ge/LArBath/DrawingStyle            = "FullWireFrame"
 
 # --- The Target Basket (Frozen ND3) ---
 s:Ge/TargetBasket/Type               = "TsBox"
-s:Ge/TargetBasket/Parent             = "LArBath" # WARNING: Check if this should be LHe for DNP
+s:Ge/TargetBasket/Parent             = "LArBath"
 s:Ge/TargetBasket/Material           = "SolidND3"
 d:Ge/TargetBasket/HLX                = 2.5 cm
 d:Ge/TargetBasket/HLY                = 2.5 cm
 d:Ge/TargetBasket/HLZ                = 5.0 cm       # 10cm total thickness
-d:Ge/TargetBasket/TransZ             = 5.0 cm  
+d:Ge/TargetBasket/TransZ             = 5.0 cm
 s:Ge/TargetBasket/DrawingStyle       = "FullWireFrame"
 s:Ge/TargetBasket/Color              = "magenta"
 
@@ -71,9 +72,9 @@ s:Ge/TargetBasket/Color              = "magenta"
 # ==========================================
 
 # 1. Define Deuterium Element (NIST Standard)
-# Using Symbol "H" to satisfy TOPAS/Geant4 symbol requirements 
+# Using Symbol "H" to satisfy TOPAS/Geant4 symbol requirements
 # while setting AtomicMass to the Deuterium value.
-s:El/Deuterium/Symbol     = "H" 
+s:El/Deuterium/Symbol     = "H"
 i:El/Deuterium/Z          = 1
 d:El/Deuterium/AtomicMass = 2.01410178 g/mole
 

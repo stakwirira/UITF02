@@ -1,17 +1,17 @@
 # ==============================================================================
 # TOPAS PARAMETER FILE: NH3 Target Irradiation Simulation
-# AUTHOR:               Samuel Barachel Takwirira
-# ADVISOR:              Karl Slifer, PhD
-# DEPARTMENT:           Nuclear Physics Department
-# SCHOOL:               University  of New Hampshire 
+# AUTHOR:               Samuel B. Takwirira
+# ADVISOR:              Prof. Karl Slifer
+# GROUP:                Nuclear Physics Group
+# INSTITUTION:          University of New Hampshire
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
 # 1. BASIC SETTINGS
 # ------------------------------------------------------------------------------
-i:Ts/NumberOfThreads                 = 8       # Could be 4 for smaller chips
+i:Ts/NumberOfThreads                 = 8       # Worker threads; match the available CPU cores
 i:Ts/ShowHistoryCountAtInterval      = 20000
-i:Ts/Seed                            = 0       # More realitsic
+i:Ts/Seed                            = 0       # Random-number seed
 b:Ts/UseQt                           = "False"  # False for batch/cluster runs
 
 # ------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ s:Ge/NH3Sphere/Color          = "magenta"
 sv:Ma/SolidNH3/Components = 2 "Nitrogen" "Hydrogen"
 uv:Ma/SolidNH3/Fractions  = 2 0.822441 0.177559
 
-# Density for cryogenic solid NH3 (~ −80 °C). Ask
+# Density for cryogenic solid NH3 (~ −80 °C).
 d:Ma/SolidNH3/Density     = 0.817 g/cm3
 
 # ------------------------------------------------------------------------------
@@ -146,10 +146,10 @@ d:So/ElectronSource/BeamPositionZ            = -60.0 cm
 d:So/ElectronSource/RotX                     = 0.0 deg
 
 s:So/ElectronSource/BeamAngularDistribution  = "Gaussian"
-d:So/ElectronSource/BeamAngularSpreadX       = 0.0032 rad    # example
-d:So/ElectronSource/BeamAngularSpreadY       = 0.0032 rad    # example
-d:So/ElectronSource/BeamAngularCutoffX       = 90. deg       # optional
-d:So/ElectronSource/BeamAngularCutoffY       = 90. deg       # optional
+d:So/ElectronSource/BeamAngularSpreadX       = 0.0032 rad    # assumed value
+d:So/ElectronSource/BeamAngularSpreadY       = 0.0032 rad    # assumed value
+d:So/ElectronSource/BeamAngularCutoffX       = 90. deg
+d:So/ElectronSource/BeamAngularCutoffY       = 90. deg
 s:So/ElectronSource/BeamPositionDistribution = "Gaussian"
 s:So/ElectronSource/BeamPositionCutoffShape  = "Ellipse"
 d:So/ElectronSource/BeamPositionCutoffX      = 2.0 cm

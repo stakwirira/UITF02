@@ -1,21 +1,21 @@
 # ==============================================================================
 # TOPAS PARAMETER FILE: ND3 Target Irradiation Simulation
-# AUTHOR: Samuel Takwirira
-# DEPARTMENT: Nuclear Physics Department
-# SCHOOL: University  of New Hampshire 
+# AUTHOR:               Samuel B. Takwirira
+# ADVISOR:              Prof. Karl Slifer
+# GROUP:                Nuclear Physics Group
+# INSTITUTION:          University of New Hampshire
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
 # 1. BASIC SETTINGS
 # ------------------------------------------------------------------------------
-i:Ts/NumberOfThreads                 = 8 # Keep at 4 [or 8 for M1/M2/M3 Pro/Max]
+i:Ts/NumberOfThreads                 = 8 # Worker threads; match the available CPU cores
 i:Ts/ShowHistoryCountAtInterval      = 200000
-i:Ts/Seed                            = 1 # Means randomize every time
-# (0 here means reproducing data is almost impossible)
+i:Ts/Seed                            = 1 # Random-number seed
 
-# --- CRASH FIX: Run in Batch Mode (No Graphics) ---
-# Set this to "True" only if you need to see the geometry.
-# Running with "False" prevents Segmentation Fault on macOS.
+# --- Batch mode (no graphics) ---
+# Set to "True" to open the geometry viewer. Batch mode avoids a Qt/OpenGL
+# segmentation fault observed on macOS.
 b:Ts/UseQt                           = "False"
 
 # ------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ d:Ma/SolidND3/Density                = 1.007 g/cm3
 # --- Liquid Argon (LAr) ---
 sv:Ma/LiquidArgon/Components         = 1 "Argon"
 uv:Ma/LiquidArgon/Fractions          = 1 1.0
-d:Ma/LiquidArgon/Density             = 1.39 g/cm3 #check this
+d:Ma/LiquidArgon/Density             = 1.39 g/cm3
 
 # ------------------------------------------------------------------------------
 # 5. BEAM SOURCE (ELECTRON BEAM)
@@ -86,8 +86,8 @@ s:So/ElectronSource/BeamParticle             = "e-"
 d:So/ElectronSource/BeamEnergy               = 20.0 MeV
 u:So/ElectronSource/BeamEnergySpread         = 0.03
 
-# --- Beam Shape & Histories Fix ---
-i:So/ElectronSource/NumberOfHistoriesInRun   = 1000000000   # Number of Particles to run.
+# --- Beam shape and histories ---
+i:So/ElectronSource/NumberOfHistoriesInRun   = 1000000000   # Number of primary electrons
 s:So/ElectronSource/BeamPositionDistribution = "Gaussian"
 s:So/ElectronSource/BeamPositionCutoffShape  = "Ellipse"
 d:So/ElectronSource/BeamPositionCutoffX      = 2.0 cm
@@ -110,7 +110,6 @@ s:Sc/DepthDose/Component                     = "TargetBasket"
 s:Sc/DepthDose/OutputFile                    = "ND3_dEdz_Profile"
 s:Sc/DepthDose/OutputType                    = "csv"
 s:Sc/DepthDose/IfOutputFileAlreadyExists     = "Overwrite"
-# Energy Binning removed to fix crash
 i:Sc/DepthDose/XBins                         = 1
 i:Sc/DepthDose/YBins                         = 1
 i:Sc/DepthDose/ZBins                         = 100
@@ -126,7 +125,7 @@ i:Sc/DoseUniformity/YBins                    = 1
 i:Sc/DoseUniformity/ZBins                    = 50
 
 # ------------------------------------------------------------------------------
-# 7. VISUALIZATION (Only active if Ts/UseQt = "True")|Uncomment to View Geometry
+# 7. VISUALIZATION (active only when Ts/UseQt = "True")
 # ------------------------------------------------------------------------------
 
 s:Gr/ViewA/Type                      = "OpenGL"
