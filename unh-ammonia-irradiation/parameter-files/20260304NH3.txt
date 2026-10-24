@@ -1,0 +1,231 @@
+# ==============================================================================
+# TOPAS PARAMETER FILE: NH3 Target Irradiation Simulation
+# AUTHOR:               Samuel Barachel Takwirira
+# ADVISOR:              Karl Slifer, PhD
+# DEPARTMENT:           Nuclear Physics Department
+# SCHOOL:               University  of New Hampshire 
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. BASIC SETTINGS
+# ------------------------------------------------------------------------------
+i:Ts/NumberOfThreads                 = 8       # Could be 4 for smaller chips
+i:Ts/ShowHistoryCountAtInterval      = 100000
+i:Ts/Seed                            = 0       # Realistic Behaviour
+b:Ts/UseQt                           = "True"  # False for batch/cluster runs
+
+# ------------------------------------------------------------------------------
+# 2. PHYSICS MODULES
+# ------------------------------------------------------------------------------
+sv:Ph/Default/Modules = 1 "g4em-standard_opt4"
+
+# ------------------------------------------------------------------------------
+# 3. GEOMETRY DEFINITIONS
+# ------------------------------------------------------------------------------
+
+# --- World Volume ---
+s:Ge/World/Material  = "G4_AIR"
+d:Ge/World/HLX       = 50.0 cm
+d:Ge/World/HLY       = 50.0 cm
+d:Ge/World/HLZ       = 100.0 cm
+
+# --- The Cryostat (Aluminum Dewar) ---
+s:Ge/Dewar/Type          = "TsCylinder"
+s:Ge/Dewar/Parent        = "World"
+s:Ge/Dewar/Material      = "G4_Al"
+d:Ge/Dewar/RMax          = 9.2 cm
+d:Ge/Dewar/HL            = 45.0 cm
+d:Ge/Dewar/TransZ        = 0.0 cm
+s:Ge/Dewar/Color         = "orange"
+b:Ge/Dewar/Visible       = "False"
+
+# --- Liquid Argon Bath ---
+s:Ge/LArBath/Type          = "TsCylinder"
+s:Ge/LArBath/Parent        = "Dewar"
+s:Ge/LArBath/Material      = "G4_lAr"
+d:Ge/LArBath/RMax          = 9.0 cm
+d:Ge/LArBath/HL            = 44.0 cm
+s:Ge/LArBath/Color         = "skyblue"
+s:Ge/LArBath/DrawingStyle  = "FullWireFrame"
+
+# ------------------------------------------------------------------
+# TARGET GEOMETRY: PACKED 1 mm NH3 SPHERES (PF ≈ 0.55)
+# ------------------------------------------------------------------
+
+# --- Cylindrical Envelope (container only) ---
+
+s:Ge/TargetBasket/Type     = "TsCylinder"
+s:Ge/TargetBasket/Parent   = "LArBath"
+s:Ge/TargetBasket/Material = "G4_lAr"
+
+d:Ge/TargetBasket/RMax     = 2.5 cm
+d:Ge/TargetBasket/RMin     = 0.0 cm
+d:Ge/TargetBasket/HL       = 5.0 cm    # total length = 10 cm
+
+d:Ge/TargetBasket/TransZ   = 5.0 cm
+
+d:Ge/TargetBasket/RotX     = 0.0 deg
+d:Ge/TargetBasket/RotY     = 0.0 deg
+d:Ge/TargetBasket/RotZ     = 0.0 deg
+
+s:Ge/TargetBasket/DrawingStyle = "WireFrame"
+s:Ge/TargetBasket/Color        = "blue"
+
+
+# --- 1 mm Diameter NH3 Spheres (radius = 0.5 mm = 0.05 cm) ---
+
+s:Ge/NH3Sphere/Type     = "TsSphere"
+s:Ge/NH3Sphere/Parent   = "TargetBasket"
+s:Ge/NH3Sphere/Material = "SolidNH3"
+
+d:Ge/NH3Sphere/RMax     = 0.05 cm
+d:Ge/NH3Sphere/RMin     = 0.0 cm
+
+
+# --- Lattice Repetition (≈0.55 packing fraction) ---
+# Calculated cubic spacing ≈ 0.095 cm
+
+s:Ge/NH3Sphere/RepeatShape    = "Rectangular"
+
+i:Ge/NH3Sphere/RepeatNumberX  = 52
+i:Ge/NH3Sphere/RepeatNumberY  = 52
+i:Ge/NH3Sphere/RepeatNumberZ  = 105
+
+d:Ge/NH3Sphere/RepeatSpacingX = 0.095 cm
+d:Ge/NH3Sphere/RepeatSpacingY = 0.095 cm
+d:Ge/NH3Sphere/RepeatSpacingZ = 0.095 cm
+
+s:Ge/NH3Sphere/DrawingStyle   = "Solid"
+s:Ge/NH3Sphere/Color          = "magenta"
+
+# ------------------------------------------------------------------------------
+# 4. MATERIAL DEFINITIONS (NH3)
+# ------------------------------------------------------------------------------
+
+# Components: Nitrogen + Hydrogen
+# Mass fractions for NH3 from stoichiometry
+#   N atomic mass ≈ 14.007
+#   H atomic mass ≈ 1.008  -> 3 * 1.008 = 3.024
+#   Total mass ≈ 17.031
+#   Mass frac N ≈ 14.007 / 17.031 = 0.822441
+#   Mass frac H ≈ 3.024 / 17.031 = 0.177559
+
+sv:Ma/SolidNH3/Components = 2 "Nitrogen" "Hydrogen"
+uv:Ma/SolidNH3/Fractions  = 2 0.822441 0.177559
+
+# Density for cryogenic solid NH3 (~ −80 °C). Ask
+d:Ma/SolidNH3/Density     = 0.817 g/cm3
+
+# ------------------------------------------------------------------------------
+# 5. BEAM SOURCE (20 MeV ELECTRON BEAM)
+# ------------------------------------------------------------------------------
+s:So/ElectronSource/Type                     = "Beam"
+s:So/ElectronSource/Component                = "World"
+s:So/ElectronSource/BeamParticle             = "e-"
+d:So/ElectronSource/BeamEnergy               = 20.0 MeV
+u:So/ElectronSource/BeamEnergySpread         = 0.03
+i:So/ElectronSource/NumberOfHistoriesInRun   = 500000000
+
+d:So/ElectronSource/BeamPositionX            = 0.0 cm
+d:So/ElectronSource/BeamPositionY            = 0.0 cm
+d:So/ElectronSource/BeamPositionZ            = -60.0 cm
+d:So/ElectronSource/RotX                     = 0.0 deg
+
+s:So/ElectronSource/BeamAngularDistribution  = "Gaussian"
+d:So/ElectronSource/BeamAngularSpreadX       = 0.0032 rad    # example
+d:So/ElectronSource/BeamAngularSpreadY       = 0.0032 rad    # example
+d:So/ElectronSource/BeamAngularCutoffX       = 90. deg       # optional
+d:So/ElectronSource/BeamAngularCutoffY       = 90. deg       # optional
+s:So/ElectronSource/BeamPositionDistribution = "Gaussian"
+s:So/ElectronSource/BeamPositionCutoffShape  = "Ellipse"
+d:So/ElectronSource/BeamPositionCutoffX      = 2.0 cm
+d:So/ElectronSource/BeamPositionCutoffY      = 2.0 cm
+d:So/ElectronSource/BeamPositionSpreadX      = 0.8 cm
+d:So/ElectronSource/BeamPositionSpreadY      = 0.8 cm
+
+# ------------------------------------------------------------------
+# NH3 DOSE (Solid Spheres Only)
+# ------------------------------------------------------------------
+
+s:Sc/NH3_2D_Map/Quantity                  = "DoseToMedium"
+s:Sc/NH3_2D_Map/Component                 = "NH3Sphere"
+s:Sc/NH3_2D_Map/OutputFile                = "NH3_2D_Map"
+s:Sc/NH3_2D_Map/OutputType                = "csv"
+s:Sc/NH3_2D_Map/IfOutputFileAlreadyExists = "Overwrite"
+
+d:Sc/NH3_2D_Map/HLX                       = 2.5 cm
+d:Sc/NH3_2D_Map/HLY                       = 0.1 cm
+d:Sc/NH3_2D_Map/HLZ                       = 5.0 cm
+d:Sc/NH3_2D_Map/TransZ                    = 5.0 cm
+
+i:Sc/NH3_2D_Map/XBins                     = 50
+i:Sc/NH3_2D_Map/YBins                     = 1
+i:Sc/NH3_2D_Map/ZBins                     = 100
+
+
+# ------------------------------------------------------------------
+# LIQUID ARGON DOSE (Interstitial Volume Only)
+# ------------------------------------------------------------------
+
+s:Sc/LAr_2D_Map/Quantity                  = "DoseToMedium"
+s:Sc/LAr_2D_Map/Component                 = "TargetBasket"
+s:Sc/LAr_2D_Map/OutputFile                = "LAr_2D_Map_030426"
+s:Sc/LAr_2D_Map/OutputType                = "csv"
+s:Sc/LAr_2D_Map/IfOutputFileAlreadyExists = "Overwrite"
+
+d:Sc/LAr_2D_Map/HLX                       = 2.5 cm
+d:Sc/LAr_2D_Map/HLY                       = 0.1 cm
+d:Sc/LAr_2D_Map/HLZ                       = 5.0 cm
+d:Sc/LAr_2D_Map/TransZ                    = 5.0 cm
+
+i:Sc/LAr_2D_Map/XBins                     = 50
+i:Sc/LAr_2D_Map/YBins                     = 1
+i:Sc/LAr_2D_Map/ZBins                     = 100
+
+
+# ------------------------------------------------------------------
+# DEPTH DOSE – NH3 ONLY
+# ------------------------------------------------------------------
+
+s:Sc/NH3_DepthDose/Quantity                = "DoseToMedium"
+s:Sc/NH3_DepthDose/Component               = "NH3Sphere"
+s:Sc/NH3_DepthDose/OutputFile              = "NH3_Depth_Profile_030426"
+s:Sc/NH3_DepthDose/IfOutputFileAlreadyExists = "Overwrite"
+
+d:Sc/NH3_DepthDose/HLX                     = 0.5 cm
+d:Sc/NH3_DepthDose/HLY                     = 0.5 cm
+d:Sc/NH3_DepthDose/HLZ                     = 5.0 cm
+d:Sc/NH3_DepthDose/TransZ                  = 5.0 cm
+
+i:Sc/NH3_DepthDose/XBins                   = 1
+i:Sc/NH3_DepthDose/YBins                   = 1
+i:Sc/NH3_DepthDose/ZBins                   = 100
+
+
+# ------------------------------------------------------------------
+# DEPTH DOSE – LIQUID ARGON ONLY
+# ------------------------------------------------------------------
+
+s:Sc/LAr_DepthDose/Quantity                = "DoseToMedium"
+s:Sc/LAr_DepthDose/Component               = "TargetBasket"
+s:Sc/LAr_DepthDose/OutputFile              = "LAr_Depth_Profile_030426"
+s:Sc/LAr_DepthDose/IfOutputFileAlreadyExists = "Overwrite"
+
+d:Sc/LAr_DepthDose/HLX                     = 0.5 cm
+d:Sc/LAr_DepthDose/HLY                     = 0.5 cm
+d:Sc/LAr_DepthDose/HLZ                     = 5.0 cm
+d:Sc/LAr_DepthDose/TransZ                  = 5.0 cm
+
+i:Sc/LAr_DepthDose/XBins                   = 1
+i:Sc/LAr_DepthDose/YBins                   = 1
+i:Sc/LAr_DepthDose/ZBins                   = 100
+
+# ------------------------------------------------------------------------------
+# 7. VISUALIZATION
+# ------------------------------------------------------------------------------
+# Only works if Ts/UseQt = "True". Uncomment to visualize.
+s:Gr/ViewA/Type                              = "OpenGL"
+i:Gr/ViewA/WindowSizeX                       = 900
+i:Gr/ViewA/WindowSizeY                       = 900
+b:Gr/ViewA/IncludeAxes                       = "True"
+s:Gr/ViewA/AxesComponent                     = "World"

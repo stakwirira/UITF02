@@ -1,0 +1,176 @@
+# ==============================================================================
+# TOPAS PARAMETER FILE: NH3 Target Irradiation Simulation
+# AUTHOR:               Samuel Barachel Takwirira
+# ADVISOR:              Karl Slifer, PhD
+# DEPARTMENT:           Nuclear Physics Department
+# SCHOOL:               University  of New Hampshire 
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. BASIC SETTINGS
+# ------------------------------------------------------------------------------
+i:Ts/NumberOfThreads                 = 8       # Could be 4 for smaller chips
+i:Ts/ShowHistoryCountAtInterval      = 20000
+i:Ts/Seed                            = 0       # More realitsic
+b:Ts/UseQt                           = "False" # Keep False for batch/cluster runs
+
+# ------------------------------------------------------------------------------
+# 2. PHYSICS MODULES
+# ------------------------------------------------------------------------------
+sv:Ph/Default/Modules = 1 "g4em-standard_opt4"
+
+# ------------------------------------------------------------------------------
+# 3. 4D TIME CONTROL: ROTATION LOGIC
+# ------------------------------------------------------------------------------
+
+i:Tf/Verbosity                = 1
+i:Tf/NumberOfSequentialTimes  = 100
+d:Tf/TimelineStart            = 0.0 s
+d:Tf/TimelineEnd              = 1.0 s
+
+# rotation in radians: 0 → 2π over 1 s
+s:Tf/TargetRotation/Function           = "Linear rad"
+d:Tf/TargetRotation/RepetitionInterval = 1.0 s
+d:Tf/TargetRotation/StartValue         = 0.0 rad
+d:Tf/TargetRotation/Rate               = 6.283185307 rad/s
+# ------------------------------------------------------------------------------
+# 4. GEOMETRY DEFINITIONS
+# ------------------------------------------------------------------------------
+
+# --- World Volume ---
+s:Ge/World/Material  = "G4_AIR"
+d:Ge/World/HLX       = 50.0 cm
+d:Ge/World/HLY       = 50.0 cm
+d:Ge/World/HLZ       = 100.0 cm
+
+# --- The Cryostat (Aluminum Dewar) ---
+s:Ge/Dewar/Type          = "TsCylinder"
+s:Ge/Dewar/Parent        = "World"
+s:Ge/Dewar/Material      = "G4_Al"
+d:Ge/Dewar/RMax          = 9.2 cm
+d:Ge/Dewar/HL            = 45.0 cm
+d:Ge/Dewar/TransZ        = 0.0 cm
+s:Ge/Dewar/Color         = "orange"
+b:Ge/Dewar/Visible       = "False"
+
+# --- Liquid Argon Bath ---
+s:Ge/LArBath/Type          = "TsCylinder"
+s:Ge/LArBath/Parent        = "Dewar"
+s:Ge/LArBath/Material      = "G4_lAr"
+d:Ge/LArBath/RMax          = 9.0 cm
+d:Ge/LArBath/HL            = 44.0 cm
+s:Ge/LArBath/Color         = "skyblue"
+s:Ge/LArBath/DrawingStyle  = "FullWireFrame"
+
+# TARGET GEOMETRY: SPHERICAL NH3 TARGET ---
+s:Ge/TargetBasket/Type         = "TsSphere"
+s:Ge/TargetBasket/Parent       = "LArBath"
+s:Ge/TargetBasket/Material     = "SolidNH3"
+d:Ge/TargetBasket/RMax         = 6.12 cm
+d:Ge/TargetBasket/RMin         = 0.0 cm
+d:Ge/TargetBasket/TransZ       = 5.0 cm  # Keeps it at the same depth as before
+
+# use the time feature value (in radians) for the X rotation
+d:Ge/TargetBasket/RotX = Tf/TargetRotation/Value rad
+d:Ge/TargetBasket/RotY          = 0.0 deg
+d:Ge/TargetBasket/RotZ          = 0.0 deg
+
+s:Ge/TargetBasket/DrawingStyle  = "FullWireFrame"
+s:Ge/TargetBasket/Color         = "magenta"
+
+# ------------------------------------------------------------------------------
+# 5. MATERIAL DEFINITIONS (NH3)
+# ------------------------------------------------------------------------------
+
+# Components: Nitrogen + Hydrogen
+# Mass fractions for NH3 from stoichiometry
+#   N atomic mass ≈ 14.007
+#   H atomic mass ≈ 1.008  -> 3 * 1.008 = 3.024
+#   Total mass ≈ 17.031
+#   Mass frac N ≈ 14.007 / 17.031 = 0.822441
+#   Mass frac H ≈ 3.024 / 17.031 = 0.177559
+
+sv:Ma/SolidNH3/Components = 2 "Nitrogen" "Hydrogen"
+uv:Ma/SolidNH3/Fractions  = 2 0.822441 0.177559
+
+# Density for solid ammonia at low temperature (~ −80 °C). Adjust if needed.
+d:Ma/SolidNH3/Density     = 1.007 g/cm3
+
+# ------------------------------------------------------------------------------
+# 6. BEAM SOURCE (20 MeV ELECTRON BEAM)
+# ------------------------------------------------------------------------------
+s:So/ElectronSource/Type                     = "Beam"
+s:So/ElectronSource/Component                = "World"
+s:So/ElectronSource/BeamParticle             = "e-"
+d:So/ElectronSource/BeamEnergy               = 20.0 MeV
+u:So/ElectronSource/BeamEnergySpread         = 0.03
+i:So/ElectronSource/NumberOfHistoriesInRun   = 1000000
+
+d:So/ElectronSource/BeamPositionX            = 0.0 cm
+d:So/ElectronSource/BeamPositionY            = 0.0 cm
+d:So/ElectronSource/BeamPositionZ            = -60.0 cm
+d:So/ElectronSource/RotX                     = 0.0 deg
+
+s:So/ElectronSource/BeamAngularDistribution  = "Gaussian"
+d:So/ElectronSource/BeamAngularSpreadX       = 0.0032 rad    # example
+d:So/ElectronSource/BeamAngularSpreadY       = 0.0032 rad    # example
+d:So/ElectronSource/BeamAngularCutoffX       = 90. deg       # optional
+d:So/ElectronSource/BeamAngularCutoffY       = 90. deg       # optional
+s:So/ElectronSource/BeamPositionDistribution = "Gaussian"
+s:So/ElectronSource/BeamPositionCutoffShape  = "Ellipse"
+d:So/ElectronSource/BeamPositionCutoffX      = 2.0 cm
+d:So/ElectronSource/BeamPositionCutoffY      = 2.0 cm
+d:So/ElectronSource/BeamPositionSpreadX      = 0.8 cm
+d:So/ElectronSource/BeamPositionSpreadY      = 0.8 cm
+
+# ------------------------------------------------------------------------------
+# 7. SCORERS
+# ------------------------------------------------------------------------------
+
+s:Sc/RotUniformity/Quantity                 = "DoseToMedium"
+s:Sc/RotUniformity/Component                = "LArBath"
+s:Sc/RotUniformity/OutputFile               = "NH3_Accumulated_2D_Map"
+s:Sc/RotUniformity/OutputType               = "csv"
+b:Sc/RotUniformity/OutputAfterAllTimeSteps  = "True"
+
+d:Sc/RotUniformity/HLX                      = 4.0 cm
+d:Sc/RotUniformity/HLY                      = 4.0 cm
+d:Sc/RotUniformity/HLZ                      = 5.0 cm
+d:Sc/RotUniformity/TransZ                   = 5.0 cm
+i:Sc/RotUniformity/XBins                    = 100
+i:Sc/RotUniformity/YBins                    = 1
+i:Sc/RotUniformity/ZBins                    = 100
+
+s:Sc/RotDepthDose/Quantity                  = "DoseToMedium"
+s:Sc/RotDepthDose/Component                 = "LArBath"
+s:Sc/RotDepthDose/OutputFile                = "NH3_Accumulated_Depth_Profile"
+b:Sc/RotDepthDose/OutputAfterAllTimeSteps   = "True"
+
+d:Sc/RotDepthDose/HLX                       = 0.5 cm
+d:Sc/RotDepthDose/HLY                       = 0.5 cm
+d:Sc/RotDepthDose/HLZ                       = 5.0 cm
+d:Sc/RotDepthDose/TransZ                    = 5.0 cm
+i:Sc/RotDepthDose/XBins                     = 1
+i:Sc/RotDepthDose/YBins                     = 1
+i:Sc/RotDepthDose/ZBins                     = 100
+
+# --- SCORER 2: 2D Dose Uniformity Map ---
+# Resolution: 5cm width / 50 bins = 1mm resolution in X and Z.
+s:Sc/DoseUniformity/Quantity                 = "DoseToMedium"
+s:Sc/DoseUniformity/Component                = "TargetBasket"
+s:Sc/DoseUniformity/OutputFile               = "NH3_2D_Map"
+s:Sc/DoseUniformity/OutputType               = "csv"
+s:Sc/DoseUniformity/IfOutputFileAlreadyExists= "Overwrite"
+i:Sc/DoseUniformity/XBins                    = 50
+i:Sc/DoseUniformity/YBins                    = 1
+i:Sc/DoseUniformity/ZBins                    = 50
+
+# ------------------------------------------------------------------------------
+# 7. VISUALIZATION
+# ------------------------------------------------------------------------------
+# Only works if Ts/UseQt = "True". Uncomment to visualize.
+# s:Gr/ViewA/Type                              = "OpenGL"
+# i:Gr/ViewA/WindowSizeX                       = 900
+# i:Gr/ViewA/WindowSizeY                       = 900
+# b:Gr/ViewA/IncludeAxes                       = "True"
+# s:Gr/ViewA/AxesComponent                     = "World"

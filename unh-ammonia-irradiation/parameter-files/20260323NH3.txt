@@ -1,0 +1,199 @@
+# ------------------------------------------------------------------------------
+# 1. BASIC SETTINGS
+# ------------------------------------------------------------------------------
+i:Ts/NumberOfThreads                 = 4
+i:Ts/ShowHistoryCountAtInterval      = 2000
+i:Ts/Seed                            = 0
+b:Ts/UseQt                           = "False"
+
+# ------------------------------------------------------------------------------
+# 2. PHYSICS MODULES
+# ------------------------------------------------------------------------------
+sv:Ph/Default/Modules = 1 "g4em-standard_opt4"
+
+# ------------------------------------------------------------------------------
+# 3. GEOMETRY DEFINITIONS
+# ------------------------------------------------------------------------------
+
+# --- World Volume ---
+s:Ge/World/Material                  = "G4_AIR"
+d:Ge/World/HLX                       = 50.0 cm
+d:Ge/World/HLY                       = 50.0 cm
+d:Ge/World/HLZ                       = 100.0 cm
+
+# --- Aluminum Dewar ---
+s:Ge/Dewar/Type                      = "TsCylinder"
+s:Ge/Dewar/Parent                    = "World"
+s:Ge/Dewar/Material                  = "G4_Al"
+d:Ge/Dewar/RMax                      = 9.2 cm
+d:Ge/Dewar/HL                        = 45.0 cm
+b:Ge/Dewar/Visible                   = "False"
+
+# --- Liquid Argon Bath ---
+s:Ge/LArBath/Type                    = "TsCylinder"
+s:Ge/LArBath/Parent                  = "Dewar"
+s:Ge/LArBath/Material                = "G4_lAr"
+d:Ge/LArBath/RMax                    = 9.0 cm
+d:Ge/LArBath/HL                      = 44.0 cm
+s:Ge/LArBath/DrawingStyle            = "FullWireFrame"
+
+# ------------------------------------------------------------------------------
+# 4. TARGET: PACKED NH3 SPHERES
+# ------------------------------------------------------------------------------
+
+# --- Basket Volume (argon filled container for spheres) ---
+s:Ge/TargetBasket/Type               = "TsCylinder"
+s:Ge/TargetBasket/Parent             = "LArBath"
+s:Ge/TargetBasket/Material           = "G4_lAr"
+d:Ge/TargetBasket/RMax               = 2.5 cm
+d:Ge/TargetBasket/HL                 = 5.0 cm
+d:Ge/TargetBasket/TransZ             = 5.0 cm
+s:Ge/TargetBasket/DrawingStyle       = "WireFrame"
+
+# --- NH3 Sphere Definition ---
+s:Ge/NH3Sphere/Type                  = "TsSphere"
+s:Ge/NH3Sphere/Parent                = "TargetBasket"
+s:Ge/NH3Sphere/Material              = "SolidNH3"
+d:Ge/NH3Sphere/RMax                  = 0.05 cm
+
+# --- Lattice Packing ---
+s:Ge/NH3Sphere/RepeatShape           = "Rectangular"
+i:Ge/NH3Sphere/RepeatNumberX         = 52
+i:Ge/NH3Sphere/RepeatNumberY         = 52
+i:Ge/NH3Sphere/RepeatNumberZ         = 105
+d:Ge/NH3Sphere/RepeatSpacingX        = 0.095 cm
+d:Ge/NH3Sphere/RepeatSpacingY        = 0.095 cm
+d:Ge/NH3Sphere/RepeatSpacingZ        = 0.095 cm
+
+# ------------------------------------------------------------------------------
+# 5. MATERIAL: SOLID NH3
+# ------------------------------------------------------------------------------
+sv:Ma/SolidNH3/Components            = 2 "Nitrogen" "Hydrogen"
+uv:Ma/SolidNH3/Fractions             = 2 0.822441 0.177559
+d:Ma/SolidNH3/Density                = 0.817 g/cm3
+
+# ------------------------------------------------------------------------------
+# 6. BEAM SOURCE (20 MeV ELECTRON BEAM)
+# ------------------------------------------------------------------------------
+s:So/ElectronSource/Type                     = "Beam"
+s:So/ElectronSource/Component                = "World"
+s:So/ElectronSource/BeamParticle             = "e-"
+
+d:So/ElectronSource/BeamEnergy               = 20.0 MeV
+u:So/ElectronSource/BeamEnergySpread         = 0.03
+i:So/ElectronSource/NumberOfHistoriesInRun   = 1000000
+
+# --- Beam position ---
+d:So/ElectronSource/BeamPositionX            = 0.0 cm
+d:So/ElectronSource/BeamPositionY            = 0.0 cm
+d:So/ElectronSource/BeamPositionZ            = -60.0 cm
+
+# Required when using Gaussian spatial distribution
+s:So/ElectronSource/BeamPositionDistribution = "Gaussian"
+s:So/ElectronSource/BeamPositionCutoffShape  = "Ellipse"
+d:So/ElectronSource/BeamPositionCutoffX      = 2.0 cm
+d:So/ElectronSource/BeamPositionCutoffY      = 2.0 cm
+d:So/ElectronSource/BeamPositionSpreadX      = 0.8 cm
+d:So/ElectronSource/BeamPositionSpreadY      = 0.8 cm
+
+# --- Beam angular spread ---
+s:So/ElectronSource/BeamAngularDistribution  = "Gaussian"
+d:So/ElectronSource/BeamAngularSpreadX       = 0.0032 rad
+d:So/ElectronSource/BeamAngularSpreadY       = 0.0032 rad
+d:So/ElectronSource/BeamAngularCutoffX       = 90. deg
+d:So/ElectronSource/BeamAngularCutoffY       = 90. deg
+
+# ------------------------------------------------------------------------------
+# 7. SCORING: NH3 PACKAGE DOSE MAP
+# ------------------------------------------------------------------------------
+s:Sc/NH3_2D_Map/Quantity                    = "DoseToMedium"
+s:Sc/NH3_2D_Map/Component                   = "NH3Sphere"
+b:Sc/NH3_2D_Map/PropagateToChildren         = "True"
+
+sv:Sc/NH3_2D_Map/Report                     = 1 "Sum"
+s:Sc/NH3_2D_Map/OutputFile                  = "NH3_Map_032426"
+s:Sc/NH3_2D_Map/OutputType                  = "csv"
+s:Sc/NH3_2D_Map/IfOutputFileAlreadyExists   = "Overwrite"
+b:Sc/NH3_2D_Map/OutputZeroBins              = "True"
+
+d:Sc/NH3_2D_Map/HLX                         = 2.5 cm
+d:Sc/NH3_2D_Map/HLY                         = 0.1 cm
+d:Sc/NH3_2D_Map/HLZ                         = 5.0 cm
+
+i:Sc/NH3_2D_Map/XBins                       = 50
+i:Sc/NH3_2D_Map/YBins                       = 1
+i:Sc/NH3_2D_Map/ZBins                       = 100
+
+
+# ------------------------------------------------------------------------------
+# 8. SCORING: LAr DOSE MAP
+# ------------------------------------------------------------------------------
+s:Sc/LAr_2D_Map/Quantity                    = "DoseToMedium"
+s:Sc/LAr_2D_Map/Component                   = "LArBath"
+
+sv:Sc/LAr_2D_Map/Report                     = 1 "Sum"
+s:Sc/LAr_2D_Map/OutputFile                  = "LAr_Map_032426"
+s:Sc/LAr_2D_Map/OutputType                  = "csv"
+s:Sc/LAr_2D_Map/IfOutputFileAlreadyExists   = "Overwrite"
+b:Sc/LAr_2D_Map/OutputZeroBins              = "True"
+
+d:Sc/LAr_2D_Map/HLX                         = 2.5 cm
+d:Sc/LAr_2D_Map/HLY                         = 0.1 cm
+d:Sc/LAr_2D_Map/HLZ                         = 5.0 cm
+
+i:Sc/LAr_2D_Map/XBins                       = 50
+i:Sc/LAr_2D_Map/YBins                       = 1
+i:Sc/LAr_2D_Map/ZBins                       = 100
+
+
+# ------------------------------------------------------------------------------
+# 9. SCORING: NH3 DEPTH DOSE
+# ------------------------------------------------------------------------------
+s:Sc/NH3_DepthDose/Quantity                  = "DoseToMedium"
+s:Sc/NH3_DepthDose/Component                 = "NH3Sphere"
+b:Sc/NH3_DepthDose/PropagateToChildren       = "True"
+
+sv:Sc/NH3_DepthDose/Report                   = 1 "Sum"
+s:Sc/NH3_DepthDose/OutputFile                = "NH3_dEdz_032426"
+s:Sc/NH3_DepthDose/OutputType                = "csv"
+s:Sc/NH3_DepthDose/IfOutputFileAlreadyExists = "Overwrite"
+b:Sc/NH3_DepthDose/OutputZeroBins            = "True"
+
+d:Sc/NH3_DepthDose/HLX                       = 0.5 cm
+d:Sc/NH3_DepthDose/HLY                       = 0.5 cm
+d:Sc/NH3_DepthDose/HLZ                       = 5.0 cm
+
+i:Sc/NH3_DepthDose/XBins                     = 1
+i:Sc/NH3_DepthDose/YBins                     = 1
+i:Sc/NH3_DepthDose/ZBins                     = 100
+
+
+# ------------------------------------------------------------------------------
+# 10. SCORING: LAr DEPTH DOSE
+# ------------------------------------------------------------------------------
+s:Sc/LAr_DepthDose/Quantity                  = "DoseToMedium"
+s:Sc/LAr_DepthDose/Component                 = "LArBath"
+
+sv:Sc/LAr_DepthDose/Report                   = 1 "Sum"
+s:Sc/LAr_DepthDose/OutputFile                = "LAr_dEdz_032426"
+s:Sc/LAr_DepthDose/OutputType                = "csv"
+s:Sc/LAr_DepthDose/IfOutputFileAlreadyExists = "Overwrite"
+b:Sc/LAr_DepthDose/OutputZeroBins            = "True"
+
+d:Sc/LAr_DepthDose/HLX                       = 0.5 cm
+d:Sc/LAr_DepthDose/HLY                       = 0.5 cm
+d:Sc/LAr_DepthDose/HLZ                       = 5.0 cm
+
+i:Sc/LAr_DepthDose/XBins                     = 1
+i:Sc/LAr_DepthDose/YBins                     = 1
+i:Sc/LAr_DepthDose/ZBins                     = 100
+
+# ------------------------------------------------------------------------------
+# 11. VISUALIZATION
+# ------------------------------------------------------------------------------
+# Only works if Ts/UseQt = "True". Uncomment to visualize.
+# s:Gr/ViewA/Type                            = "OpenGL"
+# i:Gr/ViewA/WindowSizeX                     = 900
+# i:Gr/ViewA/WindowSizeY                     = 900
+# b:Gr/ViewA/IncludeAxes                     = "True"
+# s:Gr/ViewA/AxesComponent                   = "World"

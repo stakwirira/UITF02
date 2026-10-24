@@ -1,0 +1,136 @@
+# ==============================================================================
+# TOPAS PARAMETER FILE: ND3 Target Irradiation Simulation
+# AUTHOR: Samuel Takwirira
+# DEPARTMENT: Nuclear Physics Department
+# SCHOOL: University  of New Hampshire 
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. BASIC SETTINGS
+# ------------------------------------------------------------------------------
+i:Ts/NumberOfThreads                 = 8 # Keep at 4 [or 8 for M1/M2/M3 Pro/Max]
+i:Ts/ShowHistoryCountAtInterval      = 200000
+i:Ts/Seed                            = 1 # Means randomize every time
+# (0 here means reproducing data is almost impossible)
+
+# --- CRASH FIX: Run in Batch Mode (No Graphics) ---
+# Set this to "True" only if you need to see the geometry.
+# Running with "False" prevents Segmentation Fault on macOS.
+b:Ts/UseQt                           = "False"
+
+# ------------------------------------------------------------------------------
+# 2. PHYSICS MODULES
+# ------------------------------------------------------------------------------
+sv:Ph/Default/Modules                = 1 "g4em-standard_opt4"
+
+# ------------------------------------------------------------------------------
+# 3. GEOMETRY DEFINITIONS
+# ------------------------------------------------------------------------------
+
+# --- World Volume ---
+s:Ge/World/Material                  = "Vacuum"
+d:Ge/World/HLX                       = 50.0 cm
+d:Ge/World/HLY                       = 50.0 cm
+d:Ge/World/HLZ                       = 100.0 cm
+
+# --- The Cryostat (Aluminum Dewar) ---
+s:Ge/Dewar/Type                      = "TsCylinder"
+s:Ge/Dewar/Parent                    = "World"
+s:Ge/Dewar/Material                  = "Aluminum"
+d:Ge/Dewar/RMax                      = 9.2 cm
+d:Ge/Dewar/HL                        = 45.0 cm
+d:Ge/Dewar/TransZ                    = 0.0 cm
+d:Ge/Dewar/RotX               	     = 90. deg
+s:Ge/Dewar/Color                     = "grey"
+s:Ge/Dewar/DrawingStyle              = "Wireframe"
+
+# --- Liquid Argon Bath (LAr) ---
+s:Ge/LArBath/Type                    = "TsCylinder"
+s:Ge/LArBath/Parent                  = "Dewar"
+s:Ge/LArBath/Material                = "LiquidArgon"
+d:Ge/LArBath/RMax                    = 9.1 cm
+d:Ge/LArBath/HL                      = 44.0 cm
+s:Ge/LArBath/Color                   = "skyblue"
+s:Ge/LArBath/DrawingStyle            = "Solid"
+
+# --- The Target Basket (Frozen ND3) ---
+s:Ge/TargetBasket/Type               = "TsBox"
+s:Ge/TargetBasket/Parent             = "LArBath"
+s:Ge/TargetBasket/Material           = "SolidND3"
+d:Ge/TargetBasket/HLX                = 2.5 cm
+d:Ge/TargetBasket/HLY                = 2.5 cm
+d:Ge/TargetBasket/HLZ                = 5.0 cm
+d:Ge/TargetBasket/TransZ             = 5.0 cm
+s:Ge/TargetBasket/Color              = "magenta"
+
+# ------------------------------------------------------------------------------
+# 4. MATERIAL DEFINITIONS
+# ------------------------------------------------------------------------------
+
+# --- Frozen Deuterated Ammonia (ND3) ---
+sv:Ma/SolidND3/Components            = 2 "Nitrogen" "Hydrogen"
+uv:Ma/SolidND3/Fractions             = 2 0.82 0.18
+d:Ma/SolidND3/Density                = 1.007 g/cm3
+
+# --- Liquid Argon (LAr) ---
+sv:Ma/LiquidArgon/Components         = 1 "Argon"
+uv:Ma/LiquidArgon/Fractions          = 1 1.0
+d:Ma/LiquidArgon/Density             = 1.39 g/cm3 #check this
+
+# ------------------------------------------------------------------------------
+# 5. BEAM SOURCE (ELECTRON BEAM)
+# ------------------------------------------------------------------------------
+s:So/ElectronSource/Type                     = "Beam"
+s:So/ElectronSource/Component                = "BeamPosition"
+s:So/ElectronSource/BeamParticle             = "e-"
+d:So/ElectronSource/BeamEnergy               = 20.0 MeV
+u:So/ElectronSource/BeamEnergySpread         = 0.03
+
+# --- Beam Shape & Histories Fix ---
+i:So/ElectronSource/NumberOfHistoriesInRun   = 1000000000   # Number of Particles to run.
+s:So/ElectronSource/BeamPositionDistribution = "Gaussian"
+s:So/ElectronSource/BeamPositionCutoffShape  = "Ellipse"
+d:So/ElectronSource/BeamPositionCutoffX      = 2.0 cm
+d:So/ElectronSource/BeamPositionCutoffY      = 2.0 cm
+d:So/ElectronSource/BeamPositionSpreadX      = 0.2 cm
+d:So/ElectronSource/BeamPositionSpreadY      = 0.2 cm
+s:So/ElectronSource/BeamAngularDistribution  = "None"
+
+# Source Position
+d:Ge/BeamPosition/TransZ             = -60.0 cm
+d:Ge/BeamPosition/RotX               = 0. deg
+
+# ------------------------------------------------------------------------------
+# 6. SCORERS (DATA OUTPUT)
+# ------------------------------------------------------------------------------
+
+# --- SCORER 1: Longitudinal Depth Dose ---
+s:Sc/DepthDose/Quantity                      = "DoseToMedium"
+s:Sc/DepthDose/Component                     = "TargetBasket"
+s:Sc/DepthDose/OutputFile                    = "ND3_dEdz_Profile"
+s:Sc/DepthDose/OutputType                    = "csv"
+s:Sc/DepthDose/IfOutputFileAlreadyExists     = "Overwrite"
+# Energy Binning removed to fix crash
+i:Sc/DepthDose/XBins                         = 1
+i:Sc/DepthDose/YBins                         = 1
+i:Sc/DepthDose/ZBins                         = 100
+
+# --- SCORER 2: 2D Dose Uniformity Map ---
+s:Sc/DoseUniformity/Quantity                 = "DoseToMedium"
+s:Sc/DoseUniformity/Component                = "TargetBasket"
+s:Sc/DoseUniformity/OutputFile               = "ND3_2D_Map"
+s:Sc/DoseUniformity/OutputType               = "csv"
+s:Sc/DoseUniformity/IfOutputFileAlreadyExists= "Overwrite"
+i:Sc/DoseUniformity/XBins                    = 50
+i:Sc/DoseUniformity/YBins                    = 1
+i:Sc/DoseUniformity/ZBins                    = 50
+
+# ------------------------------------------------------------------------------
+# 7. VISUALIZATION (Only active if Ts/UseQt = "True")|Uncomment to View Geometry
+# ------------------------------------------------------------------------------
+
+s:Gr/ViewA/Type                      = "OpenGL"
+i:Gr/ViewA/WindowSizeX               = 900
+i:Gr/ViewA/WindowSizeY               = 900
+b:Gr/ViewA/IncludeAxes               = "True"
+s:Gr/ViewA/AxesComponent             = "World"

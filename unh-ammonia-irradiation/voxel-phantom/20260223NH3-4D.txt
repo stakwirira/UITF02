@@ -1,0 +1,118 @@
+# ==============================================================================
+# TOPAS CONFIGURATION: NH3 VOXELIZED PHANTOM IN LIQUID ARGON
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. BASIC SETTINGS
+# ------------------------------------------------------------------------------
+i:Ts/NumberOfThreads               = 8
+i:Ts/ShowHistoryCountAtInterval    = 10000
+i:Ts/Seed                          = 0
+b:Ts/UseQt                         = "False"
+
+# ------------------------------------------------------------------------------
+# 2. PHYSICS MODULES
+# ------------------------------------------------------------------------------
+sv:Ph/Default/Modules = 1 "g4em-standard_opt4"
+
+# ------------------------------------------------------------------------------
+# 3. MATERIAL DEFINITIONS
+# ------------------------------------------------------------------------------
+sv:Ma/SolidNH3/Components = 2 "Nitrogen" "Hydrogen"
+uv:Ma/SolidNH3/Fractions  = 2 0.822441 0.177559
+d:Ma/SolidNH3/Density     = 0.817 g/cm3
+
+# ------------------------------------------------------------------------------
+# 4. GEOMETRY
+# ------------------------------------------------------------------------------
+
+# --- World ---
+s:Ge/World/Material  = "G4_AIR"
+d:Ge/World/HLX       = 50.0 cm
+d:Ge/World/HLY       = 50.0 cm
+d:Ge/World/HLZ       = 100.0 cm
+
+# --- Dewar ---
+s:Ge/Dewar/Type          = "TsCylinder"
+s:Ge/Dewar/Parent        = "World"
+s:Ge/Dewar/Material      = "G4_Al"
+d:Ge/Dewar/RMax          = 9.2 cm
+d:Ge/Dewar/HL            = 45.0 cm
+b:Ge/Dewar/Invisible     = "True"
+
+# --- Liquid Argon ---
+s:Ge/LArBath/Type        = "TsCylinder"
+s:Ge/LArBath/Parent      = "Dewar"
+s:Ge/LArBath/Material    = "G4_lAr"
+d:Ge/LArBath/RMax        = 9.0 cm
+d:Ge/LArBath/HL          = 44.0 cm
+
+# --- Target Basket (cylindrical boundary) ---
+s:Ge/TargetBasket/Type     = "TsCylinder"
+s:Ge/TargetBasket/Parent   = "LArBath"
+s:Ge/TargetBasket/Material = "G4_lAr"
+d:Ge/TargetBasket/RMax     = 2.5 cm
+d:Ge/TargetBasket/HL       = 5.0 cm
+d:Ge/TargetBasket/TransZ   = 5.0 cm
+
+# --- Voxelized Target ---
+s:Ge/Target/Type            = "TsImageCube"
+s:Ge/Target/Parent          = "TargetBasket"
+
+# Mandatory Dimensions (Nx * VoxelSize / 2)
+d:Ge/Target/HLX             = 2.5 cm 
+d:Ge/Target/HLY             = 2.5 cm
+d:Ge/Target/HLZ             = 5.0 cm
+
+s:Ge/Target/InputFile       = "phantom.raw"
+s:Ge/Target/DataType        = "uint8"
+
+# CORRECT CONVERTER FOR TOPAS 3.9
+s:Ge/Target/ImagingToMaterialConverter = "MaterialId"
+sv:Ge/Target/MaterialNames             = 2 "G4_lAr" "SolidNH3"
+
+i:Ge/Target/Nx = 250
+i:Ge/Target/Ny = 250
+i:Ge/Target/Nz = 500
+
+# ------------------------------------------------------------------------------
+# 5. BEAM
+# ------------------------------------------------------------------------------
+s:So/ElectronSource/Type = "Beam"
+s:So/ElectronSource/Component = "World"
+s:So/ElectronSource/BeamParticle = "e-"
+d:So/ElectronSource/BeamEnergy = 20.0 MeV
+i:So/ElectronSource/NumberOfHistoriesInRun = 1000000
+d:So/ElectronSource/BeamPositionZ = -60.0 cm
+
+# ------------------------------------------------------------------------------
+# 6. SCORING
+# ------------------------------------------------------------------------------
+
+# --- NH3 DEPTH DOSE ---
+s:Sc/NH3_DepthDose/Quantity                  = "DoseToMedium"
+s:Sc/NH3_DepthDose/Component                 = "Target"
+sv:Sc/NH3_DepthDose/OnlyIncludeIfInMaterial  = 1 "SolidNH3"
+i:Sc/NH3_DepthDose/ZBins                     = 200
+
+# --- LAr DEPTH DOSE ---
+s:Sc/LAr_DepthDose/Quantity                  = "DoseToMedium"
+s:Sc/LAr_DepthDose/Component                 = "Target"
+sv:Sc/LAr_DepthDose/OnlyIncludeIfInMaterial  = 1 "G4_lAr"
+i:Sc/LAr_DepthDose/ZBins                     = 200
+
+# --- NH3 2D MAP ---
+s:Sc/NH3_2D_Map/Quantity                     = "DoseToMedium"
+s:Sc/NH3_2D_Map/Component                    = "Target"
+sv:Sc/NH3_2D_Map/OnlyIncludeIfInMaterial     = 1 "SolidNH3"
+i:Sc/NH3_2D_Map/XBins = 80
+i:Sc/NH3_2D_Map/YBins = 80
+i:Sc/NH3_2D_Map/ZBins = 1
+
+# --- LAr 2D MAP ---
+s:Sc/LAr_2D_Map/Quantity                     = "DoseToMedium"
+s:Sc/LAr_2D_Map/Component                    = "Target"
+sv:Sc/LAr_2D_Map/OnlyIncludeIfInMaterial     = 1 "G4_lAr"
+i:Sc/LAr_2D_Map/XBins = 80
+i:Sc/LAr_2D_Map/YBins = 80
+i:Sc/LAr_2D_Map/ZBins = 1
